@@ -1,0 +1,31 @@
+{
+  "name": "@maxmilton/viewport-info",
+  "version": "0.0.0",
+  "description": "View live info about your current browser viewport",
+  "repository": "maxmilton/uapps",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "pnpm run prebuild && NODE_ENV=production node build.mjs",
+    "dev": "NODE_ENV=development node build.mjs",
+    "prebuild": "rm -rf dist; cp -r static dist",
+    "serve": "sirv dist --dev --cors"
+  },
+  "dependencies": {
+    "@ekscss/framework": "0.0.31",
+    "stage1": "0.0.13"
+  },
+  "devDependencies": {
+    "@types/csso": "4.2.0",
+    "csso": "4.2.0",
+    "dset": "3.1.1",
+    "ekscss": "0.0.10",
+    "esbuild-minify-templates": "0.7.0",
+    "esbuild-plugin-ekscss": "0.0.7",
+    "git-ref": "0.3.0",
+    "purgecss": "4.0.3",
+    "sirv-cli": "1.0.14",
+    "terser": "5.9.0"
+  }
+}

@@ -1,0 +1,46 @@
+/* Packages */
+
+@import '@ekscss/framework';
+@import '@ekscss/framework/addon/pretty.xcss';
+
+/* Local */
+
+@media ${x.app.media.xs} {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll; // always show scroll bars to show accurate client sizes
+}
+
+#main {
+  margin: auto;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  font-size: 1.3em;
+}
+
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+dt {
+  font-style: normal;
+  font-size: inherit;
+  font-weight: 400;
+}
+
+dd {
+  margin-left: 0.5em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

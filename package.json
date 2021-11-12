@@ -1,0 +1,49 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "pnpm run -r build",
+    "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
+    "lint:css": "echo 'TODO: CSS linting'",
+    "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
+    "lint:ts": "tsc --project tsconfig.lint.json",
+    "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "5.3.1",
+    "@typescript-eslint/parser": "5.3.1",
+    "c8": "7.10.0",
+    "esbuild": "0.13.13",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "15.0.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-unicorn": "38.0.1",
+    "prettier": "2.4.1",
+    "prettier-plugin-pkg": "0.10.0",
+    "prettier-plugin-sh": "0.7.1",
+    "tsm": "2.1.4",
+    "typescript": "4.4.4",
+    "uvu": "0.5.2"
+  },
+  "c8": {
+    "all": true,
+    "include": [
+      "packages/*/src"
+    ],
+    "reporter": [
+      "text",
+      "lcovonly"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "singleQuote": true,
+    "trailingComma": "all",
+    "plugins": [
+      "./node_modules/prettier-plugin-pkg",
+      "./node_modules/prettier-plugin-sh"
+    ]
+  }
+}
