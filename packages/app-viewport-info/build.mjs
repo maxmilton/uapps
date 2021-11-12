@@ -6,6 +6,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console */
 
@@ -19,15 +20,21 @@ import {
 } from 'esbuild-minify-templates';
 import { xcss } from 'esbuild-plugin-ekscss';
 import fs from 'fs/promises';
-import { gitRef } from 'git-ref';
+import { gitHash, isDirty } from 'git-ref';
+import { createRequire } from 'module';
 import path from 'path';
 import { PurgeCSS } from 'purgecss';
 import { minify } from 'terser';
 
+// workaround for node import not working with *.json
+// @ts-expect-error - valid in node ESM
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
+
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const dir = path.resolve(); // no __dirname in node ESM
-const release = gitRef();
+const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
 /**
  * @param {esbuild.OutputFile[]} outputFiles
