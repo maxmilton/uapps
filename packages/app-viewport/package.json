@@ -1,6 +1,6 @@
 {
   "name": "app-viewport",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "View live info about your current browser viewport",
   "repository": "maxmilton/uapps",
   "author": "Max Milton <max@happycode.ltd>",

@@ -64,6 +64,7 @@ function makeHtml(title, jsPath, cssPath) {
   return `<!doctype html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width">
+<link href=/favicon.svg rel=icon>
 <title>${title}</title>
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
