@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "target": "app-viewport",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"]
+  }
+}
