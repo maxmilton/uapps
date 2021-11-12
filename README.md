@@ -17,6 +17,9 @@ Monorepo of my micro apps.
 
 MIT license. See [LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENSE).
 
+<!-- TODO: Add attribution for favicons -->
+<!-- https://github.com/twitter/twemoji/blob/master/assets/svg/1f5a5.svg -->
+
 ---
 
 © 2021 [Max Milton](https://maxmilton.com)

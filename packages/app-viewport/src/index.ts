@@ -26,6 +26,12 @@ function App() {
 
   const update = () => {
     dl.innerHTML = `
+      <dt>Screen width</dt>
+      <dd>${window.screen.width} px</dd>
+
+      <dt>Screen height</dt>
+      <dd>${window.screen.height} px</dd>
+
       <dt>innerWidth</dt>
       <dd>${window.innerWidth} px</dd>
 
@@ -40,6 +46,12 @@ function App() {
 
       <dt>devicePixelRatio</dt>
       <dd>${devicePixelRatio}</dd>
+
+      <dt>pixelDepth</dt>
+      <dd>${window.screen.pixelDepth}</dd>
+
+      <dt>colorDepth</dt>
+      <dd>${window.screen.colorDepth}</dd>
     `;
   };
 
