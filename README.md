@@ -6,6 +6,13 @@
 
 Monorepo of my micro apps.
 
+## Apps
+
+<!-- prettier-ignore -->
+| Name | Directory | URL |
+| --- | --- | --- |
+| Viewport Info | `packages/app-viewport` | <https://app-viewport.web.app> |
+
 ## License
 
 MIT license. See [LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENSE).
