@@ -1,0 +1,35 @@
+name: deploy
+on:
+  workflow_run:
+    workflows:
+      - ci
+    types:
+      - completed
+    branches:
+      - master
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm install --global pnpm
+      - run: pnpm install --frozen-lockfile
+        # env:
+        #   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: pnpm run build
+      - name: Deploy to firebase
+        run: |
+          curl -Lo ./firebase_bin https://firebase.tools/bin/linux/latest
+          chmod +x ./firebase_bin
+          ./firebase_bin deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
