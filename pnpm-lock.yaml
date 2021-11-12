@@ -38,7 +38,7 @@ importers:
       typescript: 4.4.4
       uvu: 0.5.2
 
-  packages/app-viewport-info:
+  packages/app-viewport:
     specifiers:
       '@ekscss/framework': 0.0.31
       '@types/csso': 4.2.0
