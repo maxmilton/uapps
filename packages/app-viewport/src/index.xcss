@@ -5,6 +5,10 @@
 
 /* Local */
 
+:root {
+  color-scheme: dark;
+}
+
 @media ${x.app.media.xs} {
   html {
     font-size: 16px;
