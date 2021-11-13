@@ -71,7 +71,7 @@ function makeHtml(title, jsPath, cssPath) {
 <link href=${cssPath} rel=stylesheet>
 <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel=stylesheet>
 <script src=https://cdn.jsdelivr.net/npm/trackx@0/default.js crossorigin></script>
-<script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z/event"),trackx.meta.app="viewport-info",trackx.meta.release="${release}",trackx.ping("https://api.trackx.app/v1/ze3tss9sk1z/ping"));</script>
+<script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z"),trackx.meta.app="viewport",trackx.meta.release="${release}",trackx.ping());</script>
 <script src=${jsPath} defer></script>
 <noscript>You need to enable JavaScript to run this app.</noscript>`;
 }
