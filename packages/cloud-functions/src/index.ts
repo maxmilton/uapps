@@ -27,7 +27,9 @@ export const timerPing = functions
     timeoutSeconds: 10,
     memory: '128MB',
   })
-  .pubsub.schedule('every 3 hours')
+  // every 3 hours
+  .pubsub.schedule('0 */3 * * *')
+  .timeZone('utc')
   .onRun(() => {
     trackx.ping();
     return null;
