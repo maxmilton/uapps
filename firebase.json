@@ -9,7 +9,7 @@
   ],
   "functions": {
     "runtime": "nodejs16",
-    "source": "packages/cloud-functions/dist"
+    "source": "packages/cloud-functions"
   },
   "emulators": {
     "functions": {
