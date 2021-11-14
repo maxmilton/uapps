@@ -1,9 +1,33 @@
 {
+  "$schema": "https://raw.githubusercontent.com/firebase/firebase-tools/master/schema/firebase-config.json",
   "hosting": [
     {
       "target": "app-viewport",
       "public": "packages/app-viewport/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"],
+      "predeploy": ["pnpm run --dir \"$RESOURCE_DIR\" build"]
     }
-  ]
+  ],
+  "functions": {
+    "predeploy": [
+      "pnpm run lint",
+      "pnpm run test",
+      "pnpm run --dir \"$RESOURCE_DIR\" build"
+    ],
+    "source": "packages/cloud-functions"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "pubsub": {
+      "port": 8085
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
 }

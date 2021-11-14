@@ -1,0 +1,28 @@
+{
+  "name": "@maxmilton/cloud-functions",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": "16"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "pnpm run prebuild && NODE_ENV=production node build.mjs",
+    "deploy": "firebase deploy --only functions",
+    "dev": "NODE_ENV=development node build.mjs",
+    "logs": "firebase functions:log",
+    "prebuild": "rm -rf dist; mkdir dist",
+    "serve": "pnpm run dev && firebase emulators:start --only functions",
+    "shell": "pnpm run dev && firebase functions:shell",
+    "start": "pnpm run shell"
+  },
+  "dependencies": {
+    "firebase-admin": "10.0.0",
+    "firebase-functions": "3.16.0",
+    "trackx": "0.2.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "0.3.3",
+    "git-ref": "0.3.0"
+  }
+}
