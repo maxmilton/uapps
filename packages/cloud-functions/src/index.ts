@@ -21,14 +21,14 @@ trackx.meta.release = process.env.APP_RELEASE;
 trackx.meta.NODE_ENV = process.env.NODE_ENV || 'NULL';
 trackx.ping();
 
+// Ping trackx periodically for testing purposes
 export const timerPing = functions
   .runWith({
     timeoutSeconds: 10,
     memory: '128MB',
   })
-  .pubsub.schedule('every 5 minutes')
-  // .schedule('every 6 hours')
-  .onRun((_context) => {
+  .pubsub.schedule('every 3 hours')
+  .onRun(() => {
     trackx.ping();
     return null;
   });
