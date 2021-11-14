@@ -4,16 +4,10 @@
     {
       "target": "app-viewport",
       "public": "packages/app-viewport/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"],
-      "predeploy": ["pnpm run --dir \"$RESOURCE_DIR\" build"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"]
     }
   ],
   "functions": {
-    "predeploy": [
-      "pnpm run lint",
-      "pnpm run test",
-      "pnpm run --dir \"$RESOURCE_DIR\" build"
-    ],
     "source": "packages/cloud-functions"
   },
   "emulators": {
