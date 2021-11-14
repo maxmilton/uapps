@@ -1,5 +1,5 @@
 {
-  "name": "@maxmilton/cloud-functions",
+  "name": "cloud-functions",
   "version": "0.0.0",
   "private": true,
   "engines": {

@@ -12,6 +12,7 @@ Monorepo of my micro apps.
 | Name | Directory | URL |
 | --- | --- | --- |
 | Viewport Info | `packages/app-viewport` | <https://app-viewport.web.app> |
+| Cloud Functions | `packages/cloud-functions` | - |
 
 ## License
 
