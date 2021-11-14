@@ -37,7 +37,7 @@ const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/index.js',
   platform: 'node',
-  target: ['node16'],
+  target: ['node14'], // TODO: Use `node16` after fixing issue with nullish coalescing operator (??)
   external: [
     'firebase-admin',
     'firebase-functions',
