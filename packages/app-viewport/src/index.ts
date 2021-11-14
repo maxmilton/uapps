@@ -1,4 +1,4 @@
-import { hh } from 'stage1';
+import { h } from 'stage1';
 import './index.xcss';
 
 declare global {
@@ -12,7 +12,7 @@ type RefNodes = {
   dl: HTMLDListElement;
 };
 
-const view = hh(`
+const view = h(`
   <main id=main>
     <h1 class="tc orange5">Viewport Info</h1>
 
@@ -63,7 +63,7 @@ function App() {
 
 document.body.append(
   App(),
-  hh(`
+  h(`
   <footer class="mv3 fss muted tc">
     © <a href=https://maxmilton.com class="normal muted">Max Milton</a> ・ ${process
     .env
