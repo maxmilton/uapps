@@ -1,6 +1,6 @@
 // https://firebase.google.com/docs/functions/typescript
 // https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation
-
+// https://firebase.google.com/docs/functions/schedule-functions
 // https://firebase.google.com/docs/emulator-suite/install_and_configure#configure_emulator_suite
 
 // TODO: Optimise networking, including connection reuse between function invocations
@@ -29,6 +29,9 @@ export const timerPing = functions
   })
   .pubsub.schedule('every 3 hours')
   .onRun(() => {
+    // XXX: The ping is sent twice when the cloud founction boots up, once for
+    // the function and once for the main script, it's not an issue because the
+    // session is calculated correctly, but worth knowing
     trackx.ping();
     return null;
   });
