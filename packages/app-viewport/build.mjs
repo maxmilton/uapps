@@ -1,13 +1,3 @@
-// FIXME: Remove these lint exceptions once linting can handle mjs
-//  ↳ When TS 4.6+ is released and typescript-eslint has support
-//  ↳ https://github.com/typescript-eslint/typescript-eslint/issues/3950
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console */
 
 import csso from 'csso';
@@ -21,19 +11,16 @@ import {
 import { xcss } from 'esbuild-plugin-ekscss';
 import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
-import { createRequire } from 'module';
 import path from 'path';
 import { PurgeCSS } from 'purgecss';
 import { minify } from 'terser';
 
-// workaround for node import not working with *.json
-// @ts-expect-error - valid in node ESM
-const require = createRequire(import.meta.url);
-const pkg = require('./package.json');
-
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const dir = path.resolve(); // no __dirname in node ESM
+/** @type {import('./package.json')} */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
 /**
@@ -51,12 +38,20 @@ const analyzeMeta = {
   name: 'analyze-meta',
   setup(build) {
     if (!build.initialOptions.metafile) return;
-    // @ts-expect-error - FIXME:!
-    build.onEnd((result) => esbuild.analyzeMetafile(result.metafile).then(console.log));
+
+    build.onEnd((result) => {
+      if (result.metafile) {
+        esbuild
+          .analyzeMetafile(result.metafile)
+          .then(console.log)
+          .catch(console.error);
+      }
+    });
   },
 };
 
 /**
+ * @param {string} title
  * @param {string} jsPath
  * @param {string} cssPath
  */
@@ -151,27 +146,29 @@ const minifyJs = {
     build.onEnd(async (result) => {
       if (result.outputFiles) {
         const distPath = path.join(dir, 'dist');
-        const outputJsMap = findOutputFile(result.outputFiles, '.js.map');
-        const { file, index } = findOutputFile(result.outputFiles, '.js');
+        const outMap = findOutputFile(result.outputFiles, '.js.map');
+        const outJS = findOutputFile(result.outputFiles, '.js');
 
-        const { code, map } = await minify(decodeUTF8(file.contents), {
-          ecma: 2020,
-          compress: {
-            passes: 2,
-            unsafe_methods: true,
-            unsafe_proto: true,
+        const { code = '', map = '' } = await minify(
+          decodeUTF8(outJS.file.contents),
+          {
+            ecma: 2020,
+            compress: {
+              comparisons: false,
+              passes: 2,
+              inline: 2,
+              unsafe: true,
+            },
+            sourceMap: {
+              content: decodeUTF8(outMap.file.contents),
+              filename: path.relative(distPath, outJS.file.path),
+              url: path.relative(distPath, outMap.file.path),
+            },
           },
-          sourceMap: {
-            content: decodeUTF8(outputJsMap.file.contents),
-            filename: path.relative(distPath, file.path),
-            url: path.relative(distPath, outputJsMap.file.path),
-          },
-        });
+        );
 
-        // @ts-expect-error - map is string
-        result.outputFiles[outputJsMap.index].contents = encodeUTF8(map);
-        // @ts-expect-error - FIXME: code is defined
-        result.outputFiles[index].contents = encodeUTF8(code);
+        result.outputFiles[outMap.index].contents = encodeUTF8(map.toString());
+        result.outputFiles[outJS.index].contents = encodeUTF8(code);
       }
     });
   },
