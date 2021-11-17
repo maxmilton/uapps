@@ -26,6 +26,6 @@
     "git-ref": "0.3.0",
     "purgecss": "4.0.3",
     "sirv-cli": "1.0.14",
-    "terser": "5.9.0"
+    "terser": "5.10.0"
   }
 }
