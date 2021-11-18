@@ -27,7 +27,7 @@ export const timerPing = functions
     timeoutSeconds: 10,
     memory: '128MB',
   })
-  .pubsub.schedule('every 1 hour')
+  .pubsub.schedule('every 60 minutes')
   .onRun(() => {
     // XXX: The ping is sent twice when the cloud founction boots up, once for
     // the function and once for the main script, it's not an issue because the
