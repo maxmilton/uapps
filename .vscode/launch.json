@@ -22,7 +22,7 @@
         "${workspaceFolder}/node_modules/uvu/**"
       ],
       "program": "${workspaceFolder}/node_modules/uvu/bin.js",
-      "args": ["-r", "tsm", "./packages", "\\/test\\/.+\\.test\\.ts$"],
+      "args": ["-r", "tsm", "./test", "\\.test\\.ts$"],
       "console": "integratedTerminal"
     },
     {
