@@ -23,6 +23,7 @@ module.exports = {
     'plugin:unicorn/recommended',
   ],
   rules: {
+    '@typescript-eslint/explicit-module-boundary-types': WARN,
     'import/prefer-default-export': OFF,
     'unicorn/filename-case': OFF,
     'unicorn/no-abusive-eslint-disable': WARN,
