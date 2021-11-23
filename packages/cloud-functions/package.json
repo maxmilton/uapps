@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "firebase-functions-test": "0.3.3",
-    "git-ref": "0.3.0"
+    "git-ref": "0.3.1"
   }
 }
