@@ -8,6 +8,24 @@ declare global {
   }
 }
 
+let supportsTouch: boolean;
+
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+if ('maxTouchPoints' in navigator) {
+  supportsTouch = navigator.maxTouchPoints > 0;
+} else {
+  const mq = matchMedia('(pointer:coarse)');
+  if (mq && mq.media === '(pointer:coarse)') {
+    supportsTouch = !!mq.matches;
+  } else if ('orientation' in window) {
+    supportsTouch = true; // deprecated, but good fallback
+  } else {
+    supportsTouch = /\b(blackberry|webos|iphone|iemobile|android|windows phone|ipad|ipod)\b/i.test(
+      navigator.userAgent,
+    );
+  }
+}
+
 type RefNodes = {
   dl: HTMLDListElement;
 };
@@ -52,6 +70,9 @@ function App() {
 
       <dt>colorDepth</dt>
       <dd>${window.screen.colorDepth}</dd>
+
+      <dt>Supports touch</dt>
+      <dd>${supportsTouch ? 'Yes' : 'No'}</dd>
     `;
   };
 
