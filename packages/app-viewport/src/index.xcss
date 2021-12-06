@@ -45,6 +45,6 @@ dt {
 
 dd {
   margin-left: 0.5em;
-  font-variant-numeric: tabular-nums;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }
