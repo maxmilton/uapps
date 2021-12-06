@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console */
 
-import csso from 'csso';
+import * as csso from 'csso';
 import esbuild from 'esbuild';
 import {
   decodeUTF8,
@@ -38,7 +38,6 @@ const analyzeMeta = {
   name: 'analyze-meta',
   setup(build) {
     if (!build.initialOptions.metafile) return;
-
     build.onEnd((result) => {
       if (result.metafile) {
         esbuild
@@ -79,13 +78,13 @@ const buildHtml = (opts) => ({
 
     build.onEnd(async (result) => {
       if (result.outputFiles) {
-        const outputJs = findOutputFile(result.outputFiles, '.js').file;
-        const outputCss = findOutputFile(result.outputFiles, '.css').file;
+        const outJS = findOutputFile(result.outputFiles, '.js');
+        const outCSS = findOutputFile(result.outputFiles, '.css');
 
         const html = makeHtml(
           opts.title,
-          path.relative(distPath, outputJs.path),
-          path.relative(distPath, outputCss.path),
+          path.relative(distPath, outJS.file.path),
+          path.relative(distPath, outCSS.file.path),
         );
 
         result.outputFiles[result.outputFiles.length] = {
@@ -114,24 +113,24 @@ const minifyCss = {
 
     build.onEnd(async (result) => {
       if (result.outputFiles) {
-        const outputHtml = findOutputFile(result.outputFiles, '.html').file;
-        const outputJs = findOutputFile(result.outputFiles, '.js').file;
-        const { file, index } = findOutputFile(result.outputFiles, '.css');
+        const outHTML = findOutputFile(result.outputFiles, '.html');
+        const outJS = findOutputFile(result.outputFiles, '.js');
+        const outCSS = findOutputFile(result.outputFiles, '.css');
 
         const purgedcss = await new PurgeCSS().purge({
           content: [
-            { extension: '.html', raw: decodeUTF8(outputHtml.contents) },
-            { extension: '.js', raw: decodeUTF8(outputJs.contents) },
+            { extension: '.html', raw: decodeUTF8(outHTML.file.contents) },
+            { extension: '.js', raw: decodeUTF8(outJS.file.contents) },
           ],
-          css: [{ raw: decodeUTF8(file.contents) }],
+          css: [{ raw: decodeUTF8(outCSS.file.contents) }],
           safelist: ['html', 'body'],
         });
         const { css } = csso.minify(purgedcss[0].css, {
           restructure: true,
-          forceMediaMerge: true,
+          forceMediaMerge: true, // unsafe!
         });
 
-        result.outputFiles[index].contents = encodeUTF8(css);
+        result.outputFiles[outCSS.index].contents = encodeUTF8(css);
       }
     });
   },
@@ -146,8 +145,8 @@ const minifyJs = {
     build.onEnd(async (result) => {
       if (result.outputFiles) {
         const distPath = path.join(dir, 'dist');
-        const outMap = findOutputFile(result.outputFiles, '.js.map');
         const outJS = findOutputFile(result.outputFiles, '.js');
+        const outMap = findOutputFile(result.outputFiles, '.js.map');
 
         const { code = '', map = '' } = await minify(
           decodeUTF8(outJS.file.contents),
@@ -158,6 +157,13 @@ const minifyJs = {
               passes: 2,
               inline: 2,
               unsafe: true,
+              negate_iife: false,
+            },
+            format: {
+              comments: false,
+              ascii_only: true,
+              wrap_iife: true,
+              wrap_func_args: true,
             },
             sourceMap: {
               content: decodeUTF8(outMap.file.contents),
@@ -167,8 +173,8 @@ const minifyJs = {
           },
         );
 
-        result.outputFiles[outMap.index].contents = encodeUTF8(map.toString());
         result.outputFiles[outJS.index].contents = encodeUTF8(code);
+        result.outputFiles[outMap.index].contents = encodeUTF8(map.toString());
       }
     });
   },
