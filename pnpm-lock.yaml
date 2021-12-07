@@ -47,7 +47,7 @@ importers:
   packages/app-viewport:
     specifiers:
       '@ekscss/framework': 0.0.35
-      '@types/csso': 4.2.0
+      '@types/csso': 5.0.0
       csso: 5.0.0
       ekscss: 0.0.10
       esbuild-minify-templates: 0.7.0
@@ -61,7 +61,7 @@ importers:
       '@ekscss/framework': 0.0.35_ekscss@0.0.10
       stage1: 0.1.0
     devDependencies:
-      '@types/csso': 4.2.0
+      '@types/csso': 5.0.0
       csso: 5.0.0
       ekscss: 0.0.10
       esbuild-minify-templates: 0.7.0_esbuild@0.14.2
@@ -715,8 +715,8 @@ packages:
     resolution: {integrity: sha512-Pz+DfVODpQTAV6PwPBK6kzyy7+f6EyPbr1+mYkc1YolJfl2NAJ4wbg0TC/AJPBsqn9jWfyiO19A/sgpvFLfqnw==}
     dev: true
 
-  /@types/csso/4.2.0:
-    resolution: {integrity: sha512-tGMZcJGgeIA67qbbm/ZKUi7ZyiTETEL0X4opRpFzULbIE1Kyt6EfOVSctw4N/WrEJZwmKw0J+1i/OApm6/CAOQ==}
+  /@types/csso/5.0.0:
+    resolution: {integrity: sha512-EMrCTGpXRUsbFfZBzn2jcW6Sqg8kxWXkJcpvAGYSEzFqAJ2THDJSwiMeS2fPUw+0p6RQNT/n8F/skEc9hUBc0g==}
     dependencies:
       '@types/css-tree': 1.0.7
     dev: true
