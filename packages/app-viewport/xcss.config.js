@@ -1,18 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck 😢
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-var-requires, strict */
 
-'use strict'; // eslint-disable-line strict, lines-around-directive
+'use strict';
 
 const framework = require('@ekscss/framework/config');
-const { merge } = require('dset/merge');
+const { extend } = require('@ekscss/framework/utils');
 
-/** @type {(import('rollup-plugin-ekscss').XCSSConfig)} */
-module.exports = merge(framework, {
+module.exports = extend(framework, {
   globals: {
     fontStack: 'Rubik, sans-serif',
 

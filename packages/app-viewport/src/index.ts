@@ -85,7 +85,7 @@ function App() {
 document.body.append(
   App(),
   h(`
-  <footer class="mv3 fss muted tc">
+  <footer class="mv4 fss muted tc">
     © <a href=https://maxmilton.com class="normal muted">Max Milton</a> ・ ${process
     .env
     .APP_RELEASE!} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
