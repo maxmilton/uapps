@@ -49,23 +49,23 @@ importers:
       '@ekscss/framework': 0.0.36
       '@types/csso': 5.0.0
       csso: 5.0.0
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       esbuild-minify-templates: 0.7.0
-      esbuild-plugin-ekscss: 0.0.8
+      esbuild-plugin-ekscss: 0.0.9
       git-ref: 0.3.1
       purgecss: 4.1.3
       sirv-cli: 1.0.14
       stage1: 0.1.0
       terser: 5.10.0
     dependencies:
-      '@ekscss/framework': 0.0.36_ekscss@0.0.10
+      '@ekscss/framework': 0.0.36_ekscss@0.0.11
       stage1: 0.1.0
     devDependencies:
       '@types/csso': 5.0.0
       csso: 5.0.0
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       esbuild-minify-templates: 0.7.0_esbuild@0.14.2
-      esbuild-plugin-ekscss: 0.0.8_ekscss@0.0.10+esbuild@0.14.2
+      esbuild-plugin-ekscss: 0.0.9_ekscss@0.0.11+esbuild@0.14.2
       git-ref: 0.3.1
       purgecss: 4.1.3
       sirv-cli: 1.0.14
@@ -327,45 +327,45 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@ekscss/framework/0.0.36_ekscss@0.0.10:
+  /@ekscss/framework/0.0.36_ekscss@0.0.11:
     resolution: {integrity: sha512-RhkUzmTLgcty5y0KXpU6C8EzQbPDex3jrxzNSphyN3MvzWLJar1VRN5FwZBuT1N24gXHV+bFFBQEZ7s+s6U9wA==}
     peerDependencies:
       ekscss: ^0.0.11
     dependencies:
-      '@ekscss/plugin-apply': 0.0.7_ekscss@0.0.10
-      '@ekscss/plugin-import': 0.0.7_ekscss@0.0.10
-      '@ekscss/plugin-prefix': 0.0.6_ekscss@0.0.10
+      '@ekscss/plugin-apply': 0.0.7_ekscss@0.0.11
+      '@ekscss/plugin-import': 0.0.7_ekscss@0.0.11
+      '@ekscss/plugin-prefix': 0.0.6_ekscss@0.0.11
       color: 4.1.0
       cssremedy: github.com/jensimmons/cssremedy/468e31a
       dset: 3.1.1
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       stylis: 4.0.11
     dev: false
 
-  /@ekscss/plugin-apply/0.0.7_ekscss@0.0.10:
+  /@ekscss/plugin-apply/0.0.7_ekscss@0.0.11:
     resolution: {integrity: sha512-393yqLV0kcrkZceqXaGzAPW56QopcsV5qL2cSYABgDnftwPbO0GHnYO6KTjUIdK7t1AT+dvh8jMnUdtabETeTw==}
     peerDependencies:
       ekscss: ^0.0.11
     dependencies:
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       stylis: 4.0.11
     dev: false
 
-  /@ekscss/plugin-import/0.0.7_ekscss@0.0.10:
+  /@ekscss/plugin-import/0.0.7_ekscss@0.0.11:
     resolution: {integrity: sha512-hb+XabEhWXvDQ+tUWTwWlu1e10NhuwZlf2tvdW3P72WYk2U5V2LIlLiQdVzCWSBEQOR4wYkJBKis2q7qpQ2dXg==}
     peerDependencies:
       ekscss: ^0.0.11
     dependencies:
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       stylis: 4.0.11
     dev: false
 
-  /@ekscss/plugin-prefix/0.0.6_ekscss@0.0.10:
+  /@ekscss/plugin-prefix/0.0.6_ekscss@0.0.11:
     resolution: {integrity: sha512-A73aO8dS1ifKj/R2AP1I9waZsWUGawzRopgEO74/RnKMWpT438LpmG7fRUsSc3zwlOmfyHWjVvXJQyDXgQ8v2Q==}
     peerDependencies:
       ekscss: ^0.0.11
     dependencies:
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       stylis: 4.0.11
     dev: false
 
@@ -1540,12 +1540,12 @@ packages:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
 
-  /ekscss/0.0.10:
-    resolution: {integrity: sha512-Nrg8678ngjwtkPRckIBHTIRXlkClFuzbu1wp/rMzuOEn0HQ6As4GAr5PiC0zDYtGSeJ3/rUbxlryduUkJJlwvQ==}
+  /ekscss/0.0.11:
+    resolution: {integrity: sha512-cYFo9n7XS8n3+cJply9rmyg9d4ShzdElrkFfc50XuXwoarvw2lQBZQe2uTI5jyoJsna57kBwvrwtBkxyMUB/2w==}
     dependencies:
       '@types/stylis': 4.0.2
       source-map: 0.7.3
-      stylis: 4.0.10
+      stylis: 4.0.11
     dev: true
 
   /electron-to-chromium/1.4.12:
@@ -1737,13 +1737,13 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-plugin-ekscss/0.0.8_ekscss@0.0.10+esbuild@0.14.2:
-    resolution: {integrity: sha512-ngP0NkvfBAFdwiMF2P/Q/lO+njp3OWjZy943D82biDuPzSFhnmVByCTp7G5Cy642Isqq9rB5amh6WkFSB6Tnxg==}
+  /esbuild-plugin-ekscss/0.0.9_ekscss@0.0.11+esbuild@0.14.2:
+    resolution: {integrity: sha512-a1tgEyfKmT5TfQmM1RO9kqscTwNzeysnvpra90BaWJIhxKGK1DwsbbcSmK99X/JYeXGlimX5CJ7I5GRqhoEkiA==}
     peerDependencies:
-      ekscss: ^0.0.10
+      ekscss: ^0.0.11
       esbuild: ^0.13.0 || ^0.14.0
     dependencies:
-      ekscss: 0.0.10
+      ekscss: 0.0.11
       esbuild: 0.14.2
       joycon: 3.1.1
     dev: true
@@ -4218,13 +4218,8 @@ packages:
       - supports-color
     dev: true
 
-  /stylis/4.0.10:
-    resolution: {integrity: sha512-m3k+dk7QeJw660eIKRRn3xPF6uuvHs/FFzjX3HQ5ove0qYsiygoAhwn5a3IYKaZPo5LrYD0rfVmtv1gNY1uYwg==}
-    dev: true
-
   /stylis/4.0.11:
     resolution: {integrity: sha512-Q7gWFqMXrpDAnqhkFZdgBjXzybYc4WaJNtFdnQQSfww/cIiBUx/3sPGYMKFh3muXA47dhaWfYqc/HQkg8j7+ig==}
-    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
