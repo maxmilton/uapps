@@ -55,11 +55,11 @@ importers:
       git-ref: 0.3.1
       purgecss: 4.1.3
       sirv-cli: 1.0.14
-      stage1: 0.1.0
+      stage1: 0.3.0
       terser: 5.10.0
     dependencies:
       '@ekscss/framework': 0.0.36_ekscss@0.0.11
-      stage1: 0.1.0
+      stage1: 0.3.0
     devDependencies:
       '@types/csso': 5.0.0
       csso: 5.0.0
@@ -4057,8 +4057,8 @@ packages:
     hasBin: true
     dev: true
 
-  /stage1/0.1.0:
-    resolution: {integrity: sha512-p5JZ/ZsYrHEgSWmiamncTN5nZmMjCnIuzm1NfURpCtiNFWydCVq/zMftmR5S/tI6y9nNp/EYSbI2s57Ymr7yFg==}
+  /stage1/0.3.0:
+    resolution: {integrity: sha512-NLydm7UXpc9HWRwxNhBOPZS7rboFABfLc0aP2NaST/7cToU6QX3O+WwQlJYQQ2f0lLxmkVBPvO0mc5rqmxkdOQ==}
     dev: false
 
   /statuses/1.5.0:
