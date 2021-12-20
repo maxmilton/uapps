@@ -48,7 +48,7 @@ importers:
     specifiers:
       '@ekscss/framework': 0.0.36
       '@types/csso': 5.0.0
-      csso: 5.0.0
+      csso: 5.0.2
       ekscss: 0.0.11
       esbuild-minify-templates: 0.7.0
       esbuild-plugin-ekscss: 0.0.9
@@ -62,7 +62,7 @@ importers:
       stage1: 0.3.0
     devDependencies:
       '@types/csso': 5.0.0
-      csso: 5.0.0
+      csso: 5.0.2
       ekscss: 0.0.11
       esbuild-minify-templates: 0.7.0_esbuild@0.14.3
       esbuild-plugin-ekscss: 0.0.9_ekscss@0.0.11+esbuild@0.14.3
@@ -1388,12 +1388,12 @@ packages:
     dev: false
     optional: true
 
-  /css-tree/2.0.1:
-    resolution: {integrity: sha512-rY9547sbMV6T7uD7ZI+b0ncoH7uA4DVil6TLHewrAai28DMDVFxwu0yK/e4wMk4DlP/NFpkpWYWtkZwbpSdpaw==}
-    engines: {node: ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+  /css-tree/2.0.4:
+    resolution: {integrity: sha512-b4IS9ZUMtGBiNjzYbcj9JhYbyei99R3ai2CSxlu8GQDnoPA/P+NU85hAm0eKDc/Zp660rpK6tFJQ2OSdacMHVg==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
       mdn-data: 2.0.23
-      source-map: 0.6.1
+      source-map-js: 1.0.1
     dev: true
 
   /cssesc/3.0.0:
@@ -1402,11 +1402,11 @@ packages:
     hasBin: true
     dev: true
 
-  /csso/5.0.0:
-    resolution: {integrity: sha512-z3LEHoehLw5I18vgvJ3hJQMs1JX41sSIxXnlAeGQ15XF4UYoUpUbq+sv+Xn7z3+2F/S5Q1xTEA4fdJVXHgv+MA==}
-    engines: {node: ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+  /csso/5.0.2:
+    resolution: {integrity: sha512-llFAe1UfFHy38ziX+YrPMGkn5MxdjzYtz0drvgnjRY/tLPmBRxotYTGO51BsKe9voQA074pEb0udV+piXH4scQ==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
-      css-tree: 2.0.1
+      css-tree: 2.0.4
     dev: true
 
   /date-and-time/2.0.1:
