@@ -50,7 +50,7 @@ importers:
       '@types/csso': 5.0.0
       csso: 5.0.2
       ekscss: 0.0.12
-      esbuild-minify-templates: 0.7.1
+      esbuild-minify-templates: 0.7.2
       esbuild-plugin-ekscss: 0.0.10
       git-ref: 0.3.1
       purgecss: 4.1.3
@@ -64,7 +64,7 @@ importers:
       '@types/csso': 5.0.0
       csso: 5.0.2
       ekscss: 0.0.12
-      esbuild-minify-templates: 0.7.1_esbuild@0.14.8
+      esbuild-minify-templates: 0.7.2_esbuild@0.14.8
       esbuild-plugin-ekscss: 0.0.10_ekscss@0.0.12+esbuild@0.14.8
       git-ref: 0.3.1
       purgecss: 4.1.3
@@ -1704,8 +1704,8 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-minify-templates/0.7.1_esbuild@0.14.8:
-    resolution: {integrity: sha512-BsmBtIAu/Z9XSPXi3IIWnOUqu9NP3B2MsAcoRQkvb99Qs0i0taG9iiAA1SYzFE/CVSYofaH7zNswSY9eRsvW/A==}
+  /esbuild-minify-templates/0.7.2_esbuild@0.14.8:
+    resolution: {integrity: sha512-M48XijE7gLP0RPNtcO24aCAE0md4hmtB9rwmjaGVvvZEkoykFSe/qBAkXGrR3oBKAvttZrMVS+r91fhkDFB1qw==}
     engines: {node: '>= 12'}
     peerDependencies:
       esbuild: ^0.13.0 || ^0.14.0
