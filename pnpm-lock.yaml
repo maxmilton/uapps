@@ -22,7 +22,7 @@ importers:
       stylelint-config-standard: 24.0.0
       tsm: 2.2.1
       typescript: 4.5.4
-      uvu: 0.5.2
+      uvu: 0.5.3
     devDependencies:
       '@maxmilton/stylelint-config': 0.0.9_stylelint@14.2.0
       '@types/node': 17.0.6
@@ -42,7 +42,7 @@ importers:
       stylelint-config-standard: 24.0.0_stylelint@14.2.0
       tsm: 2.2.1
       typescript: 4.5.4
-      uvu: 0.5.2
+      uvu: 0.5.3
 
   packages/app-viewport:
     specifiers:
@@ -4174,8 +4174,8 @@ packages:
     dev: false
     optional: true
 
-  /uvu/0.5.2:
-    resolution: {integrity: sha512-m2hLe7I2eROhh+tm3WE5cTo/Cv3WQA7Oc9f7JB6uWv+/zVKvfAm53bMyOoGOSZeQ7Ov2Fu9pLhFr7p07bnT20w==}
+  /uvu/0.5.3:
+    resolution: {integrity: sha512-brFwqA3FXzilmtnIyJ+CxdkInkY/i4ErvP7uV0DnUVxQcQ55reuHphorpF+tZoVHK2MniZ/VJzI7zJQoc9T9Yw==}
     engines: {node: '>=8'}
     hasBin: true
     dependencies:
@@ -4183,7 +4183,6 @@ packages:
       diff: 5.0.0
       kleur: 4.1.4
       sade: 1.8.0
-      totalist: 2.0.0
     dev: true
 
   /v8-compile-cache/2.3.0:
