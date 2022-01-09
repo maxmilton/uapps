@@ -77,11 +77,11 @@ importers:
       firebase-functions: 3.16.0
       firebase-functions-test: 0.3.3
       git-ref: 0.3.1
-      trackx: 0.2.1
+      trackx: 0.3.0
     dependencies:
       firebase-admin: 10.0.1
       firebase-functions: 3.16.0_firebase-admin@10.0.1
-      trackx: 0.2.1
+      trackx: 0.3.0
     devDependencies:
       firebase-functions-test: 0.3.3_84b25b861a22bc45e0dd85172af37ff2
       git-ref: 0.3.1
@@ -4040,8 +4040,8 @@ packages:
     dev: false
     optional: true
 
-  /trackx/0.2.1:
-    resolution: {integrity: sha512-EXppmy+yya8sPHdufhHMl0O/p9irvsn/AGVKiShG0AF4BJxlrVBaeSBQP835TpTw2fPC2ElKqZnyaPpLqMEpqQ==}
+  /trackx/0.3.0:
+    resolution: {integrity: sha512-fltMwt3+NOxbxCiFAbjLpPAFfEEHoKzQBbAmOMOqr1YN3d+tEABFMdsTXUtGaz9zkqenO3q6bURGZPKiIKma6A==}
     dependencies:
       '@ungap/global-this': 0.4.4
     dev: false
