@@ -17,7 +17,7 @@
     "start": "pnpm run shell"
   },
   "dependencies": {
-    "firebase-admin": "10.0.1",
+    "firebase-admin": "10.0.2",
     "firebase-functions": "3.16.0",
     "trackx": "0.4.0"
   },
