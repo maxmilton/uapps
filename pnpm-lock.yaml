@@ -338,8 +338,8 @@ packages:
     dev: false
     optional: true
 
-  /@grpc/grpc-js/1.5.3:
-    resolution: {integrity: sha512-q0xgaZ3ymUM+ZOhe1hdocVSdKHCnJ6llLSXcP+MqMXMyYPUZ3mzQOCxZ3Zkg+QZ7sZ950sn7hvueQrIJZumPZg==}
+  /@grpc/grpc-js/1.5.4:
+    resolution: {integrity: sha512-+nJTOsqpFAXnfFrMZ7Too4XXZ/J9O+8jYvSoaunupoC7I7b9H4iex1BRsbTdOmiowfPGJrWit7jUPmbENSUSpw==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.6.9
@@ -2214,7 +2214,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      '@grpc/grpc-js': 1.5.3
+      '@grpc/grpc-js': 1.5.4
       '@grpc/proto-loader': 0.6.9
       '@types/long': 4.0.1
       abort-controller: 3.0.0
