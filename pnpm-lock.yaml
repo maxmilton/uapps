@@ -74,16 +74,16 @@ importers:
   packages/cloud-functions:
     specifiers:
       firebase-admin: 10.0.2
-      firebase-functions: 3.16.0
+      firebase-functions: 3.17.0
       firebase-functions-test: 0.3.3
       git-ref: 0.3.1
       trackx: 0.4.0
     dependencies:
       firebase-admin: 10.0.2
-      firebase-functions: 3.16.0_firebase-admin@10.0.2
+      firebase-functions: 3.17.0_firebase-admin@10.0.2
       trackx: 0.4.0
     devDependencies:
-      firebase-functions-test: 0.3.3_a7a508e8ce67263b3c4bdc1a47aa6323
+      firebase-functions-test: 0.3.3_75c39027596ca3e3e2f11c3fc28a91fa
       git-ref: 0.3.1
 
 packages:
@@ -2017,7 +2017,7 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-functions-test/0.3.3_a7a508e8ce67263b3c4bdc1a47aa6323:
+  /firebase-functions-test/0.3.3_75c39027596ca3e3e2f11c3fc28a91fa:
     resolution: {integrity: sha512-dCppF/2Ztv87IyyBaUQlT1Z05ial5v/3LB0huS2ktXz05yNiID5FVIKtO0/+w9Q7/SThJ8qIDG0hoGDPt4Xcug==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -2026,13 +2026,14 @@ packages:
     dependencies:
       '@types/lodash': 4.14.178
       firebase-admin: 10.0.2
-      firebase-functions: 3.16.0_firebase-admin@10.0.2
+      firebase-functions: 3.17.0_firebase-admin@10.0.2
       lodash: 4.17.21
     dev: true
 
-  /firebase-functions/3.16.0_firebase-admin@10.0.2:
-    resolution: {integrity: sha512-6ISOn0JckMtpA3aJ/+wCCGhThUhBUrpZD+tSkUeolx0Vr+NoYFXA0+2YzJZa/A2MDU8gotPzUtnauLSEQvfClQ==}
+  /firebase-functions/3.17.0_firebase-admin@10.0.2:
+    resolution: {integrity: sha512-2IKaM3zMAp/tt849qK0P1xgu+r0BM0I6fsQ7KzAiFRi9o96e2DJkCY/iIq1l9Y+67N199ZRuZjqoVA+cvSjeUQ==}
     engines: {node: ^8.13.0 || >=10.10.0}
+    hasBin: true
     peerDependencies:
       firebase-admin: ^8.0.0 || ^9.0.0 || ^10.0.0
     dependencies:
