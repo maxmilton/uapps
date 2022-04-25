@@ -26,8 +26,7 @@ jobs:
             firebase-
       - uses: actions/setup-node@v3
         with:
-          # TODO: Update to 18 once `firebase-tools` support node v18
-          node-version: 16
+          node-version: 18
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
         # env:
