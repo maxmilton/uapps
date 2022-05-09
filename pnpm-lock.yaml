@@ -78,7 +78,7 @@ importers:
     specifiers:
       firebase-admin: 10.1.0
       firebase-functions: 3.21.0
-      firebase-functions-test: 0.3.3
+      firebase-functions-test: 2.0.1
       git-ref: 0.3.1
       trackx: 0.5.0
     dependencies:
@@ -86,7 +86,7 @@ importers:
       firebase-functions: 3.21.0_firebase-admin@10.1.0
       trackx: 0.5.0
     devDependencies:
-      firebase-functions-test: 0.3.3_12fabd781dd4c16e40ef151052e02e29
+      firebase-functions-test: 2.0.1_12fabd781dd4c16e40ef151052e02e29
       git-ref: 0.3.1
 
 packages:
@@ -2110,17 +2110,18 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-functions-test/0.3.3_12fabd781dd4c16e40ef151052e02e29:
-    resolution: {integrity: sha512-dCppF/2Ztv87IyyBaUQlT1Z05ial5v/3LB0huS2ktXz05yNiID5FVIKtO0/+w9Q7/SThJ8qIDG0hoGDPt4Xcug==}
-    engines: {node: '>=8.0.0'}
+  /firebase-functions-test/2.0.1_12fabd781dd4c16e40ef151052e02e29:
+    resolution: {integrity: sha512-1B2UQUZ4I3dzIfyfSriUoDnqkt53iCrqoT/lwdJatmuakbTWbrexPFSLTM5haT7kVBnQBTfjRRO300mgFCw8+w==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       firebase-admin: '>=6.0.0'
-      firebase-functions: '>=2.0.0'
+      firebase-functions: '>=3.20.1'
     dependencies:
       '@types/lodash': 4.14.182
       firebase-admin: 10.1.0
       firebase-functions: 3.21.0_firebase-admin@10.1.0
       lodash: 4.17.21
+      ts-deepmerge: 2.0.1
     dev: true
 
   /firebase-functions/3.21.0_firebase-admin@10.1.0:
@@ -4223,6 +4224,10 @@ packages:
   /trim-newlines/3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
+    dev: true
+
+  /ts-deepmerge/2.0.1:
+    resolution: {integrity: sha512-2RpGIE0YVW6blKY756MP74czemC9x4XThhNCxq0A14Owm3ac8tZvigPbpZyZZQSyfOc7Qba5kG5xKBq74ihZfA==}
     dev: true
 
   /tsconfig-paths/3.14.1:
