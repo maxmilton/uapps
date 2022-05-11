@@ -78,7 +78,7 @@ importers:
     specifiers:
       firebase-admin: 10.2.0
       firebase-functions: 3.21.0
-      firebase-functions-test: 2.0.1
+      firebase-functions-test: 2.0.2
       git-ref: 0.3.1
       trackx: 0.5.0
     dependencies:
@@ -86,7 +86,7 @@ importers:
       firebase-functions: 3.21.0_firebase-admin@10.2.0
       trackx: 0.5.0
     devDependencies:
-      firebase-functions-test: 2.0.1_35a8fb7b1713265f8fec120ccbd5f8c0
+      firebase-functions-test: 2.0.2_35a8fb7b1713265f8fec120ccbd5f8c0
       git-ref: 0.3.1
 
 packages:
@@ -2111,8 +2111,8 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-functions-test/2.0.1_35a8fb7b1713265f8fec120ccbd5f8c0:
-    resolution: {integrity: sha512-1B2UQUZ4I3dzIfyfSriUoDnqkt53iCrqoT/lwdJatmuakbTWbrexPFSLTM5haT7kVBnQBTfjRRO300mgFCw8+w==}
+  /firebase-functions-test/2.0.2_35a8fb7b1713265f8fec120ccbd5f8c0:
+    resolution: {integrity: sha512-6yzfCuCMw7DajR7ED1LWFiY2S8+F8U33myPX5vmJR5mpgoga4ny6BHCncGKM+IeAARAyQpYxKjZcdJHrMUbHbA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       firebase-admin: '>=6.0.0'
