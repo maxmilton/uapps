@@ -7,7 +7,7 @@ import { gitHash, isDirty } from 'git-ref';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 /** @type {import('./package.json')} */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,unicorn/prefer-json-parse-buffer
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
