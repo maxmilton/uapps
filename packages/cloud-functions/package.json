@@ -22,7 +22,7 @@
     "trackx": "0.5.0"
   },
   "devDependencies": {
-    "firebase-functions-test": "2.1.0",
+    "firebase-functions-test": "2.2.0",
     "git-ref": "0.3.1"
   }
 }
