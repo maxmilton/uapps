@@ -17,7 +17,8 @@ const out = await esbuild.build({
   platform: 'node',
   // TODO: Use `node16` after fixing issue with parsing the nullish coalescing
   // operator (??) in firebase deploy
-  target: ['node12'],
+  // target: ['node12'],
+  target: ['node16'],
   external: [
     'firebase-admin',
     'firebase-functions',
