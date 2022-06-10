@@ -21,10 +21,9 @@ if ('maxTouchPoints' in navigator) {
   } else if ('orientation' in window) {
     supportsTouch = true; // deprecated, but good fallback
   } else {
-    supportsTouch =
-      /\b(blackberry|webos|iphone|iemobile|android|windows phone|ipad|ipod)\b/i.test(
-        navigator.userAgent,
-      );
+    supportsTouch = /\b(blackberry|webos|iphone|iemobile|android|windows phone|ipad|ipod)\b/i.test(
+      navigator.userAgent,
+    );
   }
 }
 
@@ -89,8 +88,8 @@ document.body.append(
   h(`
   <footer class="mv4 fss muted tc">
     © <a href=https://maxmilton.com class="normal muted">Max Milton</a> ・ ${process
-      .env
-      .APP_RELEASE!} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
+    .env
+    .APP_RELEASE!} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
   </footer>
 `),
 );
