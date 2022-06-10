@@ -15,9 +15,6 @@ const out = await esbuild.build({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/index.js',
   platform: 'node',
-  // TODO: Use `node16` after fixing issue with parsing the nullish coalescing
-  // operator (??) in firebase deploy
-  // target: ['node12'],
   target: ['node16'],
   external: [
     'firebase-admin',
