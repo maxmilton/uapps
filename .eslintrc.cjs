@@ -9,7 +9,6 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    extraFileExtensions: ['.mjs', '.cjs'],
     project: ['./tsconfig.lint.json'],
     tsconfigRootDir: __dirname,
   },
