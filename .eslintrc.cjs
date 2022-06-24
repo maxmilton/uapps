@@ -20,6 +20,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:unicorn/recommended',
+    'plugin:security/recommended',
   ],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': WARN,
