@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console */
+/* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console, no-plusplus */
 
 import * as csso from 'csso';
 import esbuild from 'esbuild';
