@@ -17,6 +17,8 @@ type RefNodes = {
   e: Text;
   f: Text;
   g: Text;
+  h: Text;
+  i: Text;
 };
 
 const view = h(`
@@ -30,20 +32,26 @@ const view = h(`
       <dt>Screen height</dt>
       <dd>#b</dd>
 
-      <dt>innerWidth</dt>
+      <dt>Pixel width</dt>
       <dd>#c</dd>
 
-      <dt>innerHeight</dt>
+      <dt>Pixel height</dt>
       <dd>#d</dd>
 
-      <dt>clientWidth</dt>
+      <dt>innerWidth</dt>
       <dd>#e</dd>
 
-      <dt>clientHeight</dt>
+      <dt>innerHeight</dt>
       <dd>#f</dd>
 
-      <dt>devicePixelRatio</dt>
+      <dt>clientWidth</dt>
       <dd>#g</dd>
+
+      <dt>clientHeight</dt>
+      <dd>#h</dd>
+
+      <dt>devicePixelRatio</dt>
+      <dd>#i</dd>
 
       <dt>pixelDepth</dt>
       <dd>${window.screen.pixelDepth}</dd>
@@ -62,13 +70,15 @@ function App() {
   const refs = view.collect<RefNodes>(root);
 
   const update = () => {
-    refs.a.nodeValue = window.screen.width + ' px';
-    refs.b.nodeValue = window.screen.height + ' px';
-    refs.c.nodeValue = window.innerWidth + ' px';
-    refs.d.nodeValue = window.innerHeight + ' px';
-    refs.e.nodeValue = document.documentElement.clientWidth + ' px';
-    refs.f.nodeValue = document.documentElement.clientHeight + ' px';
-    refs.g.nodeValue = devicePixelRatio + '';
+    refs.a.nodeValue = window.screen.width * devicePixelRatio + ' px';
+    refs.b.nodeValue = window.screen.height * devicePixelRatio + ' px';
+    refs.c.nodeValue = window.screen.width + ' px';
+    refs.d.nodeValue = window.screen.height + ' px';
+    refs.e.nodeValue = window.innerWidth + ' px';
+    refs.f.nodeValue = window.innerHeight + ' px';
+    refs.g.nodeValue = document.documentElement.clientWidth + ' px';
+    refs.h.nodeValue = document.documentElement.clientHeight + ' px';
+    refs.i.nodeValue = devicePixelRatio + '';
   };
 
   update();
