@@ -11,7 +11,10 @@ const { ctx, onBeforeBuild } = require('ekscss');
 
 onBeforeBuild(() => {
   // Cheeky abuse of ekscss ctx to stop unwanted style imports
-  ctx.dependencies.push(require.resolve('@ekscss/framework/level2/a11y.xcss'));
+  ctx.dependencies.push(
+    require.resolve('@ekscss/framework/level2/a11y.xcss'),
+    require.resolve('@ekscss/framework/level2/form.xcss'),
+  );
 });
 
 module.exports = extend(framework, {

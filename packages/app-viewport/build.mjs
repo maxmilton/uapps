@@ -13,7 +13,6 @@ import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
 import path from 'path';
 import { PurgeCSS } from 'purgecss';
-import { minify } from 'terser';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -106,7 +105,7 @@ const buildHtml = (opts) => ({
 });
 
 /** @type {esbuild.Plugin} */
-const minifyCss = {
+const minifyCSS = {
   name: 'minify-css',
   setup(build) {
     if (build.initialOptions.write !== false) return;
@@ -124,6 +123,7 @@ const minifyCss = {
           ],
           css: [{ raw: decodeUTF8(outCSS.file.contents) }],
           safelist: ['html', 'body'],
+          blocklist: ['svg'],
         });
         const { css } = csso.minify(purgedcss[0].css, {
           restructure: true,
@@ -137,44 +137,27 @@ const minifyCss = {
 };
 
 /** @type {esbuild.Plugin} */
-const minifyJs = {
+const minifyJS = {
   name: 'minify-js',
   setup(build) {
-    if (build.initialOptions.write !== false) return;
+    if (!build.initialOptions.minify) return;
 
     build.onEnd(async (result) => {
-      if (result.outputFiles) {
-        const distPath = path.join(dir, 'dist');
-        const outJS = findOutputFile(result.outputFiles, '.js');
-        const outMap = findOutputFile(result.outputFiles, '.js.map');
+      if (!result.outputFiles) return;
 
-        const { code = '', map = '' } = await minify(
-          decodeUTF8(outJS.file.contents),
-          {
-            ecma: 2015,
-            compress: {
-              comparisons: false,
-              passes: 2,
-              inline: 2,
-              unsafe: true,
-              negate_iife: false,
-            },
-            format: {
-              comments: false,
-              ascii_only: true,
-              wrap_iife: true,
-              wrap_func_args: true,
-            },
-            sourceMap: {
-              content: decodeUTF8(outMap.file.contents),
-              filename: path.relative(distPath, outJS.file.path),
-              url: path.relative(distPath, outMap.file.path),
-            },
-          },
-        );
+      for (let index = 0; index < result.outputFiles.length; index++) {
+        const file = result.outputFiles[index];
 
-        result.outputFiles[outJS.index].contents = encodeUTF8(code);
-        result.outputFiles[outMap.index].contents = encodeUTF8(map.toString());
+        if (path.extname(file.path) === '.js') {
+          // eslint-disable-next-line no-await-in-loop
+          const out = await build.esbuild.transform(decodeUTF8(file.contents), {
+            loader: 'js',
+            minify: true,
+            // target: build.initialOptions.target,
+          });
+
+          result.outputFiles[index].contents = encodeUTF8(out.code);
+        }
       }
     });
   },
@@ -187,7 +170,6 @@ await esbuild.build({
   assetNames: dev ? '[name]' : '[name]-[hash]',
   chunkNames: dev ? '[name]' : '[name]-[hash]',
   platform: 'browser',
-  // target: ['chrome78', 'firefox77', 'safari11', 'edge44'],
   target: 'es2015',
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),
@@ -197,14 +179,14 @@ await esbuild.build({
     xcss(),
     minifyTemplates(),
     buildHtml({ title: 'Viewport Info' }),
-    minifyCss,
-    minifyJs,
+    minifyCSS,
+    minifyJS,
     writeFiles(),
     analyzeMeta,
   ],
   bundle: true,
   minify: !dev,
-  sourcemap: true,
+  sourcemap: dev,
   watch: dev,
   write: dev,
   metafile: !dev && process.stdout.isTTY,

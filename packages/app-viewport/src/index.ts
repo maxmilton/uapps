@@ -1,4 +1,4 @@
-/* eslint-disable prefer-template */
+/* eslint-disable @typescript-eslint/restrict-plus-operands, prefer-template */
 
 import './index.xcss';
 
@@ -62,13 +62,13 @@ function App() {
   const refs = view.collect<RefNodes>(root);
 
   const update = () => {
-    refs.a.nodeValue = String(window.screen.width) + ' px';
-    refs.b.nodeValue = String(window.screen.height) + ' px';
-    refs.c.nodeValue = String(window.innerWidth) + ' px';
-    refs.d.nodeValue = String(window.innerHeight) + ' px';
-    refs.e.nodeValue = String(document.documentElement.clientWidth) + ' px';
-    refs.f.nodeValue = String(document.documentElement.clientHeight) + ' px';
-    refs.g.nodeValue = String(devicePixelRatio);
+    refs.a.nodeValue = window.screen.width + ' px';
+    refs.b.nodeValue = window.screen.height + ' px';
+    refs.c.nodeValue = window.innerWidth + ' px';
+    refs.d.nodeValue = window.innerHeight + ' px';
+    refs.e.nodeValue = document.documentElement.clientWidth + ' px';
+    refs.f.nodeValue = document.documentElement.clientHeight + ' px';
+    refs.g.nodeValue = devicePixelRatio + '';
   };
 
   update();
