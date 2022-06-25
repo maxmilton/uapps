@@ -26,7 +26,6 @@ const out = await esbuild.build({
     'process.env.APP_RELEASE': JSON.stringify(release),
     'process.env.NODE_ENV': JSON.stringify(mode),
   },
-  banner: { js: '"use strict";' },
   bundle: true,
   sourcemap: true,
   minify: !dev,
