@@ -21,7 +21,7 @@ body {
   overflow: scroll; // always show scroll bars to show accurate client sizes
 }
 
-#main {
+main {
   margin: auto;
 }
 

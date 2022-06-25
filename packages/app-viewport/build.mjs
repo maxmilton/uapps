@@ -151,7 +151,7 @@ const minifyJs = {
         const { code = '', map = '' } = await minify(
           decodeUTF8(outJS.file.contents),
           {
-            ecma: 2020,
+            ecma: 2015,
             compress: {
               comparisons: false,
               passes: 2,
@@ -187,7 +187,8 @@ await esbuild.build({
   assetNames: dev ? '[name]' : '[name]-[hash]',
   chunkNames: dev ? '[name]' : '[name]-[hash]',
   platform: 'browser',
-  target: ['chrome78', 'firefox77', 'safari11', 'edge44'],
+  // target: ['chrome78', 'firefox77', 'safari11', 'edge44'],
+  target: 'es2015',
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),
     'process.env.NODE_ENV': JSON.stringify(mode),

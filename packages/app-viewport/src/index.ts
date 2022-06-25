@@ -1,70 +1,49 @@
+/* eslint-disable prefer-template */
+
 import './index.xcss';
 
 import { h } from 'stage1';
 
-declare global {
-  interface HTMLElement {
-    /** `stage1` synthetic click event handler. */
-    __click?(event: MouseEvent): void;
-  }
-}
-
-let supportsTouch: boolean;
-
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
-if ('maxTouchPoints' in navigator) {
-  supportsTouch = navigator.maxTouchPoints > 0;
-} else {
-  const mq = matchMedia('(pointer:coarse)');
-  if (mq && mq.media === '(pointer:coarse)') {
-    supportsTouch = !!mq.matches;
-  } else if ('orientation' in window) {
-    supportsTouch = true; // deprecated, but good fallback
-  } else {
-    supportsTouch = /\b(blackberry|webos|iphone|iemobile|android|windows phone|ipad|ipod)\b/i.test(
-      navigator.userAgent,
-    );
-  }
-}
+const supportsTouch = 'maxTouchPoints' in navigator
+  ? navigator.maxTouchPoints > 0
+  : 'ontouchstart' in document.documentElement
+      || (matchMedia && matchMedia('(any-pointer:coarse)').matches);
 
 type RefNodes = {
-  dl: HTMLDListElement;
+  a: Text;
+  b: Text;
+  c: Text;
+  d: Text;
+  e: Text;
+  f: Text;
+  g: Text;
 };
 
 const view = h(`
-  <main id=main>
+  <main>
     <h1 class="tc orange5">Viewport Info</h1>
 
-    <dl #dl></dl>
-  </main>
-`);
-
-function App() {
-  const root = view;
-  const { dl } = view.collect<RefNodes>(root);
-
-  const update = () => {
-    dl.innerHTML = `
+    <dl>
       <dt>Screen width</dt>
-      <dd>${window.screen.width} px</dd>
+      <dd>#a</dd>
 
       <dt>Screen height</dt>
-      <dd>${window.screen.height} px</dd>
+      <dd>#b</dd>
 
       <dt>innerWidth</dt>
-      <dd>${window.innerWidth} px</dd>
+      <dd>#c</dd>
 
       <dt>innerHeight</dt>
-      <dd>${window.innerHeight} px</dd>
+      <dd>#d</dd>
 
       <dt>clientWidth</dt>
-      <dd>${document.documentElement.clientWidth} px</dd>
+      <dd>#e</dd>
 
       <dt>clientHeight</dt>
-      <dd>${document.documentElement.clientHeight} px</dd>
+      <dd>#f</dd>
 
       <dt>devicePixelRatio</dt>
-      <dd>${devicePixelRatio}</dd>
+      <dd>#g</dd>
 
       <dt>pixelDepth</dt>
       <dd>${window.screen.pixelDepth}</dd>
@@ -74,7 +53,22 @@ function App() {
 
       <dt>Supports touch</dt>
       <dd>${supportsTouch ? 'Yes' : 'No'}</dd>
-    `;
+    </dl>
+  </main>
+`);
+
+function App() {
+  const root = view;
+  const refs = view.collect<RefNodes>(root);
+
+  const update = () => {
+    refs.a.nodeValue = String(window.screen.width) + ' px';
+    refs.b.nodeValue = String(window.screen.height) + ' px';
+    refs.c.nodeValue = String(window.innerWidth) + ' px';
+    refs.d.nodeValue = String(window.innerHeight) + ' px';
+    refs.e.nodeValue = String(document.documentElement.clientWidth) + ' px';
+    refs.f.nodeValue = String(document.documentElement.clientHeight) + ' px';
+    refs.g.nodeValue = String(devicePixelRatio);
   };
 
   update();
