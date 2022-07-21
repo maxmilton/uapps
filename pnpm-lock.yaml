@@ -18,7 +18,7 @@ importers:
       eslint-config-airbnb-typescript: 17.0.0
       eslint-plugin-import: 2.26.0
       eslint-plugin-security: 1.5.0
-      eslint-plugin-unicorn: 43.0.0
+      eslint-plugin-unicorn: 43.0.2
       prettier: 2.7.1
       prettier-plugin-pkg: 0.16.0
       prettier-plugin-sh: 0.12.6
@@ -39,7 +39,7 @@ importers:
       eslint-config-airbnb-typescript: 17.0.0_vf7ei2olxpdpzajzoufngqspeu
       eslint-plugin-import: 2.26.0_xconv27bia2733zao6ipggqv2i
       eslint-plugin-security: 1.5.0
-      eslint-plugin-unicorn: 43.0.0_eslint@8.20.0
+      eslint-plugin-unicorn: 43.0.2_eslint@8.20.0
       prettier: 2.7.1
       prettier-plugin-pkg: 0.16.0_prettier@2.7.1
       prettier-plugin-sh: 0.12.6_prettier@2.7.1
@@ -1707,8 +1707,8 @@ packages:
       safe-regex: 2.1.1
     dev: true
 
-  /eslint-plugin-unicorn/43.0.0_eslint@8.20.0:
-    resolution: {integrity: sha512-Z/6HX8yry+zAjo4jHHTAbe1rfniox7qgmCReGBfTc/CVgotfScaMCc4dtSSTHlJ+7Yix5o6LPXzwwpuGGFricg==}
+  /eslint-plugin-unicorn/43.0.2_eslint@8.20.0:
+    resolution: {integrity: sha512-DtqZ5mf/GMlfWoz1abIjq5jZfaFuHzGBZYIeuJfEoKKGWRHr2JiJR+ea+BF7Wx2N1PPRoT/2fwgiK1NnmNE3Hg==}
     engines: {node: '>=14.18'}
     peerDependencies:
       eslint: '>=8.18.0'
