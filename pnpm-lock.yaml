@@ -11,7 +11,7 @@ importers:
       '@types/node': 18.0.0
       '@typescript-eslint/eslint-plugin': 5.30.5
       '@typescript-eslint/parser': 5.30.5
-      c8: 7.11.3
+      c8: 7.12.0
       esbuild: 0.14.48
       eslint: 8.20.0
       eslint-config-airbnb-base: 15.0.0
@@ -32,7 +32,7 @@ importers:
       '@types/node': 18.0.0
       '@typescript-eslint/eslint-plugin': 5.30.5_zdmw3c27sbylpcvpz7ojhgqlrq
       '@typescript-eslint/parser': 5.30.5_he2ccbldppg44uulnyq4rwocfa
-      c8: 7.11.3
+      c8: 7.12.0
       esbuild: 0.14.48
       eslint: 8.20.0
       eslint-config-airbnb-base: 15.0.0_afl3vkhn63baibzal45igheroq
@@ -917,8 +917,8 @@ packages:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
 
-  /c8/7.11.3:
-    resolution: {integrity: sha512-6YBmsaNmqRm9OS3ZbIiL2EZgi1+Xc4O24jL3vMYGE6idixYuGdy76rIfIdltSKDj9DpLNrcXSonUTR1miBD0wA==}
+  /c8/7.12.0:
+    resolution: {integrity: sha512-CtgQrHOkyxr5koX1wEUmN/5cfDa2ckbHRA4Gy5LAL0zaCFtVWJS5++n+w4/sr2GWGerBxgTjpKeDclk/Qk6W/A==}
     engines: {node: '>=10.12.0'}
     hasBin: true
     dependencies:
