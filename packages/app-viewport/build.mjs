@@ -9,17 +9,15 @@ import {
   writeFiles,
 } from 'esbuild-minify-templates';
 import { xcss } from 'esbuild-plugin-ekscss';
-import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import { PurgeCSS } from 'purgecss';
+import pkg from './package.json' assert { type: 'json' };
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-const dir = path.resolve(); // no __dirname in node ESM
-/** @type {import('./package.json')} */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
+const dir = path.resolve(); // similar to __dirname
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
 /**
@@ -59,11 +57,9 @@ function makeHtml(title, jsPath, cssPath) {
 <meta name=viewport content="width=device-width">
 <link href=/favicon.svg rel=icon>
 <title>${title}</title>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link rel=preconnect href="https://fonts.bunny.net">
 <link href=${cssPath} rel=stylesheet>
-<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel=stylesheet>
-<script src=https://cdn.jsdelivr.net/npm/trackx@0/default.js crossorigin></script>
+<script src=https://cdn.jsdelivr.net/npm/trackx@0/modern.js crossorigin></script>
 <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z"),trackx.meta.app="viewport",trackx.meta.release="${release}",trackx.ping());</script>
 <script src=${jsPath} defer></script>
 <noscript>You need to enable JavaScript to run this app.</noscript>`;
@@ -186,6 +182,7 @@ await esbuild.build({
   ],
   bundle: true,
   minify: !dev,
+  mangleProps: /_refs|collect/,
   sourcemap: dev,
   watch: dev,
   write: dev,
