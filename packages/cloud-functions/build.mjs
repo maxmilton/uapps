@@ -1,14 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 import esbuild from 'esbuild';
-import fs from 'fs/promises';
 import { gitHash, isDirty } from 'git-ref';
+import pkg from './package.json' assert { type: 'json' };
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-/** @type {import('./package.json')} */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
 const out = await esbuild.build({

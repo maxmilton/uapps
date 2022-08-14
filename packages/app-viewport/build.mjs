@@ -1,6 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies, no-param-reassign, no-console, no-plusplus */
+/* eslint-disable import/no-extraneous-dependencies, no-console, no-plusplus, no-bitwise */
 
-import * as csso from 'csso';
+import * as pcss from '@parcel/css';
 import esbuild from 'esbuild';
 import {
   decodeUTF8,
@@ -82,6 +82,7 @@ const buildHtml = (opts) => ({
           path.relative(distPath, outCSS.file.path),
         );
 
+        // eslint-disable-next-line no-param-reassign
         result.outputFiles[result.outputFiles.length] = {
           path: path.join(distPath, 'index.html'),
           contents: encodeUTF8(html),
@@ -112,7 +113,7 @@ const minifyCSS = {
         const outJS = findOutputFile(result.outputFiles, '.js');
         const outCSS = findOutputFile(result.outputFiles, '.css');
 
-        const purgedcss = await new PurgeCSS().purge({
+        const purged = await new PurgeCSS().purge({
           content: [
             { extension: '.html', raw: decodeUTF8(outHTML.file.contents) },
             { extension: '.js', raw: decodeUTF8(outJS.file.contents) },
@@ -121,12 +122,27 @@ const minifyCSS = {
           safelist: ['html', 'body'],
           blocklist: ['svg'],
         });
-        const { css } = csso.minify(purgedcss[0].css, {
-          restructure: true,
-          forceMediaMerge: true, // unsafe!
+        const minified = pcss.transform({
+          filename: outCSS.file.path,
+          code: Buffer.from(purged[0].css),
+          minify: true,
+          sourceMap: dev,
+          targets: {
+            chrome: 60 << 16,
+            edge: 79 << 16,
+            firefox: 55 << 16,
+            safari: (11 << 16) | (1 << 8),
+          },
         });
 
-        result.outputFiles[outCSS.index].contents = encodeUTF8(css);
+        for (const warning of minified.warnings) {
+          console.error('CSS WARNING:', warning.message);
+        }
+
+        // eslint-disable-next-line no-param-reassign
+        result.outputFiles[outCSS.index].contents = encodeUTF8(
+          minified.code.toString(),
+        );
       }
     });
   },
@@ -152,6 +168,7 @@ const minifyJS = {
             // target: build.initialOptions.target,
           });
 
+          // eslint-disable-next-line no-param-reassign
           result.outputFiles[index].contents = encodeUTF8(out.code);
         }
       }
