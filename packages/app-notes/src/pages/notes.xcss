@@ -1,0 +1,19 @@
+.magic-grid {
+  --padding: 20;
+  --columns: 3;
+
+  display: layout(masonry);
+  margin-right: -1rem;
+  margin-left: -1rem;
+
+  @media (max-width: 768px) {
+    --columns: 2;
+  }
+
+  @media (max-width: 480px) {
+    --columns: 1;
+
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
+  }
+}

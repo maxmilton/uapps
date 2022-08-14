@@ -11,6 +11,7 @@ Monorepo of my micro apps.
 <!-- prettier-ignore -->
 | Name | Directory | URL |
 | --- | --- | --- |
+| Notes | `packages/app-notes` | <https://notes.maxmilton.com>, <https://app-notes.web.app> |
 | Viewport Info | `packages/app-viewport` | <https://app-viewport.web.app> |
 | Cloud Functions | `packages/cloud-functions` | - |
 
@@ -19,7 +20,10 @@ Monorepo of my micro apps.
 MIT license. See [LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENSE).
 
 <!-- TODO: Add attribution for favicons -->
+<!-- app-viewport -->
 <!-- https://github.com/twitter/twemoji/blob/master/assets/svg/1f5a5.svg -->
+<!-- app-notes -->
+<!-- https://github.com/twitter/twemoji/blob/master/assets/svg/1f4d4.svg -->
 
 ---
 

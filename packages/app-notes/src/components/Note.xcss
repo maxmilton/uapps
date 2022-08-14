@@ -1,0 +1,31 @@
+.note {
+  position: relative;
+}
+
+.note-buttons {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  opacity: 0;
+
+  .note:hover &,
+  .note:focus & {
+    opacity: 1;
+  }
+}
+
+.clamp {
+  display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 12;
+}
+
+.note > .card-body > :first-child {
+  margin-top: 0;
+}
+
+.note ol,
+.note ul {
+  padding-left: 1em;
+}
