@@ -10,12 +10,12 @@
   },
   "devDependencies": {
     "@maxmilton/stylelint-config": "0.0.10",
-    "@types/node": "18.0.0",
-    "@typescript-eslint/eslint-plugin": "5.32.0",
-    "@typescript-eslint/parser": "5.32.0",
+    "@types/node": "18.7.3",
+    "@typescript-eslint/eslint-plugin": "5.33.0",
+    "@typescript-eslint/parser": "5.33.0",
     "c8": "7.12.0",
-    "esbuild": "0.14.53",
-    "eslint": "8.21.0",
+    "esbuild": "0.15.2",
+    "eslint": "8.22.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-plugin-import": "2.26.0",
@@ -24,8 +24,8 @@
     "prettier": "2.7.1",
     "prettier-plugin-pkg": "0.16.1",
     "prettier-plugin-sh": "0.12.8",
-    "stylelint": "14.9.1",
-    "stylelint-config-standard": "26.0.0",
+    "stylelint": "14.10.0",
+    "stylelint-config-standard": "27.0.0",
     "tsm": "2.2.2",
     "typescript": "4.7.4",
     "uvu": "0.5.6"
@@ -40,19 +40,23 @@
       "lcovonly"
     ]
   },
-  "pnpm": {
-    "overrides": {
-      "source-map": "~0.8.0-beta.0"
-    }
-  },
   "prettier": {
     "arrowParens": "always",
     "endOfLine": "lf",
     "singleQuote": true,
     "trailingComma": "all",
-    "plugins": [
-      "./node_modules/prettier-plugin-pkg",
-      "./node_modules/prettier-plugin-sh"
+    "pluginSearchDirs": [
+      "."
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.test.ts"
+        ],
+        "options": {
+          "printWidth": 100
+        }
+      }
     ]
   },
   "stylelint": {
@@ -65,6 +69,10 @@
     "ignoreFiles": [
       "**/dist/**",
       "**/node_modules/**"
-    ]
+    ],
+    "rules": {
+      "function-name-case": null,
+      "function-no-unknown": null
+    }
   }
 }
