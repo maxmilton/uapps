@@ -5,6 +5,9 @@
   "targets": {
     "mm-uapps": {
       "hosting": {
+        "app-notes": [
+          "app-notes"
+        ],
         "app-viewport": [
           "app-viewport"
         ]

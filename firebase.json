@@ -1,11 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/firebase/firebase-tools/master/schema/firebase-config.json",
   "hosting": [
-    {
-      "target": "app-notes",
-      "public": "packages/app-notes/dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"]
-    },
+    // {
+    //   "target": "app-notes",
+    //   "public": "packages/app-notes/dist",
+    //   "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/test/**"]
+    // },
     {
       "target": "app-viewport",
       "public": "packages/app-viewport/dist",
