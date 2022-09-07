@@ -6,7 +6,7 @@
 // TODO: Optimise networking, including connection reuse between function invocations
 //  ↳ https://firebase.google.com/docs/functions/networking
 
-import * as functions from 'firebase-functions';
+// import * as functions from 'firebase-functions';
 import * as trackx from 'trackx/node';
 
 // https://dash.trackx.app/projects/uapps
@@ -21,17 +21,17 @@ trackx.meta.release = process.env.APP_RELEASE;
 trackx.meta.NODE_ENV = process.env.NODE_ENV || 'NULL';
 trackx.ping();
 
-// Ping trackx periodically for testing purposes
-export const timerPing = functions
-  .runWith({
-    timeoutSeconds: 10,
-    memory: '128MB',
-  })
-  .pubsub.schedule('every 60 minutes')
-  .onRun(() => {
-    // XXX: The ping is sent twice when the cloud founction boots up, once for
-    // the function and once for the main script, it's not an issue because the
-    // session is calculated correctly, but worth knowing
-    trackx.ping();
-    return null;
-  });
+// // Ping trackx periodically for testing purposes
+// export const timerPing = functions
+//   .runWith({
+//     timeoutSeconds: 10,
+//     memory: '128MB',
+//   })
+//   .pubsub.schedule('every 60 minutes')
+//   .onRun(() => {
+//     // XXX: The ping is sent twice when the cloud founction boots up, once for
+//     // the function and once for the main script, it's not an issue because the
+//     // session is calculated correctly, but worth knowing
+//     trackx.ping();
+//     return null;
+//   });
