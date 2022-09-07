@@ -65,7 +65,7 @@ const view = h(`
   </main>
 `);
 
-function App() {
+const App = () => {
   const root = view;
   const refs = view.collect<RefNodes>(root);
 
@@ -85,7 +85,7 @@ function App() {
   window.addEventListener('resize', update);
 
   return root;
-}
+};
 
 document.body.append(
   App(),
