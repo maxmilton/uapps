@@ -164,6 +164,14 @@ const minifyCSS = {
         result.outputFiles[outCSS.index].contents = encodeUTF8(
           minified.code.toString(),
         );
+
+        if (minified.map) {
+          const outCSSMap = findOutputFile(result.outputFiles, '.css.map');
+          // eslint-disable-next-line no-param-reassign
+          result.outputFiles[outCSSMap.index].contents = encodeUTF8(
+            minified.map.toString(),
+          );
+        }
       }
     });
   },
