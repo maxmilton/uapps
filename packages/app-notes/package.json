@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ekscss/framework": "0.0.41",
-    "@supabase/supabase-js": "1.35.6",
+    "@supabase/supabase-js": "1.35.7",
     "snarkdown": "2.0.0",
     "stage1": "0.4.1"
   },
