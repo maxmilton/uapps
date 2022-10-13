@@ -30,20 +30,25 @@ export function Alert(
   let preText;
 
   switch (type) {
-    case AlertType.Danger:
+    case AlertType.Danger: {
       preText = 'Error: ';
       break;
-    case AlertType.Warning:
+    }
+    case AlertType.Warning: {
       preText = 'Warning: ';
       break;
-    case AlertType.Success:
+    }
+    case AlertType.Success: {
       preText = 'Success: ';
       break;
-    case AlertType.Info:
+    }
+    case AlertType.Info: {
       preText = 'Info: ';
       break;
-    default:
+    }
+    default: {
       throw new Error('Unknown alert type');
+    }
   }
 
   root.className = `alert alert-${type}`;
