@@ -20,11 +20,11 @@ const view = html`
 
     <div class="pos-r ml-auto">
     <button class="button-subnav button-clear nav-item" title="Show submenu" #toggle>
-    <svg class="icon icon-user" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="9"/>
-    <circle cx="12" cy="10" r="3"/>
-    <path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/>
-    </svg>
+      <svg class="icon icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <circle cx="12" cy="10" r="3"/>
+        <path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/>
+      </svg>
     </button>
     <div id="subnav" class="pos-a r0" hidden #subnav>
       <a href="/import" class="nav-item">Import</a>
