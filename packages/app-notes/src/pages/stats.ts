@@ -2,7 +2,7 @@ import { append, html } from 'stage1';
 import { Alert } from '../components/Alert';
 import { supabase } from '../supabase';
 
-type StatspageComponent = HTMLDivElement;
+type StatsPageComponent = HTMLDivElement;
 type Refs = {
   feedback: HTMLDivElement;
   count: Text;
@@ -19,8 +19,8 @@ const view = html`
   </main>
 `;
 
-export function StatsPage(): StatspageComponent {
-  const root = view.cloneNode(true) as StatspageComponent;
+export function StatsPage(): StatsPageComponent {
+  const root = view.cloneNode(true) as StatsPageComponent;
   const refs = view.collect<Refs>(root);
 
   const update = async () => {
