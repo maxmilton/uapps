@@ -48,7 +48,7 @@ importers:
 
   packages/app-notes:
     specifiers:
-      '@ekscss/framework': 0.0.41
+      '@ekscss/framework': 0.0.43
       '@supabase/supabase-js': 2.0.0
       ekscss: 0.0.13
       esbuild-minify-templates: 0.9.2
@@ -60,7 +60,7 @@ importers:
       snarkdown: 2.0.0
       stage1: 0.4.1
     dependencies:
-      '@ekscss/framework': 0.0.41_ekscss@0.0.13
+      '@ekscss/framework': 0.0.43_ekscss@0.0.13
       '@supabase/supabase-js': 2.0.0
       snarkdown: 2.0.0
       stage1: 0.4.1
@@ -75,7 +75,7 @@ importers:
 
   packages/app-viewport:
     specifiers:
-      '@ekscss/framework': 0.0.41
+      '@ekscss/framework': 0.0.43
       ekscss: 0.0.13
       esbuild-minify-templates: 0.9.2
       esbuild-plugin-ekscss: 0.0.12
@@ -85,7 +85,7 @@ importers:
       sirv-cli: 2.0.2
       stage1: 0.4.1
     dependencies:
-      '@ekscss/framework': 0.0.41_ekscss@0.0.13
+      '@ekscss/framework': 0.0.43_ekscss@0.0.13
       stage1: 0.4.1
     devDependencies:
       ekscss: 0.0.13
@@ -178,8 +178,8 @@ packages:
       postcss-selector-parser: 6.0.10
     dev: true
 
-  /@ekscss/framework/0.0.41_ekscss@0.0.13:
-    resolution: {integrity: sha512-uWdGyYp2S1WXdUfLVOosN7V4ZKxz5Cl3JZKUMoR9kMn2oeWLv/xhEy8Rf5qWvmgyOtvo/C/3z2ly3uGgoTmEhA==}
+  /@ekscss/framework/0.0.43_ekscss@0.0.13:
+    resolution: {integrity: sha512-CUN0M9CtlzNjMfW+qbJbYSkkpIFzxlg+oUVSez7sreAb4poW42ArqjW3/D3WiVxSYqr4rrFLF7066Ei0z/hOVQ==}
     peerDependencies:
       ekscss: ^0.0.13
     peerDependenciesMeta:
@@ -190,10 +190,10 @@ packages:
       '@ekscss/plugin-import': 0.0.9_ekscss@0.0.13
       '@ekscss/plugin-prefix': 0.0.8_ekscss@0.0.13
       color: 4.2.3
-      cssremedy: github.com/jensimmons/cssremedy/468e31a
+      cssremedy: github.com/jensimmons/cssremedy/af14bf3
       dset: 3.1.2
       ekscss: 0.0.13
-      stylis: 4.1.2
+      stylis: 4.1.3
     dev: false
 
   /@ekscss/plugin-apply/0.0.9_ekscss@0.0.13:
@@ -202,7 +202,7 @@ packages:
       ekscss: ^0.0.13
     dependencies:
       ekscss: 0.0.13
-      stylis: 4.1.2
+      stylis: 4.1.3
     dev: false
 
   /@ekscss/plugin-import/0.0.9_ekscss@0.0.13:
@@ -211,7 +211,7 @@ packages:
       ekscss: ^0.0.13
     dependencies:
       ekscss: 0.0.13
-      stylis: 4.1.2
+      stylis: 4.1.3
     dev: false
 
   /@ekscss/plugin-prefix/0.0.8_ekscss@0.0.13:
@@ -220,7 +220,7 @@ packages:
       ekscss: ^0.0.13
     dependencies:
       ekscss: 0.0.13
-      stylis: 4.1.2
+      stylis: 4.1.3
     dev: false
 
   /@esbuild/android-arm/0.15.10:
@@ -4497,6 +4497,10 @@ packages:
   /stylis/4.1.2:
     resolution: {integrity: sha512-Nn2CCrG2ZaFziDxaZPN43CXqn+j7tcdjPFCkRBkFue8QYXC2HdEwnw5TCBo4yQZ2WxKYeSi0fdoOrtEqgDrXbA==}
 
+  /stylis/4.1.3:
+    resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==}
+    dev: false
+
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -4967,8 +4971,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  github.com/jensimmons/cssremedy/468e31a:
-    resolution: {tarball: https://codeload.github.com/jensimmons/cssremedy/tar.gz/468e31a}
+  github.com/jensimmons/cssremedy/af14bf3:
+    resolution: {tarball: https://codeload.github.com/jensimmons/cssremedy/tar.gz/af14bf3}
     name: cssremedy
     version: 0.1.0-beta.2
     dev: false

@@ -13,7 +13,7 @@
     "serve": "sirv dist --dev --cors"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.41",
+    "@ekscss/framework": "0.0.43",
     "@supabase/supabase-js": "2.0.0",
     "snarkdown": "2.0.0",
     "stage1": "0.4.1"
