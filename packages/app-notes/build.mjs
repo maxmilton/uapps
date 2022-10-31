@@ -67,7 +67,8 @@ function makeHtml(title, jsPath, cssPath) {
     <link href=${cssPath} rel=stylesheet>
     <link href="https://fonts.bunny.net/css?family=rubik:300,400,400i,700,700i" rel=stylesheet>
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/modern.js crossorigin></script>
-    <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z"),trackx.meta.app="notes",trackx.meta.release="${release}",trackx.ping());</script>
+    <script src=https://cdn.jsdelivr.net/npm/trackx@0/plugins/details.js></script>
+    <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z",(trackxDetails||{}).auto),trackx.meta.app="notes"",trackx.ping());</script>
     <script src=${jsPath} defer></script>
   </head>
   <body class=dark>

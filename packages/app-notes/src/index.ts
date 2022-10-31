@@ -1,6 +1,7 @@
 import './index.xcss';
 
 import { append, createFragment, setupSyntheticEvent } from 'stage1';
+import type * as trackx from 'trackx/modern';
 import { Footer } from './components/Footer';
 import { ImportPage } from './pages/import';
 import { LoginPage } from './pages/login';
@@ -15,6 +16,20 @@ declare global {
   interface HTMLElement {
     /** `stage1` synthetic click event handler. */
     __click?(event: MouseEvent): void | Promise<void>;
+  }
+  interface Window {
+    // Injected via CDN script in HTML
+    trackx?: typeof trackx;
+  }
+}
+
+// Set dynamic meta data within the app bundle rather than the HTML file so the
+// inline <script> code is static and we can use a constant CSP hash
+if (window.trackx) {
+  window.trackx.meta.release = process.env.APP_VERSION;
+
+  if (process.env.NODE_ENV !== 'production') {
+    window.trackx.meta.NODE_ENV = process.env.NODE_ENV || 'NULL';
   }
 }
 
