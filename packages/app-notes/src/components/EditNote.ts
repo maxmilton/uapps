@@ -52,7 +52,7 @@ export function EditNote(props: EditNoteProps): EditNoteComponent {
         .from<Omit<NoteRow, 'id'> & { id?: number | undefined }>('notes')
         .upsert({
           id: props.id!,
-          user_id: state.session!.user.id,
+          user_id: state.session!.user!.id,
           edited_at: new Date(),
           content: refs.content.value,
         })
