@@ -71,6 +71,7 @@
       "**/node_modules/**"
     ],
     "rules": {
+      "import-notation": null,
       "function-name-case": null,
       "function-no-unknown": null
     }
