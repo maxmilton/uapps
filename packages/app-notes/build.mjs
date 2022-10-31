@@ -19,6 +19,7 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const dir = path.resolve(); // similar to __dirname
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
+const target = ['chrome89', 'edge89', 'firefox89', 'safari15'];
 
 const SUPABASE_URL = 'http://localhost:54321';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs';
@@ -69,7 +70,7 @@ function makeHtml(title, jsPath, cssPath) {
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/modern.js crossorigin></script>
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/plugins/details.js></script>
     <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z",(trackxDetails||{}).auto),trackx.meta.app="notes"",trackx.ping());</script>
-    <script src=${jsPath} defer></script>
+    <script src=${jsPath} type=module></script>
   </head>
   <body class=dark>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -150,10 +151,10 @@ const minifyCSS = {
           minify: true,
           sourceMap: dev,
           targets: {
-            chrome: 60 << 16,
-            edge: 79 << 16,
-            firefox: 55 << 16,
-            safari: (11 << 16) | (1 << 8),
+            chrome: 89 << 16,
+            edge: 89 << 16,
+            firefox: 89 << 16,
+            safari: 15 << 16,
           },
         });
 
@@ -213,7 +214,8 @@ await esbuild.build({
   assetNames: dev ? '[name]' : '[name]-[hash]',
   chunkNames: dev ? '[name]' : '[name]-[hash]',
   platform: 'browser',
-  target: 'es2020',
+  format: 'esm',
+  target,
   define: {
     'process.env.APP_RELEASE': JSON.stringify(release),
     'process.env.NODE_ENV': JSON.stringify(mode),
@@ -247,7 +249,7 @@ await esbuild.build({
   entryPoints: ['src/masonry.ts'],
   outfile: 'dist/masonry.js',
   platform: 'browser',
-  target: 'es2020',
+  target,
   format: 'esm',
   plugins: [minifyTemplates(), minifyJS, writeFiles(), analyzeMeta],
   bundle: true,
