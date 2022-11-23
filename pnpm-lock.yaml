@@ -100,17 +100,17 @@ importers:
 
   packages/cloud-functions:
     specifiers:
-      firebase-admin: 11.2.0
+      firebase-admin: 11.3.0
       firebase-functions: 4.0.2
       firebase-functions-test: 3.0.0
       git-ref: 0.3.1
       trackx: 0.6.0
     dependencies:
-      firebase-admin: 11.2.0
-      firebase-functions: 4.0.2_firebase-admin@11.2.0
+      firebase-admin: 11.3.0
+      firebase-functions: 4.0.2_firebase-admin@11.3.0
       trackx: 0.6.0
     devDependencies:
-      firebase-functions-test: 3.0.0_ht7shhada6ymxadfzm6llh7v7q
+      firebase-functions-test: 3.0.0_uctyohavcu6l264x5ivirf4u4y
       git-ref: 0.3.1
 
 packages:
@@ -2404,8 +2404,8 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /firebase-admin/11.2.0:
-    resolution: {integrity: sha512-EGr8w4ZDXPXdwUgDZc/InSP/ciu5/FlaAmT8hw9qBnIbKHOuETYqKnzx8hxLlF8VIg7OQKsxb/PEQik6dVAIgQ==}
+  /firebase-admin/11.3.0:
+    resolution: {integrity: sha512-8ENXUu9Lm6YTc5zzOqlF222M/KwsV/EDZ5UwwPPEU5XfCa1Ebj7K/SgLFdinjGu1NxkSnqu07UDpPhmAtW3b5w==}
     engines: {node: '>=14'}
     dependencies:
       '@fastify/busboy': 1.1.0
@@ -2424,7 +2424,7 @@ packages:
       - encoding
       - supports-color
 
-  /firebase-functions-test/3.0.0_ht7shhada6ymxadfzm6llh7v7q:
+  /firebase-functions-test/3.0.0_uctyohavcu6l264x5ivirf4u4y:
     resolution: {integrity: sha512-Uva16mptDR2/YB3DKPUKLPymqVarc3W2cHEzNujfL4QhBk6rthThAaK1Eab5Zgk4p6MgUsw9Jl6KEWU27TxGYw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -2433,13 +2433,13 @@ packages:
       jest: '>=28.0.0'
     dependencies:
       '@types/lodash': 4.14.186
-      firebase-admin: 11.2.0
-      firebase-functions: 4.0.2_firebase-admin@11.2.0
+      firebase-admin: 11.3.0
+      firebase-functions: 4.0.2_firebase-admin@11.3.0
       lodash: 4.17.21
       ts-deepmerge: 2.0.7
     dev: true
 
-  /firebase-functions/4.0.2_firebase-admin@11.2.0:
+  /firebase-functions/4.0.2_firebase-admin@11.3.0:
     resolution: {integrity: sha512-y2JEMVRQfKQyib/wRMn6qSEg1kfJhl0nBOPHbcvrWN3cFakOssTVfq78GEQe3m9PPE8toF9ysabsetTUi4vkSg==}
     engines: {node: '>=14.10.0'}
     hasBin: true
@@ -2450,7 +2450,7 @@ packages:
       '@types/express': 4.17.3
       cors: 2.8.5
       express: 4.18.2
-      firebase-admin: 11.2.0
+      firebase-admin: 11.3.0
       node-fetch: 2.6.7
     transitivePeerDependencies:
       - encoding
