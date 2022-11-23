@@ -12,11 +12,11 @@ export const state = store({
 let navComponent: HTMLElement;
 
 state.on('session', (session) => {
-  if (!session) {
+  if (session) {
+    navComponent ??= prepend(Nav(), document.body);
+  } else {
     routeTo('/login');
     navComponent?.remove();
-  } else {
-    navComponent ??= prepend(Nav(), document.body);
   }
 });
 
