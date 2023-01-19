@@ -56,7 +56,8 @@ const analyzeMeta = {
  * @param {string} cssPath
  */
 function makeHtml(title, jsPath, cssPath) {
-  return `<!doctype html>
+  return `
+  <!doctype html>
   <html lang=en>
   <head>
     <meta charset=utf-8>
@@ -69,13 +70,14 @@ function makeHtml(title, jsPath, cssPath) {
     <link href="https://fonts.bunny.net/css?family=rubik:300,400,400i,700,700i" rel=stylesheet>
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/modern.js crossorigin></script>
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/plugins/details.js></script>
-    <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z",(trackxDetails||{}).auto),trackx.meta.app="notes"",trackx.ping());</script>
+    <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z",(trackxDetails||{}).auto),trackx.meta.app="notes",trackx.ping());</script>
     <script src=${jsPath} type=module></script>
   </head>
   <body class=dark>
     <noscript>You need to enable JavaScript to run this app.</noscript>
   </body>
-  </html>`
+  </html>
+`
     .trim()
     .replace(/\n\s+/g, '\n'); // remove leading whitespace
 }
