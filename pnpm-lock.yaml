@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@maxmilton/stylelint-config': 0.0.10
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       '@typescript-eslint/eslint-plugin': 5.51.0
       '@typescript-eslint/parser': 5.51.0
       c8: 7.12.0
@@ -16,7 +16,7 @@ importers:
       eslint-plugin-import: 2.27.5
       eslint-plugin-security: 1.7.1
       eslint-plugin-unicorn: 45.0.2
-      prettier: 2.8.3
+      prettier: 2.8.4
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
       stylelint: 14.16.1
@@ -26,7 +26,7 @@ importers:
       uvu: 0.5.6
     devDependencies:
       '@maxmilton/stylelint-config': 0.0.10_stylelint@14.16.1
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       '@typescript-eslint/eslint-plugin': 5.51.0_b635kmla6dsb4frxfihkw4m47e
       '@typescript-eslint/parser': 5.51.0_4vsywjlpuriuw3tl5oq6zy5a64
       c8: 7.12.0
@@ -37,9 +37,9 @@ importers:
       eslint-plugin-import: 2.27.5_yzj2n2b43wonjwaifya6xmk2zy
       eslint-plugin-security: 1.7.1
       eslint-plugin-unicorn: 45.0.2_eslint@8.33.0
-      prettier: 2.8.3
-      prettier-plugin-pkg: 0.17.1_prettier@2.8.3
-      prettier-plugin-sh: 0.12.8_prettier@2.8.3
+      prettier: 2.8.4
+      prettier-plugin-pkg: 0.17.1_prettier@2.8.4
+      prettier-plugin-sh: 0.12.8_prettier@2.8.4
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0_stylelint@14.16.1
       tsm: 2.3.0
@@ -51,7 +51,7 @@ importers:
       '@ekscss/framework': 0.0.43
       '@supabase/supabase-js': 1.35.7
       ekscss: 0.0.13
-      esbuild-minify-templates: 0.9.3
+      esbuild-minify-templates: 0.10.0
       esbuild-plugin-ekscss: 0.0.13
       git-ref: 0.3.1
       lightningcss: 1.18.0
@@ -67,7 +67,7 @@ importers:
     devDependencies:
       '@supabase/supabase-js': 1.35.7
       ekscss: 0.0.13
-      esbuild-minify-templates: 0.9.3
+      esbuild-minify-templates: 0.10.0
       esbuild-plugin-ekscss: 0.0.13_ekscss@0.0.13
       git-ref: 0.3.1
       lightningcss: 1.18.0
@@ -79,7 +79,7 @@ importers:
     specifiers:
       '@ekscss/framework': 0.0.43
       ekscss: 0.0.13
-      esbuild-minify-templates: 0.9.3
+      esbuild-minify-templates: 0.10.0
       esbuild-plugin-ekscss: 0.0.13
       git-ref: 0.3.1
       lightningcss: 1.18.0
@@ -91,7 +91,7 @@ importers:
       stage1: 0.6.2
     devDependencies:
       ekscss: 0.0.13
-      esbuild-minify-templates: 0.9.3
+      esbuild-minify-templates: 0.10.0
       esbuild-plugin-ekscss: 0.0.13_ekscss@0.0.13
       git-ref: 0.3.1
       lightningcss: 1.18.0
@@ -529,8 +529,8 @@ packages:
     dependencies:
       fast-deep-equal: 3.1.3
       functional-red-black-tree: 1.0.1
-      google-gax: 3.5.6
-      protobufjs: 7.2.1
+      google-gax: 3.5.7
+      protobufjs: 7.2.2
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -554,8 +554,8 @@ packages:
     engines: {node: '>=12'}
     optional: true
 
-  /@google-cloud/storage/6.9.1:
-    resolution: {integrity: sha512-mhbRfrDgV7qM8HGn12p3dpT87Azt94s9YRzr8qR+o/ptksAkCApspzlNS2mUEeoXUMmnpwcdF2GGNpd4+6NuVw==}
+  /@google-cloud/storage/6.9.2:
+    resolution: {integrity: sha512-TIQ6G+QzHb/hR/7AIH4OU+z8fXqCLM7JiqO+nGxw61os4YxCWPD2ajW+pzz7VY5k2VtqzhoMFA6rjIfw39wJmQ==}
     engines: {node: '>=12'}
     requiresBuild: true
     dependencies:
@@ -581,12 +581,12 @@ packages:
       - supports-color
     optional: true
 
-  /@grpc/grpc-js/1.8.7:
-    resolution: {integrity: sha512-dRAWjRFN1Zy9mzPNLkFFIWT8T6C9euwluzCHZUKuhC+Bk3MayNPcpgDRyG+sg+n2sitEUySKxUynirVpu9ItKw==}
+  /@grpc/grpc-js/1.8.8:
+    resolution: {integrity: sha512-4gfDqMLXTrorvYTKA1jL22zLvVwiHJ73t6Re1OHwdCFRjdGTDOVtSJuaWhtHaivyeDGg0LeCkmU77MTKoV3wPA==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.4
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     optional: true
 
   /@grpc/proto-loader/0.7.4:
@@ -597,7 +597,7 @@ packages:
       '@types/long': 4.0.2
       lodash.camelcase: 4.3.0
       long: 4.0.0
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       yargs: 16.2.0
     optional: true
 
@@ -701,7 +701,7 @@ packages:
     dependencies:
       cross-spawn: 7.0.3
       is-glob: 4.0.3
-      open: 8.4.0
+      open: 8.4.1
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.5.0
@@ -817,17 +817,17 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
 
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
 
   /@types/cors/2.8.13:
     resolution: {integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==}
     dependencies:
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
 
   /@types/estree/0.0.45:
     resolution: {integrity: sha512-jnqIUKDUqJbDIUxm0Uj7bnlMnRm1T/eZ9N+AVMqhPgzrba2GhGG5o/jCTwmdPK709nEZsGoMzXEDUjcXHa3W0g==}
@@ -838,7 +838,7 @@ packages:
   /@types/express-serve-static-core/4.17.33:
     resolution: {integrity: sha512-TPBqmR/HRYI3eC2E5hmiivIzv+bidAfXofM+sbonAGvyDhySGw9/PQZFt2BLOrjUUR++4eJVpx6KnLQK1Fk9tA==}
     dependencies:
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
 
@@ -861,7 +861,7 @@ packages:
     resolution: {integrity: sha512-8bVUjXZvJacUFkJXHdyZ9iH1Eaj5V7I8c4NdH5sQJsdXkqT4CA5Dhb4yb4VE/3asyx4L9ayZr1NIhTsWHczmMw==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     optional: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -879,7 +879,7 @@ packages:
   /@types/jsonwebtoken/9.0.1:
     resolution: {integrity: sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw==}
     dependencies:
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
 
   /@types/linkify-it/3.0.2:
     resolution: {integrity: sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==}
@@ -915,12 +915,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/18.11.18:
-    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
-    dev: true
-
-  /@types/node/18.11.19:
-    resolution: {integrity: sha512-YUgMWAQBWLObABqrvx8qKO1enAvBUdjZOAWQ5grBAkp5LQv45jBvYKZ3oFS9iKRCQyFjqw6iuEa1vmFqtxYLZw==}
+  /@types/node/18.13.0:
+    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -944,7 +940,7 @@ packages:
     resolution: {integrity: sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==}
     dependencies:
       '@types/glob': 8.0.1
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     optional: true
 
   /@types/semver/7.3.13:
@@ -955,7 +951,7 @@ packages:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
 
   /@types/stylis/4.0.2:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
@@ -1912,11 +1908,11 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-minify-templates/0.9.3:
-    resolution: {integrity: sha512-ogtHhyPSa+i0ia8PvnR1pFRpdoqYtH1Eafl66y1Ofb7eL6Qaaan1gBOJ6+JnxJzVCzgxFodp7b6gbUcdfej/jQ==}
+  /esbuild-minify-templates/0.10.0:
+    resolution: {integrity: sha512-VEDDgKwRsHVeL/VbJXaoA6heccsvb48iGg4mG2jY/oA+j5ohtaQ/Klm556F7JlbN/L79YovTEPbCffLL/sr83g==}
     engines: {node: '>= 12'}
     peerDependencies:
-      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0
+      esbuild: ^0.13.0 || ^0.14.0 || ^0.15.0 || ^0.16.0 || ^0.17.0
     dependencies:
       '@ampproject/remapping': 2.2.0
       astray: 1.1.1
@@ -2489,14 +2485,14 @@ packages:
       '@fastify/busboy': 1.2.1
       '@firebase/database-compat': 0.3.3
       '@firebase/database-types': 0.10.3
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       jsonwebtoken: 9.0.0
       jwks-rsa: 3.0.1
       node-forge: 1.3.1
       uuid: 9.0.0
     optionalDependencies:
       '@google-cloud/firestore': 6.4.2
-      '@google-cloud/storage': 6.9.1
+      '@google-cloud/storage': 6.9.2
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2749,12 +2745,12 @@ packages:
       - supports-color
     optional: true
 
-  /google-gax/3.5.6:
-    resolution: {integrity: sha512-gw1phnFuVB8Vtad/An9/4cLfhjNCj4FqyqDA0W09r/ZUWe70VZFZ7SNrvQNX81iLoOEjfTPHKEGZL/anuFxU5w==}
+  /google-gax/3.5.7:
+    resolution: {integrity: sha512-taDGwR9Ry5y6NkcPYKe0B3wr7rCwaImZZIuWajUcFe9Y8L71eBtaq0+ZJ62JByzr/2cJkd9EN1rr52rD6V/UDA==}
     engines: {node: '>=12'}
     hasBin: true
     dependencies:
-      '@grpc/grpc-js': 1.8.7
+      '@grpc/grpc-js': 1.8.8
       '@grpc/proto-loader': 0.7.4
       '@types/long': 4.0.2
       '@types/rimraf': 3.0.2
@@ -2766,8 +2762,8 @@ packages:
       node-fetch: 2.6.9
       object-hash: 3.0.0
       proto3-json-serializer: 1.1.0
-      protobufjs: 7.2.1
-      protobufjs-cli: 1.1.1_protobufjs@7.2.1
+      protobufjs: 7.2.2
+      protobufjs-cli: 1.1.1_protobufjs@7.2.2
       retry-request: 5.0.2
     transitivePeerDependencies:
       - encoding
@@ -3168,8 +3164,8 @@ packages:
       istanbul-lib-report: 3.0.0
     dev: true
 
-  /jose/4.11.2:
-    resolution: {integrity: sha512-njj0VL2TsIxCtgzhO+9RRobBvws4oYyCM8TpvoUQwl/MbIM3NFJRR9+e6x0sS5xXaP1t6OCBkaBME98OV9zU5A==}
+  /jose/4.11.4:
+    resolution: {integrity: sha512-94FdcR8felat4vaTJyL/WVdtlWLlsnLMZP8v+A0Vru18K3bQ22vn7TtpVh3JlgBFNIlYOUlGqwp/MjRPOnIyCQ==}
 
   /joycon/3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -3290,9 +3286,9 @@ packages:
       '@types/express': 4.17.17
       '@types/jsonwebtoken': 9.0.1
       debug: 4.3.4
-      jose: 4.11.2
+      jose: 4.11.4
       limiter: 1.1.5
-      lru-memoizer: 2.1.4
+      lru-memoizer: 2.2.0
     transitivePeerDependencies:
       - supports-color
 
@@ -3506,8 +3502,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lru-memoizer/2.1.4:
-    resolution: {integrity: sha512-IXAq50s4qwrOBrXJklY+KhgZF+5y98PDaNo0gi/v2KQBFLyWr+JyFvijZXkGKjQj/h9c0OwoE+JZbwUXce76hQ==}
+  /lru-memoizer/2.2.0:
+    resolution: {integrity: sha512-QfOZ6jNkxCcM/BkIPnFsqDhtrazLRsghi9mBwFAzol5GCvj4EkFT899Za3+QwikCg5sRX8JstioBDwOxEyzaNw==}
     dependencies:
       lodash.clonedeep: 4.5.0
       lru-cache: 4.0.2
@@ -3830,8 +3826,8 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
-  /open/8.4.0:
-    resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==}
+  /open/8.4.1:
+    resolution: {integrity: sha512-/4b7qZNhv6Uhd7jjnREh1NjnPxlTq+XNWPG88Ydkj5AILcA5m3ajvcg57pB24EQjKv0dK62XnDqk9c/hkIG5Kg==}
     engines: {node: '>=12'}
     dependencies:
       define-lazy-prop: 2.0.0
@@ -4021,29 +4017,29 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.17.1_prettier@2.8.3:
+  /prettier-plugin-pkg/0.17.1_prettier@2.8.4:
     resolution: {integrity: sha512-XPRRMQR5oseJXdfK8kQDj2LCV1UjmTuDlPbbJ8C2WLaATNhdvZLhQO0+NtWnRrQTP+erLR5cVxfcwyqF+3R8SA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
-      prettier: 2.8.3
+      prettier: 2.8.4
     dev: true
 
-  /prettier-plugin-sh/0.12.8_prettier@2.8.3:
+  /prettier-plugin-sh/0.12.8_prettier@2.8.4:
     resolution: {integrity: sha512-VOq8h2Gn5UzrCIKm4p/nAScXJbN09HdyFDknAcxt6Qu/tv/juu9bahxSrcnM9XWYA+Spz1F1ANJ4LhfwB7+Q1Q==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 2.8.3
+      prettier: 2.8.4
       sh-syntax: 0.3.7
       synckit: 0.8.5
     dev: true
 
-  /prettier/2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -4052,10 +4048,10 @@ packages:
     resolution: {integrity: sha512-SjXwUWe/vANGs/mJJTbw5++7U67nwsymg7qsoPtw6GiXqw3kUy8ByojrlEdVE2efxAdKreX8WkDafxvYW95ZQg==}
     engines: {node: '>=12.0.0'}
     dependencies:
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
     optional: true
 
-  /protobufjs-cli/1.1.1_protobufjs@7.2.1:
+  /protobufjs-cli/1.1.1_protobufjs@7.2.2:
     resolution: {integrity: sha512-VPWMgIcRNyQwWUv8OLPyGQ/0lQY/QTQAVN5fh+XzfDwsVw1FZ2L3DM/bcBf8WPiRz2tNpaov9lPZfNcmNo6LXA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -4069,14 +4065,14 @@ packages:
       glob: 8.1.0
       jsdoc: 4.0.0
       minimist: 1.2.7
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       semver: 7.3.8
       tmp: 0.2.1
       uglify-js: 3.17.4
     optional: true
 
-  /protobufjs/7.2.1:
-    resolution: {integrity: sha512-L3pCItypTnPK27+CS8nuhZMYtsY+i8dqdq2vZsYHlG17CnWp1DWPQ/sos0vOKrj1fHEAzo3GBqSHLaeZyKUCDA==}
+  /protobufjs/7.2.2:
+    resolution: {integrity: sha512-++PrQIjrom+bFDPpfmqXfAGSQs40116JRrqqyf53dymUMvvb5d/LMRyicRoF1AUKoXVS1/IgJXlEgcpr4gTF3Q==}
     engines: {node: '>=12.0.0'}
     requiresBuild: true
     dependencies:
@@ -4090,7 +4086,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       long: 5.2.1
     optional: true
 
