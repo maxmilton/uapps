@@ -209,7 +209,8 @@ const minifyJS = {
   },
 };
 
-await esbuild.build({
+/** @type {esbuild.BuildOptions} */
+const esbuildConfig1 = ({
   entryPoints: ['src/index.ts'],
   outfile: 'dist/app.js',
   entryNames: dev ? '[name]' : '[name]-[hash]',
@@ -241,13 +242,13 @@ await esbuild.build({
   minify: !dev,
   mangleProps: /_refs|collect/,
   sourcemap: dev,
-  watch: dev,
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
 });
 
-await esbuild.build({
+/** @type {esbuild.BuildOptions} */
+const esbuildConfig2 = ({
   entryPoints: ['src/masonry.ts'],
   outfile: 'dist/masonry.js',
   platform: 'browser',
@@ -257,8 +258,16 @@ await esbuild.build({
   bundle: true,
   minify: !dev,
   sourcemap: dev,
-  watch: dev,
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
 });
+
+if (dev) {
+  const context1 = await esbuild.context(esbuildConfig1);
+  const context2 = await esbuild.context(esbuildConfig2);
+  await Promise.all([context1.watch(), context2.watch()]);
+} else {
+  await esbuild.build(esbuildConfig1);
+  await esbuild.build(esbuildConfig2);
+}
