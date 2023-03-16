@@ -18,7 +18,7 @@
     "stage1": "0.6.2"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "1.35.7",
+    "@supabase/supabase-js": "2.11.0",
     "ekscss": "0.0.13",
     "esbuild-minify-templates": "0.10.0",
     "esbuild-plugin-ekscss": "0.0.13",
