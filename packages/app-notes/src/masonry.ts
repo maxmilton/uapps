@@ -41,7 +41,9 @@ registerLayout(
       // Layout all children with simply their column size.
       const childInlineSize = (inlineSize - (columns + 1) * padding) / columns;
       const childFragments = await Promise.all(
-        children.map((child) => child.layoutNextFragment({ fixedInlineSize: childInlineSize })),
+        children.map((child) =>
+          child.layoutNextFragment({ fixedInlineSize: childInlineSize }),
+        ),
       );
 
       let autoBlockSize = 0;
@@ -60,10 +62,12 @@ registerLayout(
           { val: +Number.POSITIVE_INFINITY, idx: -1 },
         );
 
-        childFragment.inlineOffset = padding + (childInlineSize + padding) * min.idx;
+        childFragment.inlineOffset =
+          padding + (childInlineSize + padding) * min.idx;
         childFragment.blockOffset = padding + min.val;
 
-        columnOffsets[min.idx] = childFragment.blockOffset + childFragment.blockSize;
+        columnOffsets[min.idx] =
+          childFragment.blockOffset + childFragment.blockSize;
         autoBlockSize = Math.max(
           autoBlockSize,
           columnOffsets[min.idx] + padding,

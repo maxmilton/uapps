@@ -4,10 +4,11 @@ import './index.xcss';
 
 import { h } from 'stage1';
 
-const supportsTouch = 'maxTouchPoints' in navigator
-  ? navigator.maxTouchPoints > 0
-  : 'ontouchstart' in document.documentElement
-      || (matchMedia && matchMedia('(any-pointer:coarse)').matches);
+const supportsTouch =
+  'maxTouchPoints' in navigator
+    ? navigator.maxTouchPoints > 0
+    : 'ontouchstart' in document.documentElement ||
+      (matchMedia && matchMedia('(any-pointer:coarse)').matches);
 
 type RefNodes = {
   a: Text;
@@ -92,8 +93,8 @@ document.body.append(
   h(`
   <footer class="mv4 fss muted tc">
     © <a href=https://maxmilton.com class="normal muted">Max Milton</a> ・ ${process
-    .env
-    .APP_RELEASE!} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
+      .env
+      .APP_RELEASE!} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
   </footer>
 `),
 );

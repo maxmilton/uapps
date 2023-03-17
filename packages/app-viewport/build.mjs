@@ -26,7 +26,9 @@ const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
  * @returns {{ file: esbuild.OutputFile; index: number; }}
  */
 function findOutputFile(outputFiles, ext) {
-  const index = outputFiles.findIndex((outputFile) => outputFile.path.endsWith(ext));
+  const index = outputFiles.findIndex((outputFile) =>
+    outputFile.path.endsWith(ext),
+  );
   return { file: outputFiles[index], index };
 }
 
@@ -186,7 +188,7 @@ const minifyJS = {
 };
 
 /** @type {esbuild.BuildOptions} */
-const esbuildConfig = ({
+const esbuildConfig = {
   entryPoints: ['src/index.ts'],
   outfile: 'dist/app.js',
   entryNames: dev ? '[name]' : '[name]-[hash]',
@@ -214,7 +216,7 @@ const esbuildConfig = ({
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
-});
+};
 
 if (dev) {
   const context = await esbuild.context(esbuildConfig);

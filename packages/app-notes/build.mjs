@@ -22,7 +22,8 @@ const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 const target = ['chrome89', 'edge89', 'firefox89', 'safari15'];
 
 const SUPABASE_URL = 'http://localhost:54321';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs';
+const SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs';
 
 /**
  * @param {esbuild.OutputFile[]} outputFiles
@@ -30,7 +31,9 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
  * @returns {{ file: esbuild.OutputFile; index: number; }}
  */
 function findOutputFile(outputFiles, ext) {
-  const index = outputFiles.findIndex((outputFile) => outputFile.path.endsWith(ext));
+  const index = outputFiles.findIndex((outputFile) =>
+    outputFile.path.endsWith(ext),
+  );
   return { file: outputFiles[index], index };
 }
 
@@ -210,7 +213,7 @@ const minifyJS = {
 };
 
 /** @type {esbuild.BuildOptions} */
-const esbuildConfig1 = ({
+const esbuildConfig1 = {
   entryPoints: ['src/index.ts'],
   outfile: 'dist/app.js',
   entryNames: dev ? '[name]' : '[name]-[hash]',
@@ -245,10 +248,10 @@ const esbuildConfig1 = ({
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
-});
+};
 
 /** @type {esbuild.BuildOptions} */
-const esbuildConfig2 = ({
+const esbuildConfig2 = {
   entryPoints: ['src/masonry.ts'],
   outfile: 'dist/masonry.js',
   platform: 'browser',
@@ -261,7 +264,7 @@ const esbuildConfig2 = ({
   write: dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: 'debug',
-});
+};
 
 if (dev) {
   const context1 = await esbuild.context(esbuildConfig1);

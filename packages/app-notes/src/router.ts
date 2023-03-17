@@ -9,12 +9,12 @@ export function routeTo(url: string): void {
 // https://github.com/lukeed/navaid/blob/master/src/index.js#L52
 export function handleClick(event: MouseEvent): void {
   if (
-    event.ctrlKey
-    || event.metaKey
-    || event.altKey
-    || event.shiftKey
-    || event.button
-    || event.defaultPrevented
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    event.shiftKey ||
+    event.button ||
+    event.defaultPrevented
   ) {
     return;
   }
@@ -23,10 +23,10 @@ export function handleClick(event: MouseEvent): void {
   const href = link && link.getAttribute('href');
 
   if (
-    !href
-    || link.target
-    || link.host !== window.location.host
-    || href[0] === '#'
+    !href ||
+    link.target ||
+    link.host !== window.location.host ||
+    href[0] === '#'
   ) {
     return;
   }

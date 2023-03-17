@@ -1,4 +1,4 @@
-import { html, S1Node } from 'stage1';
+import { html, type S1Node } from 'stage1';
 
 export type FooterComponent = S1Node & HTMLElement;
 

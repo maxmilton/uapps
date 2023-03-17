@@ -7,9 +7,7 @@ import { ImportPage } from './pages/import';
 import { LoginPage } from './pages/login';
 import { NotesPage } from './pages/notes';
 import { StatsPage } from './pages/stats';
-import {
-  handleClick, Router, routeTo, type Route,
-} from './router';
+import { Router, handleClick, routeTo, type Route } from './router';
 import { supabase } from './supabase';
 
 declare global {

@@ -92,7 +92,8 @@ module.exports = extend(framework, {
         xs: '(max-width: 500px)',
       },
 
-      shadow: (x) => xcss`0 0.1em 0.5em ${x.fn.color(x.color.dark2).alpha(0.7)}`,
+      shadow: (x) =>
+        xcss`0 0.1em 0.5em ${x.fn.color(x.color.dark2).alpha(0.7)}`,
     },
   },
 });

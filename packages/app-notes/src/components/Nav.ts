@@ -73,8 +73,8 @@ export function Nav(): NavComponent {
   const updateActive = () => {
     for (const menuItem of root.querySelectorAll('.nav-item')) {
       if (
-        (menuItem as HTMLAnchorElement).href
-        === window.location.origin + window.location.hash.slice(1)
+        (menuItem as HTMLAnchorElement).href ===
+        window.location.origin + window.location.hash.slice(1)
       ) {
         menuItem.setAttribute('aria-current', 'page');
       } else {
