@@ -6,11 +6,11 @@
   margin-right: -1rem;
   margin-left: -1rem;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     --columns: 2;
   }
 
-  @media (max-width: 480px) {
+  @media (width <= 480px) {
     --columns: 1;
 
     margin-right: -1.5rem;
