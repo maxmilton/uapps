@@ -201,11 +201,14 @@ const esbuildConfig = {
     'process.env.NODE_ENV': JSON.stringify(mode),
   },
   plugins: [
+    // @ts-expect-error - FIXME:!
     xcss(),
+    // @ts-expect-error - FIXME:!
     minifyTemplates(),
     buildHtml({ title: 'Viewport Info' }),
     minifyCSS,
     minifyJS,
+    // @ts-expect-error - FIXME:!
     writeFiles(),
     analyzeMeta,
   ],

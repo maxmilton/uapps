@@ -2,6 +2,7 @@
 // @ts-nocheck 😢
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies, strict */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment */
 
 'use strict';
 
