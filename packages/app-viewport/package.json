@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "description": "View live info about your current browser viewport",
   "repository": "maxmilton/uapps",
-  "author": "Max Milton <max@happycode.ltd>",
+  "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "private": true,
   "scripts": {

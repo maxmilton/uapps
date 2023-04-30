@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Simple personal note taking web app",
   "repository": "maxmilton/uapps",
-  "author": "Max Milton <max@happycode.ltd>",
+  "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "private": true,
   "scripts": {
