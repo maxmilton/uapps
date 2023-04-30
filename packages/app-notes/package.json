@@ -23,7 +23,7 @@
     "esbuild-minify-templates": "0.10.0",
     "esbuild-plugin-ekscss": "0.0.13",
     "git-ref": "0.3.1",
-    "lightningcss": "1.19.0",
+    "lightningcss": "1.20.0",
     "purgecss": "5.0.0",
     "sirv-cli": "2.0.2",
     "trackx": "0.6.0"
