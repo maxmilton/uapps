@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-len
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return, @typescript-eslint/restrict-plus-operands, radix */
 
 // https://github.com/GoogleChromeLabs/houdini-samples/blob/master/layout-worklet/masonry/masonry.js

@@ -82,7 +82,7 @@ function makeHtml(title, jsPath, cssPath) {
   </html>
 `
     .trim()
-    .replace(/\n\s+/g, '\n'); // remove leading whitespace
+    .replaceAll(/\n\s+/g, '\n'); // remove leading whitespace
 }
 
 /** @type {(opts: { title: string }) => esbuild.Plugin} */
@@ -233,14 +233,11 @@ const esbuildConfig1 = {
     ),
   },
   plugins: [
-    // @ts-expect-error - FIXME:!
     xcss(),
-    // @ts-expect-error - FIXME:!
     minifyTemplates({ taggedOnly: true }),
     buildHtml({ title: 'Notes' }),
     minifyCSS,
     minifyJS,
-    // @ts-expect-error - FIXME:!
     writeFiles(),
     analyzeMeta,
   ],
@@ -260,7 +257,6 @@ const esbuildConfig2 = {
   platform: 'browser',
   target,
   format: 'esm',
-  // @ts-expect-error - FIXME:!
   plugins: [minifyTemplates(), minifyJS, writeFiles(), analyzeMeta],
   bundle: true,
   minify: !dev,
