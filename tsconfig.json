@@ -19,10 +19,7 @@
     "noImplicitOverride": true,
     "noUnusedLocals": false, // covered by eslint
     "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true,
-
-    // TODO: Remove when lightningcss fix their package.json#exports
-    "resolvePackageJsonExports": false
+    "verbatimModuleSyntax": true
   },
   "exclude": [
     "**/dist",
