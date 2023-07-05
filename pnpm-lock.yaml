@@ -103,8 +103,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0
       lightningcss:
-        specifier: 1.21.4
-        version: 1.21.4
+        specifier: 1.21.5
+        version: 1.21.5
       purgecss:
         specifier: 5.0.0
         version: 5.0.0
@@ -137,8 +137,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0
       lightningcss:
-        specifier: 1.21.4
-        version: 1.21.4
+        specifier: 1.21.5
+        version: 1.21.5
       purgecss:
         specifier: 5.0.0
         version: 5.0.0
@@ -4856,8 +4856,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /lightningcss-darwin-arm64@1.21.4:
-    resolution: {integrity: sha512-xqiS2QamPoecdTARl29JwjgrWYTlpQifKuIv40mEgpRaufC1oIPygVQ9P16tIYtZ1vyLBoWclAsbfsNFQnMv2A==}
+  /lightningcss-darwin-arm64@1.21.5:
+    resolution: {integrity: sha512-z05hyLX85WY0UfhkFUOrWEFqD69lpVAmgl3aDzMKlIZJGygbhbegqb4PV8qfUrKKNBauut/qVNPKZglhTaDDxA==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [darwin]
@@ -4865,8 +4865,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-darwin-x64@1.21.4:
-    resolution: {integrity: sha512-R6TfDHzl+kuZdrCfQWKhGf5b4K6XtVDfwQkMzncSimykchFwPzLe1QGKH3Cr45glBD265+2Hwmo4V6DYCiVcPQ==}
+  /lightningcss-darwin-x64@1.21.5:
+    resolution: {integrity: sha512-MSJhmej/U9MrdPxDk7+FWhO8+UqVoZUHG4VvKT5RQ4RJtqtANTiWiI97LvoVNMtdMnHaKs1Pkji6wHUFxjJsHQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [darwin]
@@ -4874,8 +4874,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-linux-arm-gnueabihf@1.21.4:
-    resolution: {integrity: sha512-fUYdxqr/Zmk2lbRKRP6HqUFxVPp12A+mU5v8DVgiwnbTmJn5vRvNUUPKEA+trCvyZ+pbSM4ikOS1OsPz8zeKyg==}
+  /lightningcss-linux-arm-gnueabihf@1.21.5:
+    resolution: {integrity: sha512-xN6+5/JsMrbZHL1lPl+MiNJ3Xza12ueBKPepiyDCFQzlhFRTj7D0LG+cfNTzPBTO8KcYQynLpl1iBB8LGp3Xtw==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm]
     os: [linux]
@@ -4883,8 +4883,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-linux-arm64-gnu@1.21.4:
-    resolution: {integrity: sha512-rQmbEQzXoQK3/O8YuJyri3RreATpQ9mscODpYHLwG3behk021u4OCNyVL7m2GL4fL+6SZuwCccjiHp1e0WeM6A==}
+  /lightningcss-linux-arm64-gnu@1.21.5:
+    resolution: {integrity: sha512-KfzFNhC4XTbmG3ma/xcTs/IhCwieW89XALIusKmnV0N618ZDXEB0XjWOYQRCXeK9mfqPdbTBpurEHV/XZtkniQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
@@ -4892,8 +4892,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-linux-arm64-musl@1.21.4:
-    resolution: {integrity: sha512-qfGAOBXUatU1rSpGep3FvsgHqRY5vsjEPXylYuDVhdc/VoWFshTEC8W1pfgHBwGvl9S8HmHGHFPZATuidUHxKw==}
+  /lightningcss-linux-arm64-musl@1.21.5:
+    resolution: {integrity: sha512-bc0GytQO5Mn9QM6szaZ+31fQHNdidgpM1sSCwzPItz8hg3wOvKl8039rU0veMJV3ZgC9z0ypNRceLrSHeRHmXw==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
@@ -4901,8 +4901,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-linux-x64-gnu@1.21.4:
-    resolution: {integrity: sha512-W5MJoozn3NE/9LEqbWQYGy1ZQoAordG0h/pSyv44+8eeDY1ufZK5LAw0+iFGYRcblcFDF69DElvLDEi59piCTg==}
+  /lightningcss-linux-x64-gnu@1.21.5:
+    resolution: {integrity: sha512-JwMbgypPQgc2kW2av3OwzZ8cbrEuIiDiXPJdXRE6aVxu67yHauJawQLqJKTGUhiAhy6iLDG8Wg0a3/ziL+m+Kw==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
@@ -4910,8 +4910,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-linux-x64-musl@1.21.4:
-    resolution: {integrity: sha512-R/fT1c8g8xrrCeU1fSErUb31OBMR38KcEDmrwCmxzsSntJ7o9YkZdbVx1FWRqBy8A8tNHm3MyQqZzU/owTJszw==}
+  /lightningcss-linux-x64-musl@1.21.5:
+    resolution: {integrity: sha512-Ib8b6IQ/OR/VrPU6YBgy4T3QnuHY7DUa95O+nz+cwrTkMSN6fuHcTcIaz4t8TJ6HI5pl3uxUOZjmtls2pyQWow==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
@@ -4919,8 +4919,8 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss-win32-x64-msvc@1.21.4:
-    resolution: {integrity: sha512-2G3X2GTLNwz4mLG60J8ala9FcN9hKy9aAaCImou69UeowjFCt0OMWlzNuwcZARDId0BVZRQn4vNFvRGqCPwMxA==}
+  /lightningcss-win32-x64-msvc@1.21.5:
+    resolution: {integrity: sha512-A8cSi8lUpBeVmoF+DqqW7cd0FemDbCuKr490IXdjyeI+KL8adpSKUs8tcqO0OXPh1EoDqK7JNkD/dELmd4Iz5g==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [win32]
@@ -4928,20 +4928,20 @@ packages:
     dev: true
     optional: true
 
-  /lightningcss@1.21.4:
-    resolution: {integrity: sha512-/MhQpBRQgs5j35eC1ZMqOOQqDZyNCUKZRoMp3ftprEOb4vVkjfe1VoknD9BKskCT+bbqBf3Yt9XglJLXXZ+pfA==}
+  /lightningcss@1.21.5:
+    resolution: {integrity: sha512-/pEUPeih2EwIx9n4T82aOG6CInN83tl/mWlw6B5gWLf36UplQi1L+5p3FUHsdt4fXVfOkkh9KIaM3owoq7ss8A==}
     engines: {node: '>= 12.0.0'}
     dependencies:
       detect-libc: 1.0.3
     optionalDependencies:
-      lightningcss-darwin-arm64: 1.21.4
-      lightningcss-darwin-x64: 1.21.4
-      lightningcss-linux-arm-gnueabihf: 1.21.4
-      lightningcss-linux-arm64-gnu: 1.21.4
-      lightningcss-linux-arm64-musl: 1.21.4
-      lightningcss-linux-x64-gnu: 1.21.4
-      lightningcss-linux-x64-musl: 1.21.4
-      lightningcss-win32-x64-msvc: 1.21.4
+      lightningcss-darwin-arm64: 1.21.5
+      lightningcss-darwin-x64: 1.21.5
+      lightningcss-linux-arm-gnueabihf: 1.21.5
+      lightningcss-linux-arm64-gnu: 1.21.5
+      lightningcss-linux-arm64-musl: 1.21.5
+      lightningcss-linux-x64-gnu: 1.21.5
+      lightningcss-linux-x64-musl: 1.21.5
+      lightningcss-win32-x64-msvc: 1.21.5
     dev: true
 
   /limiter@1.1.5:
