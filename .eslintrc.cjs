@@ -24,6 +24,8 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': ERROR,
+    '@typescript-eslint/no-confusing-void-expression': WARN,
+    'import/order': OFF, // broken with prettier
     'import/prefer-default-export': OFF,
     'no-restricted-syntax': OFF,
     'prettier/prettier': WARN,
