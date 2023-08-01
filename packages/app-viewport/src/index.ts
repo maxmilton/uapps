@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands, prefer-template */
+/* eslint-disable prefer-template */
 
 import './index.xcss';
 
-import { h } from 'stage1';
+import { collect, h } from 'stage1';
 
 const supportsTouch =
   'maxTouchPoints' in navigator
@@ -28,31 +28,31 @@ const view = h(`
 
     <dl>
       <dt>Screen width</dt>
-      <dd>#a</dd>
+      <dd>@a</dd>
 
       <dt>Screen height</dt>
-      <dd>#b</dd>
+      <dd>@b</dd>
 
       <dt>Pixel width</dt>
-      <dd>#c</dd>
+      <dd>@c</dd>
 
       <dt>Pixel height</dt>
-      <dd>#d</dd>
+      <dd>@d</dd>
 
       <dt>innerWidth</dt>
-      <dd>#e</dd>
+      <dd>@e</dd>
 
       <dt>innerHeight</dt>
-      <dd>#f</dd>
+      <dd>@f</dd>
 
       <dt>clientWidth</dt>
-      <dd>#g</dd>
+      <dd>@g</dd>
 
       <dt>clientHeight</dt>
-      <dd>#h</dd>
+      <dd>@h</dd>
 
       <dt>devicePixelRatio</dt>
-      <dd>#i</dd>
+      <dd>@i</dd>
 
       <dt>pixelDepth</dt>
       <dd>${window.screen.pixelDepth}</dd>
@@ -68,7 +68,7 @@ const view = h(`
 
 const App = () => {
   const root = view;
-  const refs = view.collect<RefNodes>(root);
+  const refs = collect<RefNodes>(root, view);
 
   const update = () => {
     refs.a.nodeValue = window.screen.width * devicePixelRatio + ' px';

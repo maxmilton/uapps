@@ -211,7 +211,7 @@ const esbuildConfig = {
   ],
   bundle: true,
   minify: !dev,
-  mangleProps: /_refs|collect/,
+  mangleProps: /^\$\$/,
   sourcemap: dev,
   write: dev,
   metafile: !dev && process.stdout.isTTY,
