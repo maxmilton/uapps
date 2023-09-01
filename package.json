@@ -14,7 +14,7 @@
     "@typescript-eslint/eslint-plugin": "6.2.1",
     "@typescript-eslint/parser": "6.2.1",
     "c8": "8.0.1",
-    "esbuild": "0.18.17",
+    "esbuild": "0.19.2",
     "eslint": "8.46.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.1.0",
