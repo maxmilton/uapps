@@ -23,7 +23,7 @@
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-security": "1.7.1",
     "eslint-plugin-unicorn": "48.0.1",
-    "prettier": "3.0.0",
+    "prettier": "3.0.3",
     "prettier-plugin-pkg": "0.18.0",
     "prettier-plugin-sh": "0.13.1",
     "stylelint": "15.10.2",
