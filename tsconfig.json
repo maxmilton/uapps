@@ -1,15 +1,12 @@
-// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 {
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "allowJs": true,
-    "checkJs": true,
-    "noEmit": true,
+    "allowJs": false,
 
     "strict": true,
     "allowUnreachableCode": false,
@@ -20,14 +17,20 @@
     "noUnusedLocals": false, // covered by eslint
     "noUnusedParameters": false, // covered by eslint
     "verbatimModuleSyntax": true
+
+    // "types": [
+    //   "bun-types",
+    //   "./node_modules/typescript/lib/lib.esnext.full.d.ts" // workaround for bun-types breaking dom types
+    // ]
   },
-  "exclude": [
-    "**/dist",
-    "**/node_modules",
-    "**/test",
-    "**/*.config.js",
-    "**/build.js",
-    "**/build.mjs",
-    "coverage"
-  ]
+  "include": [
+    "packages/*/src",
+    "packages/*/test",
+    "packages/*/build.ts",
+    "packages/*/xcss.config.ts",
+    "test",
+    "global.d.ts",
+    "playwright.config.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

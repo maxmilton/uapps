@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "**/package.json",
+    ".eslintrc.cjs",
+
+    // TODO: Remove these when migrating to bun (equivalent .ts files are already included)
+    "packages/*/build.mjs",
+    "packages/*/xcss.config.cjs"
+  ]
+}
