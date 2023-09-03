@@ -81,8 +81,8 @@ importers:
         specifier: 0.0.46
         version: 0.0.46(ekscss@0.0.16)
       stage1:
-        specifier: 0.8.0-next.3
-        version: 0.8.0-next.3
+        specifier: 0.8.0-next.4
+        version: 0.8.0-next.4
     devDependencies:
       ekscss:
         specifier: 0.0.16
@@ -6404,8 +6404,8 @@ packages:
       escape-string-regexp: 2.0.0
     dev: true
 
-  /stage1@0.8.0-next.3:
-    resolution: {integrity: sha512-e2ONv7nncFiAA2rpRI2uSw9I9henQbKgTYaRNqylkFOnPXGs9hSTFKzrG8FKMqgCz94cDZ9Lb72UR/Zmx/48Vg==}
+  /stage1@0.8.0-next.4:
+    resolution: {integrity: sha512-HdAC9NOvx5T27mxfyLilZsFJ3iRZcI0RFx+W/ZeBqXV8A8FCvXmby2uheQ3PDCXB3i5PMuOkhY7yM2h6Msn6Fw==}
     dev: false
 
   /statuses@2.0.1:
