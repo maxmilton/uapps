@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, no-console, no-plusplus, no-bitwise */
+/* eslint-disable import/no-extraneous-dependencies, no-console, no-bitwise */
 
 import esbuild from 'esbuild';
 import {
@@ -168,9 +168,7 @@ const minifyJS = {
     build.onEnd(async (result) => {
       if (!result.outputFiles) return;
 
-      for (let index = 0; index < result.outputFiles.length; index++) {
-        const file = result.outputFiles[index];
-
+      for (const file of result.outputFiles) {
         if (path.extname(file.path) === '.js') {
           // eslint-disable-next-line no-await-in-loop
           const out = await build.esbuild.transform(decodeUTF8(file.contents), {
@@ -179,8 +177,7 @@ const minifyJS = {
             // target: build.initialOptions.target,
           });
 
-          // eslint-disable-next-line no-param-reassign
-          result.outputFiles[index].contents = encodeUTF8(out.code);
+          file.contents = encodeUTF8(out.code);
         }
       }
     });

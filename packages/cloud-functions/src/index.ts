@@ -18,7 +18,7 @@ trackx.setup(
 );
 trackx.meta.app = 'cloud-functions';
 trackx.meta.release = process.env.APP_RELEASE;
-trackx.meta.NODE_ENV = process.env.NODE_ENV || 'NULL';
+trackx.meta.NODE_ENV = process.env.NODE_ENV ?? 'NULL';
 trackx.ping();
 
 // // Ping trackx periodically for testing purposes
