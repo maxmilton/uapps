@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console, no-bitwise */
+/* eslint-disable security/detect-non-literal-fs-filename, security/detect-object-injection */
 
 import esbuild from 'esbuild';
 import {
@@ -88,6 +89,7 @@ const buildHtml = (opts) => ({
         result.outputFiles[result.outputFiles.length] = {
           path: path.join(distPath, 'index.html'),
           contents: encodeUTF8(html),
+          hash: '',
           get text() {
             return decodeUTF8(this.contents);
           },

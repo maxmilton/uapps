@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
