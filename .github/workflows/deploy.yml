@@ -11,6 +11,7 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -21,7 +22,7 @@ jobs:
             firebase-
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
         env:
