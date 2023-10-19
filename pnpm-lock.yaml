@@ -165,7 +165,7 @@ packages:
       '@babel/helpers': 7.23.1
       '@babel/parser': 7.23.0
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
       convert-source-map: 2.0.0
       debug: 4.3.4
@@ -276,7 +276,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.15
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
     transitivePeerDependencies:
       - supports-color
@@ -436,8 +436,8 @@ packages:
       '@babel/types': 7.23.0
     dev: true
 
-  /@babel/traverse@7.23.0:
-    resolution: {integrity: sha512-t/QaEvyIoIkwzpiZ7aoSKK8kObQYeF7T2v+dazAYCb8SXtp58zEVkWW7zAnju8FNKNdr4ScAOEDmMItbyOmEYw==}
+  /@babel/traverse@7.23.2:
+    resolution: {integrity: sha512-azpe59SQ48qG6nu2CzcMLbxUudtN+dOM9kDbUqGq3HXUJRlo7i8fvPoxQUzYgLZ4cMVmuZgm8vvBpNeRhd6XSw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.13
@@ -512,7 +512,7 @@ packages:
       '@ekscss/plugin-import': 0.0.12(ekscss@0.0.17)
       '@ekscss/plugin-prefix': 0.0.11(ekscss@0.0.17)
       color: 4.2.3
-      cssremedy: github.com/jensimmons/cssremedy/af14bf3
+      cssremedy: git@github.com+jensimmons/cssremedy/af14bf3
       dset: 3.1.2
       ekscss: 0.0.17
       stylis: 4.3.0
@@ -6949,9 +6949,10 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    requiresBuild: true
 
-  github.com/jensimmons/cssremedy/af14bf3:
-    resolution: {tarball: https://codeload.github.com/jensimmons/cssremedy/tar.gz/af14bf3}
+  git@github.com+jensimmons/cssremedy/af14bf3:
+    resolution: {commit: af14bf3, repo: git@github.com:jensimmons/cssremedy.git, type: git}
     name: cssremedy
     version: 0.1.0-beta.2
     dev: false
