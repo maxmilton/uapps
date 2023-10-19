@@ -13,7 +13,7 @@
     "serve": "sirv dist --dev --cors"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.47",
+    "@ekscss/framework": "0.0.48",
     "stage1": "0.8.0-next.4"
   },
   "devDependencies": {
