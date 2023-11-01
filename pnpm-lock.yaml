@@ -2782,7 +2782,7 @@ packages:
       astray: 1.1.1
       esbuild: 0.19.5
       magic-string: 0.30.5
-      meriyah: 4.3.7
+      meriyah: 4.3.8
     dev: true
 
   /esbuild-netbsd-64@0.15.18:
@@ -5159,8 +5159,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /meriyah@4.3.7:
-    resolution: {integrity: sha512-JAlSOUqFU/rmLy2CEdZO5hN5E5dyUj1f4AlRR4GCQMjfobvd5lcm9JLkrqq0MgVaLQ/Zur590A+0RyUZhj0b5A==}
+  /meriyah@4.3.8:
+    resolution: {integrity: sha512-b1bddpQZK3FVr/x6KISsfNQdS9jVNgVuFDRi7I9AJbYVggdcA6ij9idboD0aW5ZYELsDMOubi58SDfsW81VakA==}
     engines: {node: '>=10.4.0'}
     dev: true
 
