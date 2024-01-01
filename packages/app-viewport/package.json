@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ekscss/framework": "0.0.48",
-    "stage1": "0.8.0-next.4"
+    "stage1": "0.8.0-next.5"
   },
   "devDependencies": {
     "ekscss": "0.0.17",
