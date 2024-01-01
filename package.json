@@ -27,7 +27,7 @@
     "prettier-plugin-pkg": "0.18.0",
     "prettier-plugin-sh": "0.13.1",
     "stylelint": "16.0.2",
-    "stylelint-config-standard": "35.0.0",
+    "stylelint-config-standard": "36.0.0",
     "tsm": "2.3.0",
     "typescript": "5.3.3",
     "uvu": "0.5.6"
