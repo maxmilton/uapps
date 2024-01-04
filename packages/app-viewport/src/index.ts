@@ -2,7 +2,9 @@
 
 import './index.xcss';
 
-import { collect, h } from 'stage1';
+import { compile } from 'stage1/macro' assert { type: 'macro' };
+import { collect, h } from 'stage1/runtime';
+import { interpolate } from './macros' assert { type: 'macro' };
 
 const supportsTouch =
   'maxTouchPoints' in navigator
@@ -10,7 +12,7 @@ const supportsTouch =
     : 'ontouchstart' in document.documentElement ||
       ('matchMedia' in window && matchMedia('(any-pointer:coarse)').matches);
 
-type RefNodes = {
+type Refs = {
   a: Text;
   b: Text;
   c: Text;
@@ -20,11 +22,14 @@ type RefNodes = {
   g: Text;
   h: Text;
   i: Text;
+  j: Text;
+  k: Text;
+  l: Text;
 };
 
-const view = h(`
+const meta = compile(`
   <main>
-    <h1 class="tc orange5">Viewport Info</h1>
+    <h1>Viewport Info</h1>
 
     <dl>
       <dt>Screen width</dt>
@@ -55,20 +60,20 @@ const view = h(`
       <dd>@i</dd>
 
       <dt>pixelDepth</dt>
-      <dd>${window.screen.pixelDepth}</dd>
+      <dd>@j</dd>
 
       <dt>colorDepth</dt>
-      <dd>${window.screen.colorDepth}</dd>
+      <dd>@k</dd>
 
       <dt>Supports touch</dt>
-      <dd>${supportsTouch ? 'Yes' : 'No'}</dd>
+      <dd>@l</dd>
     </dl>
   </main>
 `);
 
 const App = () => {
-  const root = view;
-  const refs = collect<RefNodes>(root, view);
+  const root = h(meta.html);
+  const refs = collect<Refs>(root, meta.k, meta.d);
 
   const update = () => {
     refs.a.nodeValue = window.screen.width * devicePixelRatio + ' px';
@@ -80,19 +85,39 @@ const App = () => {
     refs.g.nodeValue = document.documentElement.clientWidth + ' px';
     refs.h.nodeValue = document.documentElement.clientHeight + ' px';
     refs.i.nodeValue = devicePixelRatio + '';
+    refs.j.nodeValue = window.screen.pixelDepth + '';
+    refs.k.nodeValue = window.screen.colorDepth + '';
+    refs.l.nodeValue = supportsTouch ? 'Yes' : 'No';
   };
 
   update();
-  window.addEventListener('resize', update);
+  window.onresize = update;
 
   return root;
 };
 
-document.body.append(
-  App(),
-  h(`
-  <footer class="mv4 fss muted tc">
-    © <a href=https://maxmilton.com class="normal muted">Max Milton</a> ・ ${process.env.APP_RELEASE} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
-  </footer>
-`),
+// const footerMeta = compile(
+//   `
+//     <footer>
+//       © <a href=https://maxmilton.com class=ml>Max Milton</a> ・ ${process.env.APP_RELEASE} ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
+//     </footer>
+//   `,
+//   { keepSpaces: true },
+// );
+const footerMeta = compile(
+  // FIXME: This is a convoluted workaround for a bug in the bun macro system,
+  // where it crashes when doing string literal template interpolation.
+  // https://github.com/oven-sh/bun/issues/3830
+  interpolate(
+    `
+      <footer>
+        © <a href=https://maxmilton.com class=ml>Max Milton</a> ・ %%1%% ・ <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
+      </footer>
+    `,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    [process.env.APP_RELEASE!],
+  ),
+  { keepSpaces: true },
 );
+
+document.body.append(App(), h(footerMeta.html));

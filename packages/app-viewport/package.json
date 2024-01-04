@@ -7,22 +7,22 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "pnpm run prebuild && NODE_ENV=production node build.mjs",
-    "dev": "NODE_ENV=development node build.mjs",
+    "build": "NODE_ENV=production bun build.ts",
+    "dev": "NODE_ENV=development bun build.ts",
     "prebuild": "rm -rf dist; cp -r static dist",
-    "serve": "sirv dist --dev --cors"
+    "serve": "bun http.ts"
   },
   "dependencies": {
     "@ekscss/framework": "0.0.48",
-    "stage1": "0.8.0-next.4"
+    "stage1": "0.8.0-next.5"
   },
   "devDependencies": {
+    "@types/csso": "5.0.4",
+    "@uapps/git-ref": "workspace:*",
+    "csso": "5.0.5",
     "ekscss": "0.0.17",
-    "esbuild-minify-templates": "0.11.0",
-    "esbuild-plugin-ekscss": "0.0.17",
-    "git-ref": "0.4.0",
     "lightningcss": "1.22.1",
     "purgecss": "5.0.0",
-    "sirv-cli": "2.0.2"
+    "terser": "5.26.0"
   }
 }

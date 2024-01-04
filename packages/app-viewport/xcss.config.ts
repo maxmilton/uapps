@@ -1,23 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck 😢
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies, strict */
 
-'use strict';
-
-const framework = require('@ekscss/framework/config');
-const { extend } = require('@ekscss/framework/utils');
-const { ctx, onBeforeBuild } = require('ekscss');
+import framework from '@ekscss/framework/config';
+import { extend } from '@ekscss/framework/utils';
+import { ctx, onBeforeBuild } from 'ekscss';
 
 onBeforeBuild(() => {
   // Cheeky abuse of ekscss ctx to stop unwanted style imports
   ctx.dependencies.push(
-    require.resolve('@ekscss/framework/level2/a11y.xcss'),
-    require.resolve('@ekscss/framework/level2/form.xcss'),
+    import.meta.resolveSync('@ekscss/framework/level2/a11y.xcss'),
+    import.meta.resolveSync('@ekscss/framework/level2/form.xcss'),
   );
 });
 
-module.exports = extend(framework, {
+export default extend(framework, {
   globals: {
     fontStack: 'Rubik, sans-serif',
 

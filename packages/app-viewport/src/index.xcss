@@ -60,3 +60,16 @@ dd {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+h1 {
+  #apply: .tc, .orange5;
+}
+
+footer {
+  #apply: .mv4, .fss, .muted, .tc;
+}
+
+// "muted link"
+.ml {
+  #apply: .normal, .muted;
+}
