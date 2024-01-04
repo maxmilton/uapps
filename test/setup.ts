@@ -1,12 +1,12 @@
-import { expect } from "bun:test";
-import { GlobalWindow, type Window } from "happy-dom";
+import { expect } from 'bun:test';
+import { GlobalWindow, type Window } from 'happy-dom';
 
 declare global {
   // eslint-disable-next-line no-var, vars-on-top
-  var happyDOM: Window["happyDOM"];
+  var happyDOM: Window['happyDOM'];
 }
 
-declare module "bun:test" {
+declare module 'bun:test' {
   interface Matchers {
     /** Asserts that a value is a plain `object`. */
     toBePlainObject(): void;
@@ -17,7 +17,7 @@ expect.extend({
   // XXX: Although bun has a `toBeObject` matcher, it's not as useful since it
   // doesn't check for plain objects.
   toBePlainObject(received: unknown) {
-    return Object.prototype.toString.call(received) === "[object Object]"
+    return Object.prototype.toString.call(received) === '[object Object]'
       ? { pass: true }
       : {
           pass: false,
