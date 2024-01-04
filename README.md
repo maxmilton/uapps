@@ -24,4 +24,4 @@ MIT license. See [LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENS
 
 ---
 
-© 2022 [Max Milton](https://maxmilton.com)
+© 2024 [Max Milton](https://maxmilton.com)
