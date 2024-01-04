@@ -1,12 +1,16 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "pnpm run -r build",
-    "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
+    "FIXME__build": "bun run --workspaces build",
+    "build": "pnpm -r exec bun run build",
+    "lint": "bun run lint:css && bun run lint:js && bun run lint:ts",
     "lint:css": "stylelint --ignore-path .gitignore '**/*.{css,xcss}'",
     "lint:js": "eslint --ignore-path .gitignore --ext .tsx,.ts,.mjs,.jsx,.js,.cjs .",
     "lint:ts": "tsc --noEmit",
-    "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'"
+    "test": "bun test --preload ./test/setup.ts packages --coverage"
   },
   "devDependencies": {
     "@maxmilton/stylelint-config": "0.0.15",

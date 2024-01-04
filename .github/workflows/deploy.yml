@@ -26,9 +26,7 @@ jobs:
           bun-version: latest
       - run: bun add -g pnpm
       - run: bun install --frozen-lockfile
-      # FIXME: Prefer this way to run build once bun supports it
-      # - run: bun run build
-      - run: pnpm run -r build
+      - run: bun run build
       - name: Deploy to firebase
         run: |
           curl -Lo ./firebase_bin https://firebase.tools/bin/linux/latest
