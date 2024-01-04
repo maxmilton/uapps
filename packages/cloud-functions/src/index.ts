@@ -6,6 +6,8 @@
 // TODO: Optimise networking, including connection reuse between function invocations
 //  ↳ https://firebase.google.com/docs/functions/networking
 
+/// <reference types="node" />
+
 // import * as functions from 'firebase-functions';
 import * as trackx from 'trackx/node';
 
