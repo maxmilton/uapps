@@ -2,6 +2,9 @@ import { expect } from 'bun:test';
 import { GlobalWindow, type Window } from 'happy-dom';
 
 declare global {
+  /** Real bun console. `console` is mapped to happy-dom's virtual console. */
+  // eslint-disable-next-line no-var, vars-on-top
+  var console2: Console;
   // eslint-disable-next-line no-var, vars-on-top
   var happyDOM: Window['happyDOM'];
 }
@@ -26,6 +29,7 @@ expect.extend({
   },
 });
 
+const originalConsole = global.console;
 const noop = () => {};
 
 function setupDOM() {
@@ -35,6 +39,7 @@ function setupDOM() {
     // console: global.console,
   });
   global.happyDOM = dom.happyDOM;
+  global.console2 = originalConsole;
   // @ts-expect-error - happy-dom only implements a subset of the DOM API
   global.window = dom.window.document.defaultView;
   global.document = window.document;
@@ -54,9 +59,15 @@ function setupMocks(): void {
   global.performance.measure = noop;
 }
 
-export function reset(): void {
+export async function reset(): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (global.happyDOM) {
+    await happyDOM.abort();
+    window.close();
+  }
+
   setupDOM();
   setupMocks();
 }
 
-reset();
+await reset();
