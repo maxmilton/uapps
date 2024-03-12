@@ -26,7 +26,7 @@ describe('dist files', () => {
   const distFiles: [filename: string, type: string, minBytes?: number, maxBytes?: number][] = [
     ['favicon.ico', 'image/x-icon'],
     ['favicon.svg', 'image/svg+xml'],
-    [indexCss, 'text/css', 1000, 1600],
+    [indexCss, 'text/css;charset=utf-8', 1000, 1600],
     [indexJs, 'text/javascript;charset=utf-8', 1000, 2000],
     ['index.html', 'text/html;charset=utf-8', 500, 700],
     ['robots.txt', 'text/plain;charset=utf-8'],
@@ -37,14 +37,16 @@ describe('dist files', () => {
     describe(filename, () => {
       const file = Bun.file(`${distPath}/${filename}`);
 
-      test(`exists with correct type`, () => {
+      test('exists with correct type', () => {
+        expect.assertions(3);
         expect(file.exists()).resolves.toBeTruthy();
         expect(file.size).toBeGreaterThan(0);
         expect(file.type).toBe(type); // TODO: Keep this? Type seems to be resolved from the file extension, not the file data.
       });
 
       if (minBytes != null && maxBytes != null) {
-        test(`is within expected file size limits`, () => {
+        test('is within expected file size limits', () => {
+          expect.assertions(2);
           expect(file.size).toBeGreaterThan(minBytes);
           expect(file.size).toBeLessThan(maxBytes);
         });
@@ -53,6 +55,7 @@ describe('dist files', () => {
   }
 
   test('contains no extra files', async () => {
+    expect.assertions(1);
     const distDir = await readdir(distPath);
     expect(distDir).toHaveLength(distFiles.length);
   });
@@ -62,22 +65,27 @@ const html = await Bun.file(`${distPath}/index.html`).text();
 
 describe('index.html', () => {
   test('contains the correct title', () => {
+    expect.assertions(1);
     expect(html).toContain('<title>Viewport Info</title>');
   });
 
   test('contains the correct CSS filename', () => {
+    expect.assertions(1);
     expect(html).toContain(`<link href=${indexCss} rel=stylesheet>`);
   });
 
   test('contains the correct JS filename', () => {
+    expect.assertions(1);
     expect(html).toContain(`<script src=${indexJs} defer></script>`);
   });
 });
 
 test('index CSS file has hash in filename', () => {
+  expect.assertions(1);
   expect(indexCss).toMatch(/^index-[\da-f]+\.css$/);
 });
 
 test('index JS file has hash in filename', () => {
+  expect.assertions(1);
   expect(indexJs).toMatch(/^index-[\da-f]+\.js$/);
 });
