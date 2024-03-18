@@ -8,7 +8,7 @@ export function interpolate(text: string, values: string[]): string {
 
   values.forEach((value, index) => {
     // eslint-disable-next-line security/detect-non-literal-regexp
-    result = result.replace(new RegExp(`%%${index + 1}%%`, 'g'), value);
+    result = result.replace(new RegExp(`%%${String(index + 1)}%%`, 'g'), value);
   });
 
   return result;

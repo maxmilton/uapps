@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': ERROR,
     '@typescript-eslint/no-confusing-void-expression': WARN,
+    '@typescript-eslint/restrict-plus-operands': WARN,
     'import/prefer-default-export': OFF,
     'no-restricted-syntax': OFF,
     'no-void': OFF,
