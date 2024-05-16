@@ -2,8 +2,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "FIXME__build": "bun run --workspaces build",
-    "build": "pnpm -r exec bun run build",
+    "build": "bun run --filter '*' --if-present --no-install build",
     "lint": "bun run lint:fmt && bun run lint:css && bun run lint:js && bun run lint:ts",
     "lint:css": "stylelint --ignore-path .gitignore '**/*.{css,xcss}'",
     "lint:fmt": "biome format .",

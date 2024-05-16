@@ -14,7 +14,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun add -g pnpm
       - run: bun install --frozen-lockfile
       - run: bun run build
       - run: bun run test
@@ -36,7 +35,6 @@ jobs:
   #     - uses: oven-sh/setup-bun@v1
   #       with:
   #         bun-version: latest
-  #     - run: bun add -g pnpm
   #     - run: bun install --frozen-lockfile
   #     - run: bun playwright install chromium
   #     - run: bun run build
@@ -55,7 +53,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun add -g pnpm
       - run: bun install --frozen-lockfile
       - run: bun run build
       - run: bun run lint
