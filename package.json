@@ -23,7 +23,7 @@
     "eslint-plugin-security": "3.0.0",
     "eslint-plugin-unicorn": "53.0.0",
     "happy-dom": "14.11.0",
-    "stylelint": "16.5.0",
+    "stylelint": "16.6.1",
     "stylelint-config-standard": "36.0.0",
     "typescript": "5.4.5"
   },
