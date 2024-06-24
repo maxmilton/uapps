@@ -1,11 +1,11 @@
 /* eslint-disable no-bitwise, no-console */
 
+import { basename } from 'node:path';
 import { gitHash, isDirty } from '@uapps/git-ref';
 import type { BunPlugin } from 'bun';
 import * as csso from 'csso';
 import * as xcss from 'ekscss';
 import * as lightningcss from 'lightningcss';
-import { basename } from 'node:path';
 import { PurgeCSS } from 'purgecss';
 import * as terser from 'terser';
 import pkg from './package.json' assert { type: 'json' };

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, spyOn, test } from 'bun:test';
-import { DECLARATION, compile, lookup, walk } from '../../../test/css-engine';
+import { DECLARATION, compile, walk } from '../../../test/css-engine';
 import { reset } from '../../../test/setup';
 import { performanceSpy } from '../../../test/utils';
 
