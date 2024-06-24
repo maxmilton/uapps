@@ -1,7 +1,4 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.sortImports": "never"
-  },
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
@@ -28,6 +25,7 @@
   },
   "[javascript][typescript]": {
     "editor.codeActionsOnSave": {
+      "source.sortImports": "never",
       "source.organizeImports": "never",
       "source.organizeImports.biome": "explicit",
       "source.fixAll": "never",
