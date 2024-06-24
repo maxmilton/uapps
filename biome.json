@@ -19,7 +19,7 @@
     "globals": ["chrome"],
     "formatter": {
       "semicolons": "always",
-      "trailingComma": "all",
+      "trailingCommas": "all",
       "quoteStyle": "single"
     }
   },
@@ -28,7 +28,11 @@
       "recommended": true,
       "complexity": {
         "noForEach": "off",
-        "useSimplifiedLogicExpression": "warn"
+        "useSimplifiedLogicExpression": "info"
+      },
+      "performance": {
+        "noBarrelFile": "warn",
+        "noReExportAll": "warn"
       },
       "style": {
         "noNamespace": "error",
