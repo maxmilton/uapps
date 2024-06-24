@@ -44,12 +44,12 @@ function setupDOM() {
   global.window = dom.window.document.defaultView;
   global.document = window.document;
   global.console = window.console;
+  global.fetch = window.fetch;
   global.setTimeout = window.setTimeout;
   global.clearTimeout = window.clearTimeout;
   global.DocumentFragment = window.DocumentFragment;
   global.CSSStyleSheet = window.CSSStyleSheet;
   global.Text = window.Text;
-  global.fetch = window.fetch;
 }
 
 function setupMocks(): void {
@@ -57,6 +57,8 @@ function setupMocks(): void {
   global.performance.mark = noop;
   // @ts-expect-error - noop stub
   global.performance.measure = noop;
+
+  global.devicePixelRatio = 1;
 }
 
 export async function reset(): Promise<void> {
