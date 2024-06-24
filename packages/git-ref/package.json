@@ -11,7 +11,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "bun build src/index.ts --outdir=dist --target=bun --sourcemap=external --minify",
-    "postbuild": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist src/index.ts",
+    "postbuild": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist --skipLibCheck src/index.ts",
     "prebuild": "rm -rf dist"
   }
 }
