@@ -30,9 +30,11 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - uses: actions/attest-build-provenance@v1
-        with:
-          subject-path: packages/*/dist/**
+      - run: tar -czf uapps-dist.tar.gz packages/*/dist
+      # - uses: actions/attest-build-provenance@v1
+      #   with:
+      #     subject-path: packages/*/dist/**
+      #     # subject-path: uapps-dist.tar.gz
       - name: Deploy to firebase
         run: |
           curl -Lo ./firebase_bin https://firebase.tools/bin/linux/latest
@@ -40,7 +42,7 @@ jobs:
           ./firebase_bin deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      - run: gh release create "$(date +%Y%m%d%H%M%S)" packages/*/dist/** --generate-notes
+      - run: gh release create "$(date +%Y%m%d%H%M%S)" uapps-dist.tar.gz --generate-notes
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
