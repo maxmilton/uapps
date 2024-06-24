@@ -20,14 +20,15 @@
     "verbatimModuleSyntax": true
   },
   "include": [
-    "packages/*/src",
-    "packages/*/test",
+    "*.config.mjs",
+    "*.config.ts",
+    "*.d.ts",
+    "packages/*/*.config.ts",
     "packages/*/build.ts",
     "packages/*/http.ts",
-    "packages/*/*.config.ts",
-    "test",
-    "*.config.ts",
-    "*.d.ts"
+    "packages/*/src",
+    "packages/*/test",
+    "test"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
