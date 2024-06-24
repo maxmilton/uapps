@@ -56,6 +56,7 @@ describe('dist files', () => {
 
   test('contains no extra files', async () => {
     expect.assertions(1);
+    // eslint-disable-next-line security/detect-non-literal-fs-filename
     const distDir = await readdir(distPath);
     expect(distDir).toHaveLength(distFiles.length);
   });

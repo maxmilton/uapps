@@ -76,17 +76,17 @@ const App = () => {
   const refs = collect<Refs>(root, meta.k, meta.d);
 
   const update = () => {
-    refs.a.nodeValue = window.screen.width * devicePixelRatio + ' px';
-    refs.b.nodeValue = window.screen.height * devicePixelRatio + ' px';
-    refs.c.nodeValue = window.screen.width + ' px';
-    refs.d.nodeValue = window.screen.height + ' px';
-    refs.e.nodeValue = window.innerWidth + ' px';
-    refs.f.nodeValue = window.innerHeight + ' px';
-    refs.g.nodeValue = document.documentElement.clientWidth + ' px';
-    refs.h.nodeValue = document.documentElement.clientHeight + ' px';
-    refs.i.nodeValue = devicePixelRatio + '';
-    refs.j.nodeValue = window.screen.pixelDepth + '';
-    refs.k.nodeValue = window.screen.colorDepth + '';
+    refs.a.nodeValue = String(window.screen.width * devicePixelRatio) + ' px';
+    refs.b.nodeValue = String(window.screen.height * devicePixelRatio) + ' px';
+    refs.c.nodeValue = String(window.screen.width) + ' px';
+    refs.d.nodeValue = String(window.screen.height) + ' px';
+    refs.e.nodeValue = String(window.innerWidth) + ' px';
+    refs.f.nodeValue = String(window.innerHeight) + ' px';
+    refs.g.nodeValue = String(document.documentElement.clientWidth) + ' px';
+    refs.h.nodeValue = String(document.documentElement.clientHeight) + ' px';
+    refs.i.nodeValue = String(devicePixelRatio);
+    refs.j.nodeValue = String(window.screen.pixelDepth);
+    refs.k.nodeValue = String(window.screen.colorDepth);
     refs.l.nodeValue = supportsTouch ? 'Yes' : 'No';
   };
 
