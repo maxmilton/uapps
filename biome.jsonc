@@ -43,6 +43,7 @@
         },
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
+        "useSingleCaseStatement": "error",
         "useTemplate": "off"
       },
       "suspicious": {
