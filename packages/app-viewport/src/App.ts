@@ -10,7 +10,7 @@ const supportsTouch =
       ('matchMedia' in window && matchMedia('(any-pointer:coarse)').matches);
 
 type AppComponent = HTMLElement;
-type Refs = {
+interface Refs {
   a: Text;
   b: Text;
   c: Text;
@@ -23,7 +23,7 @@ type Refs = {
   j: Text;
   k: Text;
   l: Text;
-};
+}
 
 const meta = compile(`
   <main>

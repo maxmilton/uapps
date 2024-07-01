@@ -79,7 +79,7 @@ export default tseslint.config(
       'unicorn/no-nested-ternary': OFF,
 
       /* Performance and byte savings */
-      // // byte savings
+      // byte savings
       'no-plusplus': OFF,
       'unicorn/no-array-callback-reference': WARN,
       // forEach is often faster (in Chrome and Firefox but not Safari)
@@ -90,7 +90,6 @@ export default tseslint.config(
       'unicorn/switch-case-braces': [ERROR, 'avoid'],
 
       /* stage1 */
-      '@typescript-eslint/consistent-type-definitions': OFF, // FIXME: Issue with stage1 collect Refs
       // underscores in synthetic event handler names
       'no-underscore-dangle': OFF,
       'unicorn/prefer-add-event-listener': OFF,
