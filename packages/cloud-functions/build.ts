@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { gitHash, isDirty } from '@uapps/git-ref';
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 const mode = Bun.env.NODE_ENV;
 const dev = mode === 'development';

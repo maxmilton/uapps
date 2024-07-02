@@ -8,7 +8,7 @@ import * as xcss from 'ekscss';
 import * as lightningcss from 'lightningcss';
 import { PurgeCSS } from 'purgecss';
 import * as terser from 'terser';
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 import xcssConfig from './xcss.config';
 
 const mode = Bun.env.NODE_ENV;
