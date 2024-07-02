@@ -12,7 +12,6 @@
     "deploy": "firebase deploy --only functions",
     "dev": "NODE_ENV=development bun build.ts",
     "logs": "firebase functions:log",
-    "prebuild": "rm -rf dist; mkdir dist",
     "serve": "bun run dev && firebase emulators:start --only functions",
     "shell": "bun run dev && firebase functions:shell",
     "start": "bun run shell"

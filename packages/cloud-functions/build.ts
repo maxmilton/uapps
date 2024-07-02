@@ -7,6 +7,10 @@ const mode = Bun.env.NODE_ENV;
 const dev = mode === 'development';
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
+console.time('prebuild');
+await Bun.$`rm -rf dist`;
+console.timeEnd('prebuild');
+
 console.time('build');
 const out = await Bun.build({
   entrypoints: ['src/index.ts'],

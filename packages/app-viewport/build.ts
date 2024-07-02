@@ -50,39 +50,6 @@ const extractCSS: BunPlugin = {
   },
 };
 
-console.time('build');
-const out = await Bun.build({
-  entrypoints: ['src/index.ts'],
-  outdir: 'dist',
-  naming: {
-    entry: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-    chunk: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-    asset: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-  },
-  target: 'browser',
-  format: 'esm',
-  define: {
-    'process.env.APP_RELEASE': JSON.stringify(release),
-    'process.env.NODE_ENV': JSON.stringify(mode),
-  },
-  loader: {
-    '.svg': 'text',
-  },
-  plugins: [extractCSS],
-  // minify: !dev,
-  minify: {
-    whitespace: !dev,
-    identifiers: !dev,
-    // FIXME: Bun macros break if syntax minify is disabled (due to string
-    // interpolation and concatenation not being resolved).
-    syntax: true,
-  },
-  // TODO: Always output source maps once we fix handling them in minified JS/CSS
-  sourcemap: dev ? 'external' : 'none',
-});
-console.timeEnd('build');
-console.log(out);
-
 // TODO: Handle source maps
 async function minifyCSS(
   cssCode: string,
@@ -203,9 +170,47 @@ async function buildHTML(jsArtifact: Blob & { path: string }) {
   return html;
 }
 
-console.time('buildHTML');
+console.time('prebuild');
+await Bun.$`rm -rf dist`;
+await Bun.$`cp -r static dist`;
+console.timeEnd('prebuild');
+
+console.time('build');
+const out = await Bun.build({
+  entrypoints: ['src/index.ts'],
+  outdir: 'dist',
+  naming: {
+    entry: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
+    chunk: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
+    asset: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
+  },
+  target: 'browser',
+  format: 'esm',
+  define: {
+    'process.env.APP_RELEASE': JSON.stringify(release),
+    'process.env.NODE_ENV': JSON.stringify(mode),
+  },
+  loader: {
+    '.svg': 'text',
+  },
+  plugins: [extractCSS],
+  // minify: !dev,
+  minify: {
+    whitespace: !dev,
+    identifiers: !dev,
+    // FIXME: Bun macros break if syntax minify is disabled (due to string
+    // interpolation and concatenation not being resolved).
+    syntax: true,
+  },
+  // TODO: Always output source maps once we fix handling them in minified JS/CSS
+  sourcemap: dev ? 'external' : 'none',
+});
+console.timeEnd('build');
+console.log(out);
+
+console.time('html');
 const html = await buildHTML(out.outputs[0]);
-console.timeEnd('buildHTML');
+console.timeEnd('html');
 
 if (dev) {
   await Bun.write('dist/index.css', css);

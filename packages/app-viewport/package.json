@@ -9,7 +9,6 @@
   "scripts": {
     "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts",
-    "prebuild": "rm -rf dist; cp -r static dist",
     "serve": "bun http.ts"
   },
   "dependencies": {
