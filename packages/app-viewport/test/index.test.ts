@@ -4,9 +4,9 @@ import { readdir } from 'node:fs/promises';
 // In production builds, index.css and index.js files are generated with a hash
 // in the filename. So we need to find the actual filenames to test against.
 const distPath = `${import.meta.dir}/../dist`;
-const indexFiles = new Bun.Glob('index-*.{css,js}').scan({ cwd: distPath });
-let indexCss = 'index.css';
-let indexJs = 'index.js';
+const indexFiles = new Bun.Glob('index*.{css,js}').scan({ cwd: distPath });
+let indexCss: string;
+let indexJs: string;
 
 for await (const file of indexFiles) {
   if (file.endsWith('.css')) {
@@ -15,6 +15,16 @@ for await (const file of indexFiles) {
     indexJs = file;
   }
 }
+
+test('index CSS file found', () => {
+  expect.assertions(1);
+  expect(indexCss).toBeDefined();
+});
+
+test('index JS file found', () => {
+  expect.assertions(1);
+  expect(indexJs).toBeDefined();
+});
 
 describe('dist files', () => {
   // FIXME: The bun file type is just inferred from the file extension, not the
