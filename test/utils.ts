@@ -42,10 +42,9 @@ export function render(component: Node): RenderResult {
 }
 
 export function cleanup(): void {
-  // FIXME: afterEach(cleanup) still runs for test.todo() tests.
-  // if (mountedContainers.size === 0) {
-  //   throw new Error('No components mounted, did you forget to call render()?');
-  // }
+  if (mountedContainers.size === 0) {
+    throw new Error('No components mounted, did you forget to call render()?');
+  }
 
   for (const container of mountedContainers) {
     if (container.parentNode === document.body) {
