@@ -22,6 +22,6 @@
     "ekscss": "0.0.18",
     "lightningcss": "1.25.1",
     "purgecss": "6.0.0",
-    "terser": "5.31.3"
+    "terser": "5.36.0"
   }
 }
