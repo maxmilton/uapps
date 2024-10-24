@@ -17,7 +17,7 @@
     "start": "bun run shell"
   },
   "dependencies": {
-    "firebase-admin": "12.3.0",
+    "firebase-admin": "12.7.0",
     "firebase-functions": "5.0.1",
     "trackx": "0.6.1"
   },
