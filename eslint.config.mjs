@@ -1,11 +1,9 @@
-// FIXME: eslint-plugin-import seems broken here
-/* eslint-disable import/no-unresolved */
-
 import { fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import eslint from '@eslint/js';
 import security from 'eslint-plugin-security';
 import unicorn from 'eslint-plugin-unicorn';
+// eslint-disable-next-line import/no-unresolved
 import tseslint from 'typescript-eslint';
 
 const compat = new FlatCompat({
@@ -25,7 +23,6 @@ export default tseslint.config(
   ...compat.extends('airbnb-typescript/base'),
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  // eslint-disable-next-line
   unicorn.configs['flat/recommended'],
   security.configs.recommended,
   {
@@ -68,6 +65,8 @@ export default tseslint.config(
       'unicorn/prevent-abbreviations': OFF,
       // bad browser support
       'unicorn/prefer-at': OFF,
+      // prefer to clearly separate Bun and DOM
+      'unicorn/prefer-global-this': OFF,
 
       /* Covered by biome formatter */
       '@typescript-eslint/indent': OFF,
