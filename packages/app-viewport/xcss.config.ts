@@ -9,8 +9,8 @@ import { ctx, onBeforeBuild } from 'ekscss';
 onBeforeBuild(() => {
   // Cheeky abuse of ekscss ctx to stop unwanted style imports
   ctx.dependencies.push(
-    import.meta.resolveSync('@ekscss/framework/level2/a11y.xcss'),
-    import.meta.resolveSync('@ekscss/framework/level2/form.xcss'),
+    Bun.resolveSync('@ekscss/framework/level2/a11y.xcss', '.'),
+    Bun.resolveSync('@ekscss/framework/level2/form.xcss', '.'),
   );
 });
 

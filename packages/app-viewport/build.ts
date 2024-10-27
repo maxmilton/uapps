@@ -1,6 +1,6 @@
-/* eslint-disable no-bitwise, no-console */
+/* eslint-disable no-bitwise */
 
-import { basename } from 'node:path';
+import { basename } from 'node:path'; // eslint-disable-line unicorn/import-style
 import { gitHash, isDirty } from '@uapps/git-ref';
 import type { BunPlugin } from 'bun';
 import * as csso from 'csso';
@@ -203,7 +203,7 @@ const out = await Bun.build({
     syntax: true,
   },
   // TODO: Always output source maps once we fix handling them in minified JS/CSS
-  sourcemap: dev ? 'external' : 'none',
+  sourcemap: dev ? 'linked' : 'none',
 });
 console.timeEnd('build');
 console.log(out);

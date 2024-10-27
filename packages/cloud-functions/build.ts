@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { gitHash, isDirty } from '@uapps/git-ref';
 import pkg from './package.json' with { type: 'json' };
 
