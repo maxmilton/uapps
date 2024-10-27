@@ -12,16 +12,16 @@
     "serve": "bun http.ts"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.50",
+    "@ekscss/framework": "0.0.51",
     "stage1": "0.8.0-next.13"
   },
   "devDependencies": {
     "@types/csso": "5.0.4",
     "@uapps/git-ref": "workspace:*",
     "csso": "5.0.5",
-    "ekscss": "0.0.18",
-    "lightningcss": "1.25.1",
+    "ekscss": "0.0.20",
+    "lightningcss": "1.27.0",
     "purgecss": "6.0.0",
-    "terser": "5.31.3"
+    "terser": "5.36.0"
   }
 }
