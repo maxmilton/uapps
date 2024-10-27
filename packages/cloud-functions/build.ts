@@ -22,7 +22,7 @@ const out = await Bun.build({
     'process.env.NODE_ENV': JSON.stringify(mode),
   },
   minify: !dev,
-  sourcemap: 'external',
+  sourcemap: 'linked',
 });
 console.timeEnd('build');
 console.log(out);
