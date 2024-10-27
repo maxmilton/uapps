@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "organizeImports": { "enabled": true },
   "formatter": {
     "formatWithErrors": true,
     "indentStyle": "space",
@@ -8,43 +9,49 @@
     "lineEnding": "lf",
     "lineWidth": 80
   },
-  "organizeImports": { "enabled": true },
-  "javascript": {
-    "globals": ["chrome"],
-    "formatter": {
-      "semicolons": "always",
-      "trailingCommas": "all",
-      "quoteStyle": "single"
-    }
-  },
   "linter": {
     "rules": {
       "recommended": true,
       "complexity": {
         "noForEach": "off",
-        "useSimplifiedLogicExpression": "info"
+        "noUselessStringConcat": "warn",
+        "noUselessUndefinedInitialization": "warn",
+        "useSimplifiedLogicExpression": "info",
+        "useDateNow": "error"
+      },
+      "correctness": {
+        // "noUndeclaredDependencies": "warn", // TODO: Enable once it supports monorepos
+        "noUndeclaredVariables": "warn",
+        "noUnusedFunctionParameters": "warn"
       },
       "performance": {
-        "noBarrelFile": "info",
-        "noReExportAll": "info"
+        "noBarrelFile": "error",
+        "noReExportAll": "error"
       },
       "style": {
+        "noDoneCallback": "warn",
         "noNamespace": "error",
         "noNegationElse": "error",
         "noNonNullAssertion": "off",
         "noParameterProperties": "error",
         "noRestrictedGlobals": "error",
         "noShoutyConstants": "error",
+        "noYodaExpression": "warn",
         "useCollapsedElseIf": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "off",
+        "useExplicitLengthCheck": "warn",
         "useNamingConvention": {
           "level": "error",
           "options": { "strictCase": false }
         },
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
-        "useSingleCaseStatement": "warn",
-        "useTemplate": "off"
+        "useSingleCaseStatement": "info",
+        "useTemplate": "off",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "warn"
       },
       "suspicious": {
         "noApproximativeNumericConstant": "error",
@@ -52,15 +59,38 @@
         "noConfusingVoidType": "off",
         "noConsoleLog": "warn",
         "noConstEnum": "off",
+        "noDuplicateAtImportRules": "error",
+        "noDuplicateFontNames": "error",
+        "noDuplicateSelectorsKeyframeBlock": "error",
+        "noEmptyBlock": "warn",
+        "noEvolvingTypes": "warn",
         "noExplicitAny": "off",
         "noFocusedTests": "error",
-        "noMisrefactoredShorthandAssign": "error"
+        "noMisplacedAssertion": "error",
+        "noMisrefactoredShorthandAssign": "error",
+        "useErrorMessage": "warn"
+      },
+      "nursery": {
+        "noDuplicateElseIf": "error",
+        "noSubstr": "warn",
+        "noUnknownPseudoClass": "warn",
+        "noUnknownPseudoElement": "warn",
+        "useAdjacentOverloadSignatures": "error",
+        "useValidAutocomplete": "warn"
       }
+    }
+  },
+  "javascript": {
+    "globals": ["Bun"],
+    "formatter": {
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "quoteStyle": "single"
     }
   },
   "overrides": [
     {
-      "include": [".vscode/**", "tsconfig.json", "tsconfig.node.json"],
+      "include": [".vscode/*.json", "tsconfig*.json"],
       "json": {
         "parser": {
           "allowComments": true,
@@ -69,15 +99,28 @@
       }
     },
     {
-      "include": ["**/*.spec.ts", "**/*.test.ts", "test/**/*.ts"],
+      "include": ["**/*.spec.ts", "**/*.test.ts", "test/**"],
       "formatter": {
         "lineWidth": 100
+      },
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off"
+          }
+        }
+      },
+      "javascript": {
+        "globals": ["$console", "Bun", "happyDOM", "Loader"]
       }
     },
     {
-      "include": ["build.ts", "manifest.config.ts"],
+      "include": ["build.ts", "*.config.ts"],
       "linter": {
         "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off"
+          },
           "style": {
             "useNamingConvention": "off"
           },
@@ -85,6 +128,9 @@
             "noConsoleLog": "off"
           }
         }
+      },
+      "javascript": {
+        "globals": ["Bun"]
       }
     }
   ]
