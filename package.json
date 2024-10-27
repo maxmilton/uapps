@@ -32,7 +32,7 @@
     "happy-dom": "14.12.3",
     "stylelint": "16.10.0",
     "stylelint-config-standard": "36.0.1",
-    "typescript": "5.5.4",
+    "typescript": "5.6.3",
     "typescript-eslint": "7.18.0"
   }
 }
