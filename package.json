@@ -15,24 +15,19 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@eslint/compat": "1.2.1",
-    "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.13.0",
+    "@maxmilton/eslint-config": "0.0.3",
     "@maxmilton/stylelint-config": "0.1.2",
+    "@maxmilton/test-utils": "0.0.2",
     "@types/bun": "1.1.12",
-    "@types/eslint__eslintrc": "2.1.2",
-    "@types/eslint__js": "8.42.3",
     "@types/eslint-plugin-security": "3.0.0",
     "eslint": "9.13.0",
-    "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-security": "3.0.1",
     "eslint-plugin-unicorn": "56.0.0",
     "happy-dom": "14.12.3",
     "stylelint": "16.10.0",
     "stylelint-config-standard": "36.0.1",
-    "typescript": "5.5.4",
-    "typescript-eslint": "7.18.0"
+    "typescript": "5.6.3",
+    "typescript-eslint": "8.11.0"
   }
 }
