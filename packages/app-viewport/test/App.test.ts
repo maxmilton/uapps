@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'bun:test';
-import { cleanup, render } from '../../../test/utils';
+import { cleanup, render } from '@maxmilton/test-utils/dom';
 import { App } from '../src/App';
 
 afterEach(cleanup);

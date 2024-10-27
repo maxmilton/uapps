@@ -3,7 +3,7 @@
 //  ↳ https://github.com/oven-sh/bun/issues/3832
 
 // import { afterEach, expect, test } from 'bun:test';
-// import { cleanup, render } from '../../../test/utils';
+// import { cleanup, render } from '@maxmilton/test-utils/dom';
 // import { Footer } from '../src/Footer';
 
 // afterEach(cleanup);
@@ -32,4 +32,4 @@
 //   expect(rendered.container.innerHTML).toMatch(/v\d+\.\d+\.\d+/);
 // });
 
-console2.warn('FIXME: Footer tests are disabled');
+$console.warn('Footer tests are disabled');

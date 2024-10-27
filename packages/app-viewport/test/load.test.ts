@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, spyOn, test } from 'bun:test';
-import { DECLARATION, compile, walk } from '../../../test/css-engine';
+import { DECLARATION, compile, walk } from '@maxmilton/test-utils/css';
+import { performanceSpy } from '@maxmilton/test-utils/spy';
 import { reset } from '../../../test/setup';
-import { performanceSpy } from '../../../test/utils';
 
 // Completely reset DOM and global state between tests
 afterEach(reset);
@@ -14,7 +14,7 @@ const indexJsFile = new Bun.Glob('index-*.js')
   .next().value as string;
 const indexCssFile = indexJsFile.replace(/\.js$/, '.css');
 
-const MODULE_PATH = import.meta.resolveSync(indexJsFile);
+const MODULE_PATH = Bun.resolveSync(indexJsFile, '.');
 
 async function load() {
   // Workaround for hack in src/BookmarkBar.ts that waits for styles to be loaded
