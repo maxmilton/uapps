@@ -22,7 +22,8 @@
       "correctness": {
         // "noUndeclaredDependencies": "warn", // TODO: Enable once it supports monorepos
         "noUndeclaredVariables": "warn",
-        "noUnusedFunctionParameters": "warn"
+        "noUnusedFunctionParameters": "warn",
+        "noUnusedImports": { "level": "error", "fix": "none" }
       },
       "performance": {
         "noBarrelFile": "error",
@@ -31,6 +32,7 @@
       "style": {
         "noDoneCallback": "warn",
         "noNamespace": "error",
+        "noNamespaceImport": "warn",
         "noNegationElse": "error",
         "noNonNullAssertion": "off",
         "noParameterProperties": "error",
@@ -71,7 +73,12 @@
         "useErrorMessage": "warn"
       },
       "nursery": {
+        "noCommonJs": "error",
         "noDuplicateElseIf": "error",
+        "noDynamicNamespaceImportAccess": "error",
+        "noEnum": "error",
+        "noExportedImports": "error",
+        // "noSecrets": "info", // TODO: Change to "error" when more stable
         "noSubstr": "warn",
         "noUnknownPseudoClass": "warn",
         "noUnknownPseudoElement": "warn",
@@ -107,6 +114,9 @@
         "rules": {
           "correctness": {
             "noUndeclaredDependencies": "off"
+          },
+          "style": {
+            "noNamespaceImport": "off"
           }
         }
       },
@@ -115,13 +125,14 @@
       }
     },
     {
-      "include": ["build.ts", "*.config.ts"],
+      "include": ["*.config.mjs", "*.config.ts", "*.d.ts", "build.ts"],
       "linter": {
         "rules": {
           "correctness": {
             "noUndeclaredDependencies": "off"
           },
           "style": {
+            "noNamespaceImport": "off",
             "useNamingConvention": "off"
           },
           "suspicious": {
