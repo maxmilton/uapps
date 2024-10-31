@@ -2,16 +2,15 @@ import eslint from '@eslint/js';
 import mm from '@maxmilton/eslint-config';
 import security from 'eslint-plugin-security';
 import unicorn from 'eslint-plugin-unicorn';
-import tseslint from 'typescript-eslint';
+import ts from 'typescript-eslint';
 
 const OFF = 0;
-const WARN = 1;
 const ERROR = 2;
 
-export default tseslint.config(
+export default ts.config(
   eslint.configs.recommended,
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+  ...ts.configs.strictTypeChecked,
+  ...ts.configs.stylisticTypeChecked,
   unicorn.configs['flat/recommended'],
   mm.configs.recommended,
   security.configs.recommended,
@@ -23,7 +22,7 @@ export default tseslint.config(
       parserOptions: {
         project: ['tsconfig.json', 'tsconfig.node.json'],
         projectService: {
-          allowDefaultProject: ['*.js', '*.cjs', '*.mjs'],
+          allowDefaultProject: ['*.mjs'],
         },
         tsconfigRootDir: import.meta.dirname,
       },
@@ -36,14 +35,10 @@ export default tseslint.config(
 
       /* Performance and byte savings */
       // byte savings
-      '@typescript-eslint/restrict-plus-operands': WARN,
       'no-plusplus': OFF,
-      'unicorn/no-array-callback-reference': WARN,
-      // forEach is often faster (in Chrome and Firefox but not Safari)
+      // forEach is often faster
       'unicorn/no-array-for-each': OFF,
-      // bad browser support and slower
-      'unicorn/prefer-string-replace-all': OFF,
-      // byte savings (esbuild minify doesn't currently automatically remove)
+      // byte savings (minification doesn't currently automatically remove)
       'unicorn/switch-case-braces': [ERROR, 'avoid'],
 
       /* stage1 */
