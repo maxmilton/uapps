@@ -20,7 +20,7 @@
     "@uapps/git-ref": "workspace:*",
     "csso": "5.0.5",
     "ekscss": "0.0.20",
-    "lightningcss": "1.27.0",
+    "lightningcss": "1.28.1",
     "purgecss": "6.0.0",
     "terser": "5.36.0"
   }
