@@ -88,7 +88,7 @@
     }
   },
   "javascript": {
-    "globals": ["Bun"],
+    "globals": ["Bun", "Timer"],
     "formatter": {
       "semicolons": "always",
       "trailingCommas": "all",
@@ -96,6 +96,19 @@
     }
   },
   "overrides": [
+    {
+      "include": ["**/*.cjs"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noRedundantUseStrict": "off"
+          },
+          "nursery": {
+            "noCommonJs": "off"
+          }
+        }
+      }
+    },
     {
       "include": [".vscode/*.json", "tsconfig*.json"],
       "json": {
@@ -106,7 +119,12 @@
       }
     },
     {
-      "include": ["**/*.spec.ts", "**/*.test.ts", "test/**"],
+      "include": [
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "packages/*/test/**",
+        "test/**"
+      ],
       "formatter": {
         "lineWidth": 100
       },
@@ -117,6 +135,9 @@
           },
           "style": {
             "noNamespaceImport": "off"
+          },
+          "nursery": {
+            "noDynamicNamespaceImportAccess": "off"
           }
         }
       },
@@ -125,7 +146,15 @@
       }
     },
     {
-      "include": ["*.config.mjs", "*.config.ts", "*.d.ts", "build.ts"],
+      "include": [
+        "*.config.mjs",
+        "*.config.ts",
+        "*.d.ts",
+        "packages/*/*.config.ts",
+        "packages/*/*.d.ts",
+        "packages/*/build.ts",
+        "packages/build-tools/src/**"
+      ],
       "linter": {
         "rules": {
           "correctness": {
@@ -142,6 +171,16 @@
       },
       "javascript": {
         "globals": ["Bun"]
+      }
+    },
+    {
+      "include": ["packages/*/xcss.config.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          }
+        }
       }
     }
   ]
