@@ -25,6 +25,7 @@
     "*.config.ts",
     "*.d.ts",
     "packages/*/*.config.ts",
+    "packages/*/*.d.ts",
     "packages/*/build.ts",
     "packages/*/http.ts",
     "packages/*/src",
