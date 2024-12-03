@@ -11,7 +11,7 @@
     "test": "bun test"
   },
   "overrides": {
-    "lightningcss": "1.23.0"
+    "lightningcss": "1.28.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
