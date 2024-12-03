@@ -2,12 +2,15 @@
 
 import { basename } from 'node:path'; // eslint-disable-line unicorn/import-style
 import { gitHash, isDirty } from '@uapps/git-ref';
-import type { BunPlugin } from 'bun';
+import type { BuildArtifact, BunPlugin } from 'bun';
 import * as csso from 'csso';
+import type { Usage } from 'csso';
 import * as xcss from 'ekscss';
 import * as lightningcss from 'lightningcss';
-import { PurgeCSS } from 'purgecss';
+import type { Warning } from 'lightningcss';
+import { PurgeCSS, type RawContent } from 'purgecss';
 import * as terser from 'terser';
+import type { MinifyOptions } from 'terser';
 import pkg from './package.json' with { type: 'json' };
 import xcssConfig from './xcss.config';
 
@@ -15,15 +18,9 @@ const mode = Bun.env.NODE_ENV;
 const dev = mode === 'development';
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? '-dev' : ''}`;
 
-let css = '';
-// XXX: Temporary workaround to build CSS until Bun.build supports css loader
-const extractCSS: BunPlugin = {
-  name: 'extract-css',
+const xcssPlugin: BunPlugin = {
+  name: 'xcss',
   setup(build) {
-    build.onLoad({ filter: /\.css$/ }, async (args) => {
-      css += await Bun.file(args.path).text();
-      return { contents: '', loader: 'js' };
-    });
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
       const source = await Bun.file(args.path).text();
       const compiled = xcss.compile(source, {
@@ -33,7 +30,7 @@ const extractCSS: BunPlugin = {
       });
 
       for (const warning of compiled.warnings) {
-        console.error('XCSS:', warning.message);
+        console.error('[XCSS]', warning.message);
 
         if (warning.file) {
           console.log(
@@ -44,93 +41,130 @@ const extractCSS: BunPlugin = {
         }
       }
 
-      css += compiled.css;
-      return { contents: '', loader: 'js' };
+      return { contents: compiled.css, loader: 'css' };
     });
   },
 };
 
-// TODO: Handle source maps
-async function minifyCSS(
-  cssCode: string,
-  jsArtifact: Blob & { path: string },
-  htmlCode: string,
-) {
-  const jsCode = await jsArtifact.text();
-  const purged = await new PurgeCSS().purge({
-    content: [
-      { extension: '.js', raw: jsCode },
-      { extension: '.html', raw: htmlCode },
-    ],
-    css: [{ raw: cssCode }],
-    safelist: ['html', 'body'],
-    // blocklist: [],
-  });
-  const minified = lightningcss.transform({
-    filename: 'popup.css',
-    code: Buffer.from(purged[0].css),
-    minify: true,
-    targets: {
-      chrome: 60 << 16,
-      edge: 79 << 16,
-      firefox: 55 << 16,
-      safari: (11 << 16) | (1 << 8),
-    },
-  });
-
-  for (const warning of minified.warnings) {
-    console.error('CSS:', warning.message);
+/** Print lightningcss compile warnings. */
+function printWarnings(warnings: Warning[]): void {
+  for (const warning of warnings) {
+    console.error(`[LightningCSS] ${warning.type}:`, warning.message);
+    console.log(
+      `  at ${warning.loc.filename}:${String(warning.loc.line)}:${String(warning.loc.column)}`,
+    );
+    if (warning.value) {
+      console.log(warning.value);
+    }
   }
-
-  // TODO: Not ideal as it will inherit the same hash as the JS file, but once
-  // bun build supports "css" loader we won't have to worry about this.
-  const cssPath = jsArtifact.path.replace(/\.js$/, '.css');
-
-  // await Bun.write(cssPath, minified.code.toString());
-
-  const minified2 = csso.minify(minified.code.toString(), {
-    filename: 'login.css',
-    forceMediaMerge: true, // somewhat unsafe
-    // usage: {
-    //   blacklist: {
-    //     classes: [
-    //       'button', // #apply mapped to 'button'
-    //       'disabled', // not actually used
-    //     ],
-    //   },
-    // },
-    // debug: true,
-  });
-
-  await Bun.write(cssPath, minified2.css);
 }
 
-// TODO: Handle source maps
-async function minifyJS(artifact: Blob & { path: string }) {
-  let source = await artifact.text();
+async function minifyCSS(
+  artifacts: BuildArtifact[],
+  htmlCode: string,
+  safelist: string[] = ['html', 'body'],
+  blocklist: Usage['blacklist'] = {},
+): Promise<void> {
+  const content: RawContent[] = [{ extension: '.html', raw: htmlCode }];
+  const purgecss = new PurgeCSS();
+  const encoder = new TextEncoder();
 
-  // Improve var collapsing; terser doesn't do this so we do it manually
-  source = source.replaceAll('const ', 'let ');
+  for (const artifact of artifacts) {
+    if (artifact.kind === 'entry-point' || artifact.kind === 'chunk') {
+      content.push({ extension: '.js', raw: await artifact.text() });
+    }
+  }
 
-  const result = await terser.minify(source, {
-    ecma: 2020,
-    module: true,
-    compress: {
-      // Prevent functions being inlined
-      reduce_funcs: false,
-      // XXX: Comment out to keep performance markers for debugging
-      pure_funcs: ['performance.mark', 'performance.measure'],
-      passes: 3, // helps clean up some var assignments from earlier passes
-    },
-    mangle: {
-      properties: {
-        regex: /^\$\$/,
-      },
-    },
-  });
+  for (const artifact of artifacts) {
+    if (artifact.kind === 'asset' && artifact.path.endsWith('.css')) {
+      const filename = basename(artifact.path);
+      const source = await artifact.text();
+      const purged = await purgecss.purge({
+        content,
+        css: [
+          {
+            raw: source
+              // HACK: Workaround for JS style sourcemap comments rather than CSS.
+              //  ↳ This is a bug in bun: https://github.com/oven-sh/bun/issues/15532
+              .replace(/\/\/# debugId=[\w]+\n/, '')
+              .replace(
+                /\/\/# sourceMappingURL=([-\w.]+\.css\.map)\n?$/,
+                '/*# sourceMappingURL=$1 */',
+              ),
+          },
+        ],
+        safelist,
+      });
+      const minified = lightningcss.transform({
+        filename,
+        code: encoder.encode(purged[0].css),
+        minify: true,
+        targets: {
+          chrome: 60 << 16, // FIXME: Set to >= 123 ?... Actually seems fine with no junk
+          edge: 79 << 16,
+          firefox: 55 << 16,
+          safari: (11 << 16) | (1 << 8),
+        },
+      });
+      printWarnings(minified.warnings);
+      const minified2 = csso.minify(minified.code.toString(), {
+        filename,
+        forceMediaMerge: true, // somewhat unsafe
+        usage: {
+          blacklist: blocklist,
+        },
+        // debug: true,
+      });
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  await Bun.write(artifact.path, result.code!);
+      await Bun.write(artifact.path, minified2.css);
+    }
+  }
+}
+
+async function minifyJS(
+  artifacts: BuildArtifact[],
+  options?: Omit<MinifyOptions, 'sourceMap'>,
+): Promise<void> {
+  for (const artifact of artifacts) {
+    if (artifact.kind === 'entry-point' || artifact.kind === 'chunk') {
+      const source = await artifact.text();
+      const sourceMap = artifact.sourcemap;
+      const result = await terser.minify(source, {
+        ecma: 2020,
+        module: true,
+        format: {
+          wrap_func_args: true,
+          wrap_iife: true,
+        },
+        compress: {
+          comparisons: false,
+          negate_iife: false,
+          reduce_funcs: false,
+        },
+        mangle: {
+          properties: {
+            regex: /^\$\$/,
+          },
+        },
+        ...options,
+        sourceMap: sourceMap
+          ? {
+              content: await sourceMap.text(),
+              filename: basename(artifact.path),
+              url: basename(sourceMap.path),
+            }
+          : false,
+      });
+
+      if (result.code) {
+        await Bun.write(artifact.path, result.code);
+      }
+      if (sourceMap && result.map) {
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
+        await Bun.write(sourceMap.path, result.map.toString());
+      }
+    }
+  }
 }
 
 function minifyHTML(html: string): string {
@@ -147,9 +181,16 @@ function minifyHTML(html: string): string {
   );
 }
 
-async function buildHTML(jsArtifact: Blob & { path: string }) {
-  const jsPath = basename(jsArtifact.path);
-  const cssPath = jsPath.replace(/\.js$/, '.css');
+async function buildHTML(artifacts: BuildArtifact[]) {
+  // const jsPath = basename(jsArtifact.path);
+  // const cssPath = jsPath.replace(/\.js$/, '.css');
+
+  const entrypoint = artifacts.find((a) => a.kind === 'entry-point');
+  const css = artifacts.find(
+    (a) => a.kind === 'asset' && a.path.endsWith('.css'),
+  );
+  if (!entrypoint) throw new Error('Could not find entry point JS artifact');
+  if (!css) throw new Error('Could not find CSS artifact');
 
   const html = minifyHTML(`
     <!doctype html>
@@ -158,10 +199,10 @@ async function buildHTML(jsArtifact: Blob & { path: string }) {
     <link href=/favicon.svg rel=icon>
     <title>Viewport Info</title>
     <link rel=preconnect href="https://fonts.bunny.net">
-    <link href=${cssPath} rel=stylesheet>
+    <link href=${basename(css.path)} rel=stylesheet>
     <script src=https://cdn.jsdelivr.net/npm/trackx@0/modern.js crossorigin></script>
     <script>window.trackx&&(trackx.setup("https://api.trackx.app/v1/ze3tss9sk1z"),trackx.meta.app="viewport",trackx.meta.release="${release}",trackx.ping());</script>
-    <script src=${jsPath} defer></script>
+    <script src=${basename(entrypoint.path)} defer></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
   `);
 
@@ -179,11 +220,7 @@ console.time('build');
 const out = await Bun.build({
   entrypoints: ['src/index.ts'],
   outdir: 'dist',
-  naming: {
-    entry: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-    chunk: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-    asset: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
-  },
+  naming: dev ? '[dir]/[name].[ext]' : '[dir]/[name]-[hash].[ext]',
   target: 'browser',
   format: 'esm',
   define: {
@@ -193,33 +230,35 @@ const out = await Bun.build({
   loader: {
     '.svg': 'text',
   },
-  plugins: [extractCSS],
-  // minify: !dev,
-  minify: {
-    whitespace: !dev,
-    identifiers: !dev,
-    // FIXME: Bun macros break if syntax minify is disabled (due to string
-    // interpolation and concatenation not being resolved).
-    syntax: true,
-  },
-  // TODO: Always output source maps once we fix handling them in minified JS/CSS
-  sourcemap: dev ? 'linked' : 'none',
+  plugins: [xcssPlugin],
+  experimentalCss: true,
+  emitDCEAnnotations: true, // for terser
+  minify: !dev,
+  sourcemap: 'linked',
 });
 console.timeEnd('build');
 console.log(out);
+if (!out.success) throw new AggregateError(out.logs, 'Build failed');
 
 console.time('html');
-const html = await buildHTML(out.outputs[0]);
+const html = await buildHTML(out.outputs);
 console.timeEnd('html');
 
-if (dev) {
-  await Bun.write('dist/index.css', css);
-} else {
+if (!dev) {
   console.time('minifyCSS');
-  await minifyCSS(css, out.outputs[0], html);
+  await minifyCSS(out.outputs, html);
   console.timeEnd('minifyCSS');
 
   console.time('minifyJS');
-  await minifyJS(out.outputs[0]);
+  await minifyJS(out.outputs, {
+    compress: {
+      comparisons: false,
+      negate_iife: false,
+      reduce_funcs: false, // prevent function inlining
+      passes: 3,
+      // XXX: Comment out to keep performance markers for debugging.
+      pure_funcs: ['performance.mark', 'performance.measure'],
+    },
+  });
   console.timeEnd('minifyJS');
 }

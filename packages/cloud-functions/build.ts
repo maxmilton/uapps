@@ -24,3 +24,4 @@ const out = await Bun.build({
 });
 console.timeEnd('build');
 console.log(out);
+if (!out.success) throw new AggregateError(out.logs, 'Build failed');
