@@ -7,11 +7,5 @@
   "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "private": true,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "bun build src/index.ts --outdir=dist --target=bun --sourcemap=external --minify",
-    "postbuild": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist --skipLibCheck src/index.ts",
-    "prebuild": "rm -rf dist"
-  }
+  "main": "src/index.ts"
 }
