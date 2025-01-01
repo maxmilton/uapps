@@ -24,6 +24,6 @@
   "devDependencies": {
     "@types/node": "22.10.1",
     "@uapps/git-ref": "workspace:*",
-    "firebase-functions-test": "3.3.0"
+    "firebase-functions-test": "3.4.0"
   }
 }
