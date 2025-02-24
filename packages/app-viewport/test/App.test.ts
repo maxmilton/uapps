@@ -8,7 +8,7 @@ test('rendered DOM contains expected elements', () => {
   expect.assertions(7);
   const rendered = render(App());
   const main = rendered.container.querySelector('main');
-  expect(main).toBeInstanceOf(window.HTMLDivElement);
+  expect(main).toBeInstanceOf(window.HTMLElement);
   expect(rendered.container.firstChild).toBe(main);
   const h1 = rendered.container.querySelector('h1');
   expect(h1).toBeInstanceOf(window.HTMLHeadingElement);

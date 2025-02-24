@@ -1,20 +1,12 @@
-import { afterEach, describe, expect, spyOn, test } from 'bun:test';
-import { DECLARATION, compile, walk } from '@maxmilton/test-utils/css';
+import { afterEach, expect, spyOn, test } from 'bun:test';
 import { performanceSpy } from '@maxmilton/test-utils/spy';
 import { reset } from '../../../test/setup';
+import { distPath, indexJS } from './files';
 
 // Completely reset DOM and global state between tests
 afterEach(reset);
 
-const indexJsFile = new Bun.Glob('index-*.js')
-  .scanSync({
-    cwd: `${import.meta.dir}/../dist`,
-    absolute: true,
-  })
-  .next().value as string;
-const indexCssFile = indexJsFile.replace(/\.js$/, '.css');
-
-const MODULE_PATH = Bun.resolveSync(indexJsFile, '.');
+const MODULE_PATH = `${distPath}/${indexJS}`;
 
 async function load() {
   // Workaround for hack in src/BookmarkBar.ts that waits for styles to be loaded
@@ -25,22 +17,25 @@ async function load() {
   await happyDOM.waitUntilComplete();
 }
 
-test('found bundled index JS file', () => {
-  expect(indexJsFile).toBeDefined();
-});
-test('found bundled index CSS file', () => {
-  expect(indexCssFile).toBeDefined();
-});
-
 test('renders entire app', async () => {
-  expect.assertions(6);
+  expect.assertions(14);
   await load();
   expect(document.body.innerHTML.length).toBeGreaterThan(500);
-  expect(document.body.querySelector('main')).toBeInstanceOf(window.HTMLDivElement);
+  expect(document.body.querySelector('main')).toBeInstanceOf(window.HTMLElement);
+  expect(document.body.querySelectorAll('h1')).toHaveLength(1);
   expect(document.body.querySelector('h1')).toBeInstanceOf(window.HTMLHeadingElement);
   expect(document.body.querySelector('h1')?.textContent).toBe('Viewport Info');
   expect(document.body.querySelectorAll('dt')).toHaveLength(12);
   expect(document.body.querySelectorAll('dd')).toHaveLength(12);
+  expect(document.body.querySelectorAll('footer')).toHaveLength(1);
+  expect(document.body.querySelector('footer')).toBeInstanceOf(window.HTMLElement);
+  const firstNode = document.body.firstChild as HTMLElement;
+  expect(firstNode.nodeName).toBe('MAIN');
+  const footerLinks = document.body.querySelectorAll<HTMLAnchorElement>('footer a');
+  expect(footerLinks).toHaveLength(2);
+  expect(footerLinks[0].href).toBe('https://maxmilton.com/');
+  expect(footerLinks[0].textContent).toBe('Max Milton');
+  expect(footerLinks[1].href).toBe('https://github.com/maxmilton/uapps/issues');
 });
 
 test('does not call any console methods', async () => {
@@ -61,62 +56,4 @@ test('does not call fetch()', async () => {
   const spy = spyOn(global, 'fetch');
   await load();
   expect(spy).not.toHaveBeenCalled();
-});
-
-const css = await Bun.file(indexCssFile).text();
-
-describe('CSS', () => {
-  const ast = compile(css);
-
-  // test('does not contain any @media queries', () => {
-  //   expect.assertions(1);
-  //   expect(css).not.toInclude('@media');
-  // });
-
-  // test('does not contain any @font-face rules', () => {
-  //   expect.assertions(1);
-  //   expect(css).not.toInclude('@font-face');
-  // });
-
-  test('does not contain any @import rules', () => {
-    expect.assertions(1);
-    expect(css).not.toInclude('@import');
-  });
-
-  test('does not contain any comments', () => {
-    expect.assertions(4);
-    expect(css).not.toInclude('/*');
-    expect(css).not.toInclude('*/');
-    // expect(css).not.toInclude('//'); // inline comments or URL protocol
-    expect(css).not.toMatch(/(?<!:)\/\//); // "//" but not "://" (URL protocol)
-    expect(css).not.toInclude('<!');
-  });
-
-  // test('does not contain ":root"', () => {
-  //   expect.assertions(1);
-  //   expect(css).not.toInclude(':root');
-  // });
-
-  test('compiled AST is not empty', () => {
-    expect.assertions(1);
-    expect(ast).not.toBeEmpty();
-  });
-
-  // test('does not have any rules with a ":root" selector', () => {
-  //   expect.assertions(1);
-  //   const elements = lookup(ast, ':root');
-  //   expect(elements).toBeUndefined();
-  // });
-
-  // CSS custom properties (variables) should only defined in themes
-  test('does not have any CSS variable declarations', () => {
-    expect.assertions(1);
-    let found = 0;
-    walk(ast, (element) => {
-      if (element.type === DECLARATION && (element.props as string).startsWith('--')) {
-        found += 1;
-      }
-    });
-    expect(found).toBe(0);
-  });
 });

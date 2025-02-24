@@ -1,29 +1,16 @@
 import { describe, expect, test } from 'bun:test';
 import { readdir } from 'node:fs/promises';
-
-// In production builds, index.css and index.js files are generated with a hash
-// in the filename. So we need to find the actual filenames to test against.
-const distPath = `${import.meta.dir}/../dist`;
-const indexFiles = new Bun.Glob('index*.{css,js}').scan({ cwd: distPath });
-let indexCss: string;
-let indexJs: string;
-
-for await (const file of indexFiles) {
-  if (file.endsWith('.css')) {
-    indexCss = file;
-  } else if (file.endsWith('.js')) {
-    indexJs = file;
-  }
-}
+import { validate } from '@maxmilton/test-utils/html';
+import { distPath, indexCSS, indexJS } from './files';
 
 test('index CSS file found', () => {
   expect.assertions(1);
-  expect(indexCss).toBeDefined();
+  expect(indexCSS).toBeDefined();
 });
 
 test('index JS file found', () => {
   expect.assertions(1);
-  expect(indexJs).toBeDefined();
+  expect(indexJS).toBeDefined();
 });
 
 describe('dist files', () => {
@@ -36,8 +23,11 @@ describe('dist files', () => {
   const distFiles: [filename: string, type: string, minBytes?: number, maxBytes?: number][] = [
     ['favicon.ico', 'image/x-icon'],
     ['favicon.svg', 'image/svg+xml'],
-    [indexCss, 'text/css;charset=utf-8', 1000, 1600],
-    [indexJs, 'text/javascript;charset=utf-8', 1000, 2000],
+    [indexCSS, 'text/css;charset=utf-8', 1000, 1600],
+    // FIXME: Uncomment once bun supports CSS source maps.
+    // [`${indexCSS}.map`, 'application/json;charset=utf-8', 100, 10_000],
+    [indexJS, 'text/javascript;charset=utf-8', 1000, 2000],
+    [`${indexJS}.map`, 'application/json;charset=utf-8'],
     ['index.html', 'text/html;charset=utf-8', 500, 700],
     ['robots.txt', 'text/plain;charset=utf-8'],
   ];
@@ -69,6 +59,16 @@ describe('dist files', () => {
     const distDir = await readdir(distPath);
     expect(distDir).toHaveLength(distFiles.length);
   });
+
+  test.each(distFiles.filter(([filename]) => filename.endsWith('.html')))(
+    '%s contains valid HTML',
+    async (filename) => {
+      const file = Bun.file(`${distPath}/${filename}`);
+      const html = await file.text();
+      const result = validate(html);
+      expect(result.valid).toBeTrue();
+    },
+  );
 });
 
 const html = await Bun.file(`${distPath}/index.html`).text();
@@ -81,21 +81,21 @@ describe('index.html', () => {
 
   test('contains the correct CSS filename', () => {
     expect.assertions(1);
-    expect(html).toContain(`<link href=${indexCss} rel=stylesheet>`);
+    expect(html).toContain(`<link href=${indexCSS} rel=stylesheet>`);
   });
 
   test('contains the correct JS filename', () => {
     expect.assertions(1);
-    expect(html).toContain(`<script src=${indexJs} defer></script>`);
+    expect(html).toContain(`<script src=${indexJS} defer></script>`);
   });
 });
 
 test('index CSS file has hash in filename', () => {
   expect.assertions(1);
-  expect(indexCss).toMatch(/^index-[\da-z]+\.css$/);
+  expect(indexCSS).toMatch(/^index-[\da-z]+\.css$/);
 });
 
 test('index JS file has hash in filename', () => {
   expect.assertions(1);
-  expect(indexJs).toMatch(/^index-[\da-z]+\.js$/);
+  expect(indexJS).toMatch(/^index-[\da-z]+\.js$/);
 });
