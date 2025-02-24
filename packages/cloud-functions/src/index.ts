@@ -1,14 +1,8 @@
-// https://firebase.google.com/docs/functions/typescript
-// https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation
-// https://firebase.google.com/docs/functions/schedule-functions
-// https://firebase.google.com/docs/emulator-suite/install_and_configure#configure_emulator_suite
-
-// TODO: Optimise networking, including connection reuse between function invocations
-//  ↳ https://firebase.google.com/docs/functions/networking
-
 /// <reference types="node" />
 
-// import * as functions from 'firebase-functions';
+import { logger } from 'firebase-functions/v2';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
+// biome-ignore lint/style/noNamespaceImport: More readable
 import * as trackx from 'trackx/node';
 
 // https://dash.trackx.app/projects/uapps
@@ -23,17 +17,22 @@ trackx.meta.release = process.env.APP_RELEASE;
 trackx.meta.NODE_ENV = process.env.NODE_ENV ?? 'NULL';
 trackx.ping();
 
-// // Ping trackx periodically for testing purposes
-// export const timerPing = functions
-//   .runWith({
-//     timeoutSeconds: 10,
-//     memory: '128MB',
-//   })
-//   .pubsub.schedule('every 60 minutes')
-//   .onRun(() => {
-//     // XXX: The ping is sent twice when the cloud founction boots up, once for
-//     // the function and once for the main script, it's not an issue because the
-//     // session is calculated correctly, but worth knowing
-//     trackx.ping();
-//     return null;
-//   });
+// Ping trackx every hour for testing purposes
+export const trackxPingTask = onSchedule(
+  {
+    schedule: '0 * * * *', // hourly
+    memory: '128MiB',
+    timeoutSeconds: 10,
+  },
+  () => {
+    try {
+      // NOTE: The ping is sent twice when the cloud function boots up, once for
+      // the function and once for the main script, but it's not an issue because
+      // the session is still calculated correctly.
+      trackx.ping();
+    } catch (error) {
+      logger.error(error);
+      throw error;
+    }
+  },
+);
