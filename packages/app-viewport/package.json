@@ -13,15 +13,15 @@
   },
   "dependencies": {
     "@ekscss/framework": "0.0.52",
-    "stage1": "0.8.0-next.15"
+    "stage1": "0.8.0-next.16"
   },
   "devDependencies": {
     "@types/csso": "5.0.4",
     "@uapps/git-ref": "workspace:*",
     "csso": "5.0.5",
     "ekscss": "0.0.20",
-    "lightningcss": "1.28.2",
+    "lightningcss": "1.29.1",
     "purgecss": "7.0.2",
-    "terser": "5.36.0"
+    "terser": "5.39.0"
   }
 }

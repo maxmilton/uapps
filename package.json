@@ -10,24 +10,21 @@
     "lint:ts": "tsc --noEmit",
     "test": "bun test"
   },
-  "overrides": {
-    "lightningcss": "1.23.0"
-  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@eslint/js": "9.16.0",
-    "@maxmilton/eslint-config": "0.0.7",
+    "@eslint/js": "9.21.0",
+    "@maxmilton/eslint-config": "0.0.8",
     "@maxmilton/stylelint-config": "0.1.2",
-    "@maxmilton/test-utils": "0.0.6",
-    "@types/bun": "1.1.14",
+    "@maxmilton/test-utils": "0.0.8",
+    "@types/bun": "1.2.3",
     "@types/eslint-plugin-security": "3.0.0",
-    "eslint": "9.16.0",
+    "eslint": "9.21.0",
     "eslint-plugin-security": "3.0.1",
-    "eslint-plugin-unicorn": "56.0.1",
-    "happy-dom": "15.11.7",
-    "stylelint": "16.11.0",
-    "stylelint-config-standard": "36.0.1",
-    "typescript": "5.7.2",
-    "typescript-eslint": "8.17.0"
+    "eslint-plugin-unicorn": "57.0.0",
+    "happy-dom": "17.1.4",
+    "stylelint": "16.14.1",
+    "stylelint-config-standard": "37.0.0",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.24.1"
   }
 }
