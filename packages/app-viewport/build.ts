@@ -81,18 +81,7 @@ async function minifyCSS(
       const source = await artifact.text();
       const purged = await purgecss.purge({
         content,
-        css: [
-          {
-            raw: source
-              // HACK: Workaround for JS style sourcemap comments rather than CSS.
-              //  ↳ This is a bug in bun: https://github.com/oven-sh/bun/issues/15532
-              .replace(/\/\/# debugId=[\w]+\n/, '')
-              .replace(
-                /\/\/# sourceMappingURL=([-\w.]+\.css\.map)\n?$/,
-                '/*# sourceMappingURL=$1 */',
-              ),
-          },
-        ],
+        css: [{ raw: source }],
         safelist,
       });
       const minified = lightningcss.transform({
@@ -100,7 +89,7 @@ async function minifyCSS(
         code: encoder.encode(purged[0].css),
         minify: true,
         targets: {
-          chrome: 60 << 16, // FIXME: Set to >= 123 ?... Actually seems fine with no junk
+          chrome: 60 << 16,
           edge: 79 << 16,
           firefox: 55 << 16,
           safari: (11 << 16) | (1 << 8),
@@ -231,7 +220,6 @@ const out = await Bun.build({
     '.svg': 'text',
   },
   plugins: [xcssPlugin],
-  experimentalCss: true,
   emitDCEAnnotations: true, // for terser
   minify: !dev,
   sourcemap: 'linked',

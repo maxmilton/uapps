@@ -17,10 +17,6 @@
 
 /* Local */
 
-:root {
-  color-scheme: dark;
-}
-
 @media ${x.app.media.xs} {
   html {
     font-size: 16px;
@@ -40,13 +36,8 @@ main {
 dl {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  font-size: 1.3em;
-}
-
-dt,
-dd {
-  margin: 0;
-  padding: 0;
+  grid-column-gap: 0;
+  font-size: 1.1em;
 }
 
 dt {
@@ -56,13 +47,22 @@ dt {
 }
 
 dd {
-  margin-left: 0.5em;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
+dt,
+dd {
+  margin: 0;
+  padding: 0.2em 1em;
+
+  &:nth-of-type(even) {
+    background-color: ${x.color.zebraBackground};
+  }
+}
+
 h1 {
-  #apply: .tc, .orange5;
+  #apply: .tc, .orange2;
 }
 
 footer {
