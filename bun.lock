@@ -5,8 +5,8 @@
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@eslint/js": "9.21.0",
-        "@maxmilton/eslint-config": "0.0.8",
-        "@maxmilton/stylelint-config": "0.1.2",
+        "@maxmilton/eslint-config": "0.0.9",
+        "@maxmilton/stylelint-config": "0.2.0",
         "@maxmilton/test-utils": "0.0.8",
         "@types/bun": "1.2.4",
         "@types/eslint-plugin-security": "3.0.0",
@@ -271,11 +271,11 @@
 
     "@keyv/serialize": ["@keyv/serialize@1.0.3", "", { "dependencies": { "buffer": "^6.0.3" } }, "sha512-qnEovoOp5Np2JDGonIDL6Ayihw0RhnRh6vxPuHo4RDn1UOzwEo4AeIfpL6UGIrsceWrCMiVPgwRjbHu4vYFc3g=="],
 
-    "@maxmilton/eslint-config": ["@maxmilton/eslint-config@0.0.8", "", { "dependencies": { "@types/eslint__js": "^8.42.3", "confusing-browser-globals": "^1.0.11" }, "peerDependencies": { "@eslint/js": "^9.0.0", "eslint": "^9.0.0", "eslint-plugin-unicorn": ">=56.0.0", "typescript-eslint": "^8.0.0" }, "optionalPeers": ["eslint-plugin-unicorn"] }, "sha512-/EqMN05sALTkAuqmp1CCyCg1ORz+5xA9VFOiaZwQlpaleOfi7roNZb9Dj6p39yftdJk3c46dtCpCpW1Vwu5Rhg=="],
+    "@maxmilton/eslint-config": ["@maxmilton/eslint-config@0.0.9", "", { "dependencies": { "confusing-browser-globals": "^1.0.11" }, "peerDependencies": { "@eslint/js": "^9.0.0", "eslint": "^9.0.0", "eslint-plugin-unicorn": ">=56.0.0", "typescript-eslint": "^8.0.0" }, "optionalPeers": ["eslint-plugin-unicorn"] }, "sha512-g/8+thyDUyNF/LADNBjrtg7HBEKqUBuP3mopBpmnf39tEmspbL0n7c/kyfiwjCDKvgbeaWa8sVYijFDMEgvSEA=="],
 
     "@maxmilton/html-parser": ["@maxmilton/html-parser@0.0.11", "", {}, "sha512-sY7+kPdAgnQGdrLfNQOM1ZvhgL3E67ZPRhfdW3fCrNOEkKeg68Ad3iDv1gyXo1LVRa47rcPX1BqLkzkraZBu4Q=="],
 
-    "@maxmilton/stylelint-config": ["@maxmilton/stylelint-config@0.1.2", "", { "dependencies": { "postcss-ekscss": "^0.0.11", "stylelint-order": "^6.0.4" }, "peerDependencies": { "stylelint": "^16.0.0" } }, "sha512-eL3BQeAVXFdNpxi+ZfyPi0ewaCCfGXg5MvMD7jaKG/iHawCoqfkdzy+Egv7hEtNzQcin7m89I3ylCbEucMESrQ=="],
+    "@maxmilton/stylelint-config": ["@maxmilton/stylelint-config@0.2.0", "", { "dependencies": { "postcss-ekscss": "^0.0.12", "stylelint-order": "^6.0.4" }, "peerDependencies": { "stylelint": "^16.0.0" } }, "sha512-q5WseaKw0fo5QRXAYuZ+AxOHuJBmFZ6ylx1vw9bv786CQlF/rTASF/YzegfEqA44jnJNSvUqpTW585J2w88xkw=="],
 
     "@maxmilton/test-utils": ["@maxmilton/test-utils@0.0.8", "", { "dependencies": { "@maxmilton/html-parser": "^0.0.11", "@types/stylis": "^4.2.7", "stylis": "^4.3.4" }, "peerDependencies": { "happy-dom": "^14.0.0 || ^15.0.0" }, "optionalPeers": ["happy-dom"] }, "sha512-EHonHbI7oz9U+MqGchsjOU9f5DpXpCqtGgv5pLyTyr5VpQKWPtyPxV6cLZuczVCt1r2U9YHC79dpdWPNTY9ZcQ=="],
 
@@ -340,8 +340,6 @@
     "@types/eslint": ["@types/eslint@9.6.1", "", { "dependencies": { "@types/estree": "*", "@types/json-schema": "*" } }, "sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag=="],
 
     "@types/eslint-plugin-security": ["@types/eslint-plugin-security@3.0.0", "", { "dependencies": { "@types/eslint": "*" } }, "sha512-CpJ7dhqhfURdYHAlaQM4vfl75lDYnGl5+EZKoO/fW0hEREZa9+EBn1g10XLDM6n5yJSuTAPn5afkM4vNzhlyFQ=="],
-
-    "@types/eslint__js": ["@types/eslint__js@8.42.3", "", { "dependencies": { "@types/eslint": "*" } }, "sha512-alfG737uhmPdnvkrLdZLcEKJ/B8s9Y4hrZ+YAdzUeoArBlSUERA2E87ROfOaS4jd/C45fzOoZzidLc1IPwLqOw=="],
 
     "@types/estree": ["@types/estree@1.0.6", "", {}, "sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw=="],
 
@@ -1123,7 +1121,7 @@
 
     "postcss": ["postcss@8.5.3", "", { "dependencies": { "nanoid": "^3.3.8", "picocolors": "^1.1.1", "source-map-js": "^1.2.1" } }, "sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A=="],
 
-    "postcss-ekscss": ["postcss-ekscss@0.0.11", "", { "peerDependencies": { "postcss": "^8.0.0" }, "optionalPeers": ["postcss"] }, "sha512-FwZTxT+Gpq9Of3EWCdIJDRmBzouO0MPHX4Wl84d0JH6zU2kHIAiwCruWEUkF/kEAiNW/7EGSWnCtafUHWeWn5A=="],
+    "postcss-ekscss": ["postcss-ekscss@0.0.12", "", { "peerDependencies": { "postcss": "^8.0.0" }, "optionalPeers": ["postcss"] }, "sha512-XYW5apq1JlD2FtBFlIaGmpS1VKCyhNRaL4u51tlSTenkFOG59QJ85oAQof2vIQkEquttjgGOzpmUxuw+GHbJZQ=="],
 
     "postcss-resolve-nested-selector": ["postcss-resolve-nested-selector@0.1.6", "", {}, "sha512-0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw=="],
 

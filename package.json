@@ -13,8 +13,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@eslint/js": "9.21.0",
-    "@maxmilton/eslint-config": "0.0.8",
-    "@maxmilton/stylelint-config": "0.1.2",
+    "@maxmilton/eslint-config": "0.0.9",
+    "@maxmilton/stylelint-config": "0.2.0",
     "@maxmilton/test-utils": "0.0.8",
     "@types/bun": "1.2.4",
     "@types/eslint-plugin-security": "3.0.0",
