@@ -22,7 +22,7 @@
     "trackx": "0.6.1"
   },
   "devDependencies": {
-    "@types/node": "22.15.3",
+    "@types/node": "22.15.29",
     "@uapps/git-ref": "workspace:*",
     "firebase-functions-test": "3.4.1"
   }
