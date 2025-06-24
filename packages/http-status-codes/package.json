@@ -1,8 +1,8 @@
 {
-  "name": "@uapps/git-ref",
+  "name": "@uapps/http-status-codes",
   "version": "0.0.0",
   "type": "module",
-  "description": "Get git information using the system git executable",
+  "description": "HTTP response status codes in a typed enum",
   "repository": "maxmilton/uapps",
   "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
