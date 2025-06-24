@@ -14,15 +14,17 @@ Monorepo of my micro apps.
 <!-- prettier-ignore -->
 | Name | Directory | URL |
 | --- | --- | --- |
-| Viewport Info | `packages/app-viewport` | <https://app-viewport.web.app> |
-| Cloud Functions | `packages/cloud-functions` | - |
+| Link App | `workers/link-app` | <https://link.maxmilton.com> |
+| Viewport Info | `workers/viewport-app` | <https://viewport.maxmilton.com> |
+| Ping Service | `workers/ping-service` | - |
 
 ## License
 
 MIT license. See [LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENSE).
-
 <!-- TODO: Add attribution for favicons -->
-<!-- app-viewport -->
+<!-- link-app -->
+<!-- https://github.com/googlefonts/noto-emoji/blob/main/svg/emoji_u1f517.svg -->
+<!-- viewport-app -->
 <!-- https://github.com/twitter/twemoji/blob/master/assets/svg/1f5a5.svg -->
 
 ---
