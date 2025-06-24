@@ -9,28 +9,37 @@
     "skipLibCheck": true,
     "allowJs": false,
 
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
     "strict": true,
-    "allowUnreachableCode": false,
+    "allowUnreachableCode": false, // TODO: Set true once oxlint is type aware
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false, // covered by eslint
     "noImplicitOverride": true,
     "noUncheckedSideEffectImports": true,
-    "noUnusedLocals": false, // covered by eslint
-    "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+
+    /* Covered by oxlint */
+    "noFallthroughCasesInSwitch": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "include": [
     "*.config.mjs",
-    "*.config.ts",
-    "*.d.ts",
-    "packages/*/*.config.ts",
-    "packages/*/*.d.ts",
     "packages/*/build.ts",
-    "packages/*/http.ts",
     "packages/*/src",
     "packages/*/test",
-    "test"
+    "scripts/*.bun", // files use hashbang: #!/usr/bin/env bun
+    "test",
+    "workers/*/*.config.ts",
+    "workers/*/*.d.ts",
+    "workers/*/build.ts",
+    "workers/*/src",
+    "workers/*/test"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.workers.json" }
+  ]
 }
