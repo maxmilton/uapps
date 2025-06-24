@@ -16,6 +16,9 @@
     "lint:ts": "tsc --noEmit",
     "test": "bun test"
   },
+  "overrides": {
+    "bugbox": "link:bugbox"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@cloudflare/workers-types": "4.20250620.0",
