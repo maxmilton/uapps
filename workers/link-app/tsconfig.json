@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    // "rootDir": ".",
+    "rootDir": "src",
+    "types": ["bun", "./global.d.ts"]
+  },
+  // "include": ["src", "test"]
+  // "include": ["src", "./global.d.ts"]
+  // "include": ["src/worker.ts"]
+  "include": ["src"]
+}

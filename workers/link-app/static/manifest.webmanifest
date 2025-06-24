@@ -1,0 +1,13 @@
+{
+  "name": "Link",
+  "short_name": "Link",
+  "background_color": "#11181c",
+  "theme_color": "#ff66a1",
+  "display": "minimal-ui",
+  "start_url": "/",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512" },
+    { "src": "/logo.svg", "sizes": "any" }
+  ]
+}

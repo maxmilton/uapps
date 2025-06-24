@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    // "rootDir": ".",
+    "rootDir": "src",
+    "types": [
+      // "bun",
+      "@cloudflare/workers-types/experimental",
+      "./worker-configuration.d.ts",
+      "./global.d.ts"
+    ]
+  },
+  // "include": ["src", "test"]
+  // "include": ["src", "./global.d.ts", "./worker-configuration.d.ts"]
+  // "include": ["src/worker.ts"]
+  "include": ["src"]
+}

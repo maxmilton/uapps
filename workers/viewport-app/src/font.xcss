@@ -1,0 +1,14 @@
+/* Variable sans-serif: Atkinson Hyperlegible VF */
+@font-face {
+  font-family: Hyperlegible;
+  font-weight: 200 800;
+  font-display: swap;
+  src:
+    local("Atkinson Hyperlegible Next VF"), // full name
+    local("AtkinsonHyperlegibleVF"), // PostScript name
+    // NOTE: Subset of the full font with only the [A-Za-z0-9©-_.・] characters.
+    url("/hyperlegible.woff2") format("woff2-variations");
+  // font-style: normal italic;
+  // font-style: oblique 0deg 90deg;
+  // font-stretch: 75% 125%;
+}

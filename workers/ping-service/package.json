@@ -1,0 +1,20 @@
+{
+  "name": "@uapps/ping-service",
+  "version": "0.0.0",
+  "description": "Ping service for testing backends",
+  "repository": "maxmilton/uapps",
+  "author": "Max Milton <max@happyhackers.xyz>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
+    "dev": "NODE_ENV=development bun build.ts",
+    "serve": "wrangler dev"
+  },
+  "dependencies": {
+    "bugbox": "0.0.0"
+  },
+  "devDependencies": {
+    "@uapps/git-ref": "workspace:*"
+  }
+}

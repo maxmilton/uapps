@@ -1,0 +1,74 @@
+@import './font.xcss';
+
+/* Packages */
+
+@import '@ekscss/framework';
+@import '@ekscss/framework/addon/pretty.xcss';
+
+/* Local */
+
+// html {
+//   font-feature-settings: "kern" 1, "liga" 1;
+//   font-optical-sizing: auto;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   font-synthesis: none; // prevent synthetic bold or italic
+//   text-rendering: optimizelegibility;
+// }
+
+@media ${x.app.media.xs} {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll; // always show scroll bars to show accurate client sizes
+}
+
+main {
+  margin: auto;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 0;
+  font-size: 1.1em;
+}
+
+dt {
+  font-size: inherit;
+  font-style: normal;
+  font-weight: 400;
+}
+
+dd {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+dt,
+dd {
+  margin: 0;
+  padding: 0.2em 1em;
+
+  &:nth-of-type(even) {
+    background-color: ${x.color.zebraBackground};
+  }
+}
+
+h1 {
+  #apply: .tc, .orange2;
+}
+
+footer {
+  #apply: .mv4, .fss, .muted, .tc;
+}
+
+// "muted link"
+.ml {
+  #apply: .normal, .muted;
+}
