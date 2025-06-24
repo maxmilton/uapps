@@ -8,6 +8,7 @@ declare module 'bun' {
 
     readonly FRONTEND_APP_ORIGIN: string;
     readonly FRONTEND_APP_API_ENDPOINT: string;
+    readonly FRONTEND_BUGBOX_API_KEY: string;
   }
 }
 

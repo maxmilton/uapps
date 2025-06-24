@@ -32,7 +32,7 @@ function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <meta name="referrer" content="origin">
       <link href="/fonts/hyperlegible.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
       <link href="/${cssFile}" rel="stylesheet">
-      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="AZegewhYcACr7FarO_y9DQ" data-release="${release}"></script>
+      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="${Bun.env.FRONTEND_BUGBOX_API_KEY}" data-release="${release}"></script>
       <script src="/${jsFile}" defer></script>
     </head>
     <body>
@@ -126,4 +126,5 @@ await Bun.write(
 );
 console.timeEnd('build-info');
 
+// nosemgrep: javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring
 console.debug(out0.outputs, out1.outputs);

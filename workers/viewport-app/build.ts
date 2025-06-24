@@ -29,7 +29,7 @@ function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <title>Viewport Info</title>
       <link href="/fonts/hyperlegible.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
       <link href="/${cssFile}" rel="stylesheet">
-      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="AZcjwPS3cAC4nJDZiIizZw" data-release="${release}"></script>
+      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="${Bun.env.FRONTEND_BUGBOX_API_KEY}" data-release="${release}"></script>
       <script src="/${jsFile}" defer></script>
     </head>
     <body>
