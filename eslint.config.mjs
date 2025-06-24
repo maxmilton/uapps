@@ -1,6 +1,6 @@
 import eslint from '@eslint/js';
 import mm from '@maxmilton/eslint-config';
-import security from 'eslint-plugin-security';
+import oxlint from 'eslint-plugin-oxlint';
 import unicorn from 'eslint-plugin-unicorn';
 import ts from 'typescript-eslint';
 
@@ -11,16 +11,20 @@ export default ts.config(
   eslint.configs.recommended,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
-  unicorn.configs['flat/recommended'],
+  unicorn.configs.recommended,
   mm.configs.recommended,
-  security.configs.recommended,
+  oxlint.configs['flat/all'],
   {
     linterOptions: {
       reportUnusedDisableDirectives: ERROR,
     },
     languageOptions: {
       parserOptions: {
-        project: ['tsconfig.json', 'tsconfig.node.json'],
+        project: [
+          'tsconfig.json',
+          'tsconfig.node.json',
+          'tsconfig.workers.json',
+        ],
         projectService: {
           allowDefaultProject: ['*.mjs'],
         },
@@ -50,13 +54,13 @@ export default ts.config(
     },
   },
   {
-    files: ['packages/*/build.ts'],
+    files: ['packages/*/build.ts', 'packages/build-tools/src/**'],
     rules: {
       'no-await-in-loop': OFF,
       'no-console': OFF,
     },
   },
   {
-    ignores: ['*.bak', 'coverage/**', 'packages/*/dist/**'],
+    ignores: ['**/*.bak', '**/dist', 'coverage'],
   },
 );
