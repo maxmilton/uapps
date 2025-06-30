@@ -17,9 +17,6 @@
     "test": "bun test",
     "typegen": "turbo typegen"
   },
-  "overrides": {
-    "bugbox": "link:bugbox"
-  },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20250628.0",
     "@eslint/js": "9.30.0",
