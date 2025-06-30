@@ -21,10 +21,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
         with:
-          path: .firebase
-          key: firebase-${{ github.run_id }}
+          path: workers/*/.wrangler/state
+          key: wrangler-${{ github.run_id }}
           restore-keys: |
-            firebase-
+            wrangler-
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -32,15 +32,19 @@ jobs:
       - run: bun run build
       - uses: actions/attest-build-provenance@v2
         with:
-          subject-path: packages/*/dist/**
+          subject-path: |
+            packages/*/dist/**
+            workers/*/dist/**
       - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: packages/*/dist/**
-      - name: Deploy to firebase
-        run: |
-          curl -Lo ./firebase_bin https://firebase.tools/bin/linux/latest
-          chmod +x ./firebase_bin
-          ./firebase_bin deploy
+      - run: gh release create "${{ github.ref_name }}" --generate-notes
+        shell: bash
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: bun turbo deploy:check
+      - run: bun turbo deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

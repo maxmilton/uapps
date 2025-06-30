@@ -2,14 +2,18 @@
 *-lock.yaml
 *.bak
 *.lock
-!bun.lock
-*.log
-*.zip
+*.tsbuildinfo
+!/bun.lock
 /coverage/
 /playwright-report/
 /test-results/
-.dev.vars
+.env.local
 .stage3/
 .turbo/
 dist/
 node_modules/
+
+# Cloudflare services
+/workers/*/worker-configuration.d.ts
+.dev.vars*
+.wrangler/

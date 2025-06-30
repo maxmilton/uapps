@@ -9,12 +9,20 @@
     "//#lint:ts": { "persistent": true, "cache": false },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**", ".wrangler/**"],
       "outputLogs": "new-only"
     },
-    "dev": { "persistent": true, "cache": false }
+    "dev": { "persistent": true, "cache": false },
+    "deploy:check": { "cache": false },
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["^deploy"],
+      "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
+      "outputLogs": "new-only"
+    },
+    "typegen": { "cache": false }
   },
-  "globalDependencies": [".env*", "package.json"],
-  "globalEnv": ["NODE_ENV"],
+  "globalDependencies": ["**/.dev.vars", "**/.env*", "package.json"],
+  "globalEnv": ["CI", "GITHUB_ACTIONS", "NODE_ENV"],
   "noUpdateNotifier": true
 }

@@ -1,28 +1,28 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "ping-service",
-  "compatibility_date": "2025-06-07",
+  "compatibility_date": "2025-06-28",
   "main": "./dist/worker.js",
   "workers_dev": true,
   "upload_source_maps": true,
   "no_bundle": true,
   "observability": {
-    "enabled": true
+    "enabled": true,
   },
   "triggers": {
-    "crons": ["*/60 * * * *"] // every hour
+    "crons": ["*/60 * * * *"], // every hour
   },
   "secrets_store_secrets": [
     {
       "binding": "BUGBOX_API_KEY",
       "secret_name": "BUGBOX_API_KEY",
-      "store_id": ""
+      "store_id": "",
     },
     {
       "binding": "BUGBOX_REFERRER",
       "secret_name": "BUGBOX_REFERRER",
-      "store_id": ""
-    }
+      "store_id": "",
+    },
   ],
-  "send_metrics": false
+  "send_metrics": false,
 }

@@ -9,7 +9,13 @@
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
     "dev": "NODE_ENV=development bun build.ts",
-    "serve": "wrangler dev"
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run",
+    "serve": "wrangler dev",
+    "typegen": "wrangler types"
+  },
+  "imports": {
+    "#*": "./src/*"
   },
   "dependencies": {
     "bugbox": "0.0.0"
