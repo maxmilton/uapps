@@ -35,18 +35,19 @@
   "rules": {
     /* Sane overrides for "categories" */
     "consistent-indexed-object-style": ["warn", "record"],
-    "curly": "off", // covered by Biome formatter
+    "curly": "off", // covered by dprint
     "eqeqeq": ["error", { "null": "ignore" }],
     "func-names": ["error", "as-needed"],
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
-    "import/consistent-type-specifier-style": "off", // covered by TypeScript
+    "import/consistent-type-specifier-style": "off", // covered by typescript
     "import/exports-last": "off",
+    "import/extensions": "error",
     "import/group-exports": "off",
     "import/no-unassigned-import": "off",
     "init-declarations": "off",
     "max-dependencies": "off",
     "max-depth": "off",
-    "max-len": "off", // covered by Biome formatter
+    "max-len": "off", // covered by dprint
     "max-lines-per-function": "off",
     "max-lines": "off",
     "max-nested-callbacks": "off",
@@ -59,7 +60,6 @@
     "no-optional-chaining": "off",
     "no-rest-spread-properties": "off",
     "no-ternary": "off",
-    "no-undefined": "off", // covered by Biome formatter
     "no-unused-vars": [
       "warn",
       {
@@ -73,7 +73,6 @@
     "sort-imports": "off",
     "sort-keys": "off",
     "unicorn/filename-case": ["error", { "case": "kebabCase" }],
-    "unicorn/no-nested-ternary": "off", // covered by Biome formatter
     "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
     "yoda": ["warn", "never"],
 
@@ -99,7 +98,14 @@
     // byte savings (minification doesn't currently automatically remove)
     "unicorn/switch-case-braces": ["error", "avoid"],
 
-    // TODO: Enable these once oxlint support type checking
+    /* stage1 */
+    // underscores in synthetic event handler names
+    "no-underscore-dangle": "off",
+    "unicorn/prefer-add-event-listener": "off",
+    "unicorn/prefer-dom-node-append": "off",
+    "unicorn/prefer-query-selector": "off",
+
+    // TODO: Enable these once oxlint supports type checking.
     "explicit-function-return-type": "off"
   },
   "overrides": [
@@ -216,14 +222,21 @@
       }
     },
     {
-      "files": ["workers/*-frontend/src/sw.ts"],
+      "files": ["workers/*/src/pages/**"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": ["workers/*-app/src/sw.ts", "workers/*-frontend/src/sw.ts"],
       "env": {
         "serviceworker": true
       }
     },
     {
-      "files": ["workers/*-service/src/**"],
+      "files": ["workers/*-backend/src/**", "workers/*-service/src/**"],
       "env": {
+        "browser": false,
         "node": true
       },
       "rules": {
@@ -257,5 +270,6 @@
         "no-magic-numbers": "off"
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["workers/*/worker-configuration.d.ts"]
 }
