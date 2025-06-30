@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
-    "@uapps/git-ref": "workspace:*"
+    "@uapps/git-info": "workspace:*",
+    "bugbox": "0.0.0",
+    "ekscss": "0.0.20"
   }
 }

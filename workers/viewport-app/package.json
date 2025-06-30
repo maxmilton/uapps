@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
-    "@uapps/git-ref": "workspace:*"
+    "@uapps/git-info": "workspace:*",
+    "ekscss": "0.0.20"
   }
 }

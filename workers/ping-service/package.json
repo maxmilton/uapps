@@ -15,6 +15,7 @@
     "bugbox": "0.0.0"
   },
   "devDependencies": {
-    "@uapps/git-ref": "workspace:*"
+    "@uapps/build-tools": "workspace:*",
+    "@uapps/git-info": "workspace:*"
   }
 }
