@@ -1,15 +1,11 @@
 /* oxlint-disable no-bitwise */
 
-import { basename } from 'node:path'; // eslint-disable-line unicorn/import-style
-import type { JsMinifyOptions } from '@swc/core';
-import * as swc from '@swc/core';
-import type { Options as HtmlMinifyOptions } from '@swc/html';
-import * as html from '@swc/html';
-import type { BuildArtifact, BunPlugin } from 'bun';
-import type { XCSSCompileOptions } from 'ekscss';
-import * as xcss from 'ekscss';
-import * as lightningcss from 'lightningcss';
-import { PurgeCSS, type RawContent, type UserDefinedOptions } from 'purgecss';
+import * as swc from "@swc/core";
+import * as html from "@swc/html";
+import * as xcss from "ekscss";
+import * as lightningcss from "lightningcss";
+import { basename } from "node:path"; // eslint-disable-line unicorn/import-style
+import { PurgeCSS, type RawContent, type UserDefinedOptions } from "purgecss";
 
 // import * as csso from 'csso';
 
@@ -29,9 +25,9 @@ const targets: lightningcss.Targets = {
   // samsung: 9 << 16,
 };
 
-export function xcssPlugin(xcssConfig: XCSSCompileOptions): BunPlugin {
+export function xcssPlugin(xcssConfig: xcss.XCSSCompileOptions): Bun.BunPlugin {
   return {
-    name: 'xcss',
+    name: "xcss",
     setup(build) {
       build.onLoad({ filter: /\.xcss$/ }, async (args) => {
         const source = await Bun.file(args.path).text();
@@ -42,45 +38,45 @@ export function xcssPlugin(xcssConfig: XCSSCompileOptions): BunPlugin {
         });
 
         for (const warning of compiled.warnings) {
-          console.error('[XCSS]', warning.message);
-
+          console.error("[XCSS]", warning.message);
           if (warning.file) {
             console.log(
-              `  at ${[warning.file, warning.line, warning.column]
-                .filter(Boolean)
-                .join(':')}`,
+              `  at ${
+                [warning.file, warning.line, warning.column].filter(Boolean)
+                  .join(":")
+              }`,
             );
           }
         }
 
-        return { contents: compiled.css, loader: 'css' };
+        return { contents: compiled.css, loader: "css" };
       });
     },
   };
 }
 
 export async function minify(
-  artifacts: BuildArtifact[],
+  artifacts: Bun.BuildArtifact[],
   options: {
-    html?: HtmlMinifyOptions;
-    js?: Omit<JsMinifyOptions, 'sourceMap'>;
-    css?: Omit<UserDefinedOptions, 'content' | 'css' | 'sourceMap'>;
+    html?: html.Options;
+    js?: Omit<swc.JsMinifyOptions, "sourceMap">;
+    css?: Omit<UserDefinedOptions, "content" | "css" | "sourceMap">;
   } = {},
 ): Promise<void> {
-  const artifactsHtml: BuildArtifact[] = [];
-  const artifactsJs: BuildArtifact[] = [];
-  const artifactsCss: BuildArtifact[] = [];
+  const artifactsHtml: Bun.BuildArtifact[] = [];
+  const artifactsJs: Bun.BuildArtifact[] = [];
+  const artifactsCss: Bun.BuildArtifact[] = [];
 
   const encoder = new TextEncoder();
   const content: RawContent[] = [];
   let purgecss: PurgeCSS | undefined;
 
   for (const artifact of artifacts) {
-    if (artifact.path.endsWith('.html')) {
+    if (artifact.path.endsWith(".html")) {
       artifactsHtml.push(artifact);
-    } else if (artifact.path.endsWith('.js')) {
+    } else if (artifact.path.endsWith(".js") || artifact.path.endsWith(".mjs")) {
       artifactsJs.push(artifact);
-    } else if (artifact.path.endsWith('.css')) {
+    } else if (artifact.path.endsWith(".css")) {
       artifactsCss.push(artifact);
     }
   }
@@ -90,15 +86,15 @@ export async function minify(
     const source = await artifact.text();
     const result = await html.minify(source, {
       filename,
-      collapseWhitespaces: 'smart',
-      removeRedundantAttributes: 'smart',
+      collapseWhitespaces: "smart",
+      removeRedundantAttributes: "smart",
       normalizeAttributes: true,
       tagOmission: false,
       ...options.html,
     });
     if (result.errors) console.error(result.errors);
     await Bun.write(artifact.path, result.code);
-    content.push({ extension: '.html', raw: result.code });
+    content.push({ extension: ".html", raw: result.code });
   }
 
   for (const artifact of artifactsJs) {
@@ -116,16 +112,16 @@ export async function minify(
         reduce_funcs: false, // don't inline single-use functions; better performance
         passes: 2,
         // XXX: Comment out to keep performance markers for debugging.
-        pure_funcs: ['performance.mark', 'performance.measure'],
+        pure_funcs: ["performance.mark", "performance.measure"],
+      },
+      format: {
+        wrap_iife: true,
+        wrap_func_args: true,
       },
       mangle: {
         props: {
           regex: String.raw`^\$\$`,
         },
-      },
-      format: {
-        wrap_iife: true,
-        wrap_func_args: true,
       },
       sourceMap: Boolean(artifact.sourcemap),
       ...options.js,
@@ -134,35 +130,33 @@ export async function minify(
     if (artifact.sourcemap && result.map) {
       await Bun.write(artifact.sourcemap.path, result.map);
     }
-    content.push({ extension: '.js', raw: result.code });
+    content.push({ extension: ".js", raw: result.code });
   }
 
   for (const artifact of artifactsCss) {
     const filename = basename(artifact.path);
     const source = await artifact.text();
-    const purged = await (purgecss ??= new PurgeCSS()).purge({
+    const [purged] = await (purgecss ??= new PurgeCSS()).purge({
       content,
       css: [{ raw: source }],
-      safelist: ['html', 'body'],
+      safelist: ["html", "body"],
       sourceMap: Boolean(artifact.sourcemap),
       ...options.css,
     });
     const minified = lightningcss.transform({
       filename,
-      code: encoder.encode(purged[0].css),
+      code: encoder.encode(purged.css),
       minify: true,
       targets,
-      include:
-        lightningcss.Features.Colors |
-        lightningcss.Features.Nesting |
-        lightningcss.Features.MediaQueries,
-      exclude:
-        lightningcss.Features.FontFamilySystemUi |
-        lightningcss.Features.LogicalProperties |
-        lightningcss.Features.DirSelector |
-        lightningcss.Features.LightDark,
+      include: lightningcss.Features.Colors
+        | lightningcss.Features.Nesting
+        | lightningcss.Features.MediaQueries,
+      exclude: lightningcss.Features.FontFamilySystemUi
+        | lightningcss.Features.LogicalProperties
+        | lightningcss.Features.DirSelector
+        | lightningcss.Features.LightDark,
       sourceMap: Boolean(artifact.sourcemap),
-      inputSourceMap: purged[0].sourceMap!,
+      inputSourceMap: purged.sourceMap!,
     });
     if (minified.warnings.length > 0) console.error(minified.warnings);
     await Bun.write(artifact.path, minified.code);

@@ -1,26 +1,26 @@
-import { describe, expect, test } from 'bun:test';
-import * as allExports from '../src/index';
+import { describe, expect, test } from "bun:test";
+import * as allExports from "../src/index.ts";
 
-describe('exports', () => {
-  test('has no default export', () => {
+describe("exports", () => {
+  test("has no default export", () => {
     expect.assertions(2);
     expect(allExports).toBeDefined();
     // @ts-expect-error - intentional access on undefined prop
     expect(allExports.default).toBeUndefined();
   });
 
-  test('only exports "Status"', () => {
+  test("only exports \"Status\"", () => {
     expect.assertions(1);
-    expect(Object.keys(allExports)).toEqual(['Status']);
+    expect(Object.keys(allExports)).toEqual(["Status"]);
   });
 });
 
-describe('Status enum', () => {
-  test('has expected values', () => {
+describe("Status enum", () => {
+  test("has expected values", () => {
     expect.assertions(13);
     const { Status } = allExports;
     // @ts-expect-error - intentional invalid enum use
-    expect(typeof Status).toBe('object');
+    expect(typeof Status).toBe("object");
     // @ts-expect-error - intentional invalid enum use
     expect(Object.keys(Status).length).toBeGreaterThan(120);
     // Check for most common status codes

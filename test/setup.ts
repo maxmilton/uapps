@@ -1,14 +1,14 @@
-import '@maxmilton/test-utils/extend';
+import "@maxmilton/test-utils/extend";
 
-import { setupDOM } from '@maxmilton/test-utils/dom';
+import { setupDOM } from "@maxmilton/test-utils/dom";
 
 // HACK: Make imported *.xcss files return empty to prevent test errors.
 Bun.plugin({
-  name: 'xcss',
+  name: "xcss",
   setup(build) {
     build.onLoad({ filter: /\.xcss$/ }, () => ({
-      contents: '',
-      loader: 'css',
+      contents: "",
+      loader: "css",
     }));
   },
 });
