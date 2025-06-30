@@ -1,18 +1,23 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    // "rootDir": ".",
-    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./src/*"],
+    },
     "types": [
-      // "bun",
+      "bun",
       "@cloudflare/workers-types/experimental",
       "./worker-configuration.d.ts",
-      "./global.d.ts"
-    ]
+      "./globals.d.ts",
+    ],
   },
-  // "include": ["src", "test"]
-  // "include": ["src", "./global.d.ts", "./worker-configuration.d.ts"]
-  // "include": ["src/worker.ts"]
-  "include": ["src"]
+  "include": [
+    "*.config.mjs",
+    "*.config.ts",
+    "*.d.ts",
+    "build.ts",
+    "src",
+    "test",
+  ],
 }

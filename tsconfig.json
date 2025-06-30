@@ -1,45 +1,17 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [],
+  "include": [],
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleDetection": "force",
-    "moduleResolution": "bundler",
-    "esModuleInterop": false,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "allowJs": false,
-
-    "allowImportingTsExtensions": true,
     "noEmit": true,
-
+    "skipLibCheck": true,
     "strict": true,
-    "allowUnreachableCode": false, // TODO: Set true once oxlint is type aware
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitOverride": true,
-    "noUncheckedSideEffectImports": true,
-    "verbatimModuleSyntax": true,
-
-    /* Covered by oxlint */
-    "noFallthroughCasesInSwitch": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false
   },
-  "include": [
-    "*.config.mjs",
-    "packages/*/build.ts",
-    "packages/*/src",
-    "packages/*/test",
-    "scripts/*.bun", // files use hashbang: #!/usr/bin/env bun
-    "test",
-    "workers/*/*.config.ts",
-    "workers/*/*.d.ts",
-    "workers/*/build.ts",
-    "workers/*/src",
-    "workers/*/test"
-  ],
   "references": [
+    { "path": "./workers/link-app" },
+    { "path": "./workers/ping-service" },
+    { "path": "./workers/viewport-app" },
+    { "path": "./tsconfig.bun.json" },
     { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.workers.json" }
-  ]
+  ],
 }

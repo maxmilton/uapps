@@ -1,13 +1,19 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    // "rootDir": ".",
-    "rootDir": "src",
-    "types": ["bun", "./global.d.ts"]
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./src/*"],
+    },
+    "types": ["bun", "./globals.d.ts", "./modules.d.ts"],
   },
-  // "include": ["src", "test"]
-  // "include": ["src", "./global.d.ts"]
-  // "include": ["src/worker.ts"]
-  "include": ["src"]
+  "include": [
+    "*.config.mjs",
+    "*.config.ts",
+    "*.d.ts",
+    "build.ts",
+    "src",
+    "test",
+    "../../test/setup.ts",
+  ],
 }

@@ -1,8 +1,7 @@
-import type { meta, send } from 'bugbox';
-import type { report } from 'bugbox/bugreport';
-import type { ONCLICK } from 'stage1/fast';
+import type { meta, send } from "bugbox";
+import type { ONCLICK } from "stage1/fast";
 
-declare module 'bun' {
+declare module "bun" {
   interface Env {
     readonly APP_RELEASE: string;
 
@@ -20,13 +19,12 @@ declare global {
   }
 
   interface Window {
-    /** Injected by bugbox.js script in HTML. */
+    /** Injected by bugbox.js CDN script in HTML. */
     readonly bugbox?: {
       readonly meta: typeof meta;
       readonly send: typeof send;
-      readonly report: typeof report;
     };
   }
 
-  let bugbox: Window['bugbox'];
+  var bugbox: Window["bugbox"];
 }
