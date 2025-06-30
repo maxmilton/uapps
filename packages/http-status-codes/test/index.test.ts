@@ -9,7 +9,7 @@ describe("exports", () => {
     expect(allExports.default).toBeUndefined();
   });
 
-  test("only exports \"Status\"", () => {
+  test('only exports "Status"', () => {
     expect.assertions(1);
     expect(Object.keys(allExports)).toEqual(["Status"]);
   });

@@ -52,8 +52,8 @@ export default ts.config(
       "unicorn/prefer-dom-node-append": OFF,
       "unicorn/prefer-query-selector": OFF,
 
-      /** Migrate to dprint */
-      quotes: [ERROR, "double"],
+      /* Migrate to dprint */
+      quotes: [ERROR, "double", { avoidEscape: true }],
     },
   },
   {

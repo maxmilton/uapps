@@ -29,7 +29,7 @@ test("does not contain any @import rules", () => {
   expect(css).not.toInclude("@import");
 });
 
-test("does not contain a \":root\" selector", () => {
+test('does not contain a ":root" selector', () => {
   expect.assertions(1);
   expect(css).not.toInclude(":root");
 });

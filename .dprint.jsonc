@@ -7,7 +7,9 @@
     "https://plugins.dprint.dev/g-plane/malva-v0.12.1.wasm",
     "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.5.1.wasm",
   ],
-  "typescript": {},
+  "typescript": {
+    "quoteStyle": "preferDouble",
+  },
   "json": {
     "jsonTrailingCommaFiles": [
       "tsconfig*.json",
