@@ -10,7 +10,7 @@
     "start": "NODE_ENV=development turbo startall",
     "lint": "turbo lint:css lint:fmt lint:js lint:js2 lint:ts",
     "lint:css": "stylelint '**/*.css'",
-    "lint:fmt": "biome check --diagnostic-level=warn",
+    "lint:fmt": "dprint check",
     "lint:js": "oxlint --format=stylish",
     "lint:js2": "eslint",
     "lint:ts": "tsc --build --noEmit",
