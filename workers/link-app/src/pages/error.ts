@@ -1,7 +1,7 @@
-import { append, clone, collect, create, h, ONCLICK } from 'stage1/fast';
-import { compile } from 'stage1/macro' with { type: 'macro' };
-import { Status } from '../net';
-import { AppError } from '../utils';
+import { Status } from "#net.ts";
+import { AppError } from "#utils.ts";
+import { append, clone, collect, create, h, ONCLICK } from "stage1/fast";
+import { compile } from "stage1/macro" with { type: "macro" };
 
 interface ErrorLike {
   code?: number;
@@ -33,31 +33,31 @@ const meta = compile<Refs>(`
 let view: ErrorPageComponent | undefined;
 
 function ErrorPage(error?: unknown): ErrorPageComponent {
-  const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
+  const root = clone(view ??= h<ErrorPageComponent>(meta.html));
   const refs = collect<Refs>(root, meta.d);
 
   const ex =
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    error || new AppError('An unknown error occurred', Status.UNKNOWN_ERROR);
+    error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
   let code: unknown;
   let message: unknown;
 
   window.bugbox?.send(ex as Error);
 
-  if (typeof ex === 'object') {
+  if (typeof ex === "object") {
     code = (ex as ErrorLike).code;
     message = (ex as ErrorLike).message;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
-  refs[meta.ref.title].nodeValue = `${code ?? ''} Error`;
+  refs[meta.ref.title].nodeValue = `${code ?? ""} Error`;
   // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
-  document.title = `${code ?? ''} Error | 🔗`;
+  document.title = `${code ?? ""} Error | 🔗`;
   // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/prefer-nullish-coalescing
   refs[meta.ref.message].nodeValue = String(message || ex);
 
   refs[meta.ref.home][ONCLICK] = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
   refs[meta.ref.back][ONCLICK] = () => {
     window.history.back();
@@ -65,23 +65,23 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
 
   if (
     // empty referrer or navigated directly e.g., from the URL bar or a bookmark
-    !document.referrer ||
+    !document.referrer
     // came from another site
-    new URL(document.referrer).origin !== window.location.origin ||
+    || new URL(document.referrer).origin !== window.location.origin
     // router, which uses a main element as root, hasn't been initialized yet
     // so it wouldn't be able to handle updating the route
-    !document.querySelector('main')
+    || !document.querySelector("main")
   ) {
     refs[meta.ref.back].hidden = true;
   }
 
   if (
-    process.env.NODE_ENV === 'development' &&
-    ex instanceof Error &&
-    ex.stack
+    process.env.NODE_ENV === "development"
+    && ex instanceof Error
+    && ex.stack
   ) {
-    const block = create('code');
-    block.className = 'code-block mt4';
+    const block = create("code");
+    block.className = "code-block mt4";
     block.textContent = ex.stack;
     append(block, root);
   }

@@ -1,6 +1,6 @@
-import './index.xcss';
+import "./index.xcss";
 
-import { App } from './components/App';
-import { Footer } from './components/Footer';
+import { App } from "#components/App.ts";
+import { Footer } from "#components/Footer.ts";
 
 document.body.append(App(), Footer());

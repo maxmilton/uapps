@@ -1,7 +1,7 @@
 // import './link.xcss';
 
-import { append, clone, collect, h, ONCLICK } from 'stage1/fast';
-import { compile } from 'stage1/macro' with { type: 'macro' };
+import { append, clone, collect, h, ONCLICK } from "stage1/fast";
+import { compile } from "stage1/macro" with { type: "macro" };
 
 type LinkPageComponent = HTMLDivElement;
 interface Refs {
@@ -23,7 +23,7 @@ const meta = compile<Refs>(
 let view: LinkPageComponent | undefined;
 
 function LinkPage(id: string): LinkPageComponent {
-  const root = clone((view ??= h<LinkPageComponent>(meta.html)));
+  const root = clone(view ??= h<LinkPageComponent>(meta.html));
   const refs = collect<Refs>(root, meta.d);
 
   // const off1 = state.on('feedback', (feedback) => {
@@ -38,7 +38,7 @@ function LinkPage(id: string): LinkPageComponent {
   //   off1();
   // });
 
-  document.title = '🔗';
+  document.title = "🔗";
 
   return root;
 }

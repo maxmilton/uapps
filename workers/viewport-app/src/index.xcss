@@ -1,9 +1,9 @@
-@import './font.xcss';
+@import "./font.xcss";
 
 /* Packages */
 
-@import '@ekscss/framework';
-@import '@ekscss/framework/addon/pretty.xcss';
+@import "@ekscss/framework";
+@import "@ekscss/framework/addon/pretty.xcss";
 
 /* Local */
 

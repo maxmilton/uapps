@@ -3,9 +3,9 @@ export default {
     await fetch(
       `${process.env.BUGBOX_API_ENDPOINT}/${env.BUGBOX_API_KEY}/ping`,
       {
-        method: 'POST',
+        method: "POST",
         keepalive: true,
-        mode: 'no-cors',
+        mode: "no-cors",
         headers: {
           referer: env.BUGBOX_REFERRER,
         },
