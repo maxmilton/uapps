@@ -1,5 +1,5 @@
 {
-  "name": "@uapps/git-ref",
+  "name": "@uapps/git-info",
   "version": "0.0.0",
   "type": "module",
   "description": "Get git information using the system git executable",

@@ -1,3 +1,5 @@
+/* oxlint-disable no-return-assign */
+
 let gitRefCache: string | undefined;
 let gitHashCache: string | undefined;
 let isDirtyCache: boolean | undefined;
@@ -10,14 +12,7 @@ let branchNameCache: string | undefined;
  * @returns A human readable git reference.
  */
 export function gitRef(): string {
-  // oxlint-disable-next-line no-return-assign
-  return (gitRefCache ??= Bun.spawnSync([
-    'git',
-    'describe',
-    '--always',
-    '--dirty=-dev',
-    '--broken',
-  ])
+  return (gitRefCache ??= Bun.spawnSync(["git", "describe", "--always", "--dirty=-dev", "--broken"])
     .stdout.toString()
     .trim());
 }
@@ -30,13 +25,7 @@ export function gitRef(): string {
  * @returns A git commit hash string.
  */
 export function gitHash(long?: boolean): string {
-  // oxlint-disable-next-line no-return-assign
-  return (gitHashCache ??= Bun.spawnSync([
-    'git',
-    'rev-parse',
-    long ? '' : '--short',
-    'HEAD',
-  ])
+  return (gitHashCache ??= Bun.spawnSync(["git", "rev-parse", long ? "" : "--short", "HEAD"])
     .stdout.toString()
     .trim());
 }
@@ -47,10 +36,7 @@ export function gitHash(long?: boolean): string {
  * @returns The dirty state e.g., `true` when there are uncommitted changes.
  */
 export function isDirty(): boolean {
-  // oxlint-disable-next-line no-return-assign
-  return (isDirtyCache ??= !!Bun.spawnSync(['git', 'status', '--porcelain'])
-    .stdout.toString()
-    .trim());
+  return (isDirtyCache ??= Bun.spawnSync(["git", "diff", "--quiet"]).exitCode !== 0);
 }
 
 /**
@@ -61,13 +47,8 @@ export function isDirty(): boolean {
  * @returns The number of commits from closest tag to HEAD or NaN when error.
  */
 export function fromClosestTag(): number {
-  // oxlint-disable-next-line no-return-assign
   return (fromClosestTagCache ??= Number(
-    Bun.spawnSync([
-      'sh',
-      '-c',
-      'git rev-list $(git describe --abbrev=0)..HEAD --count',
-    ])
+    Bun.spawnSync(["sh", "-c", "git rev-list $(git describe --abbrev=0)..HEAD --count"])
       .stdout.toString()
       .trim(),
   ));
@@ -79,13 +60,7 @@ export function fromClosestTag(): number {
  * @returns The branch name or an empty string when error.
  */
 export function branchName(): string {
-  // oxlint-disable-next-line no-return-assign
-  return (branchNameCache ??= Bun.spawnSync([
-    'git',
-    'rev-parse',
-    '--abbrev-ref',
-    'HEAD',
-  ])
+  return (branchNameCache ??= Bun.spawnSync(["git", "rev-parse", "--abbrev-ref", "HEAD"])
     .stdout.toString()
     .trim());
 }
