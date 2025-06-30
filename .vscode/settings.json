@@ -1,61 +1,36 @@
 {
-  "biome.enabled": true,
-  // "css.validate": false,
-  "editor.colorDecorators": true, // opinionated
+  "biome.enabled": false, // use dprint
+  "css.validate": false,
+  "editor.colorDecorators": true,
+  "editor.defaultFormatter": "dprint.dprint",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
   "editor.quickSuggestions": {
     "comments": "on",
-    "strings": "on", // tailwindcss
-    "other": "on"
-  }, // opinionated
+    "strings": "on",
+    "other": "on",
+  },
   "editor.tabSize": 2,
   "eslint.enable": true,
   "eslint.validate": ["javascript", "typescript"],
   "files.associations": {
     "*.bun": "typescript", // files use hashbang: #!/usr/bin/env bun
     "*.css": "tailwindcss",
-    "*.xcss": "scss"
+    "*.xcss": "scss",
+    "package.json": "jsonc",
   },
-  "git.branchProtection": ["master"],
-  "javascript.validate.enable": true, // opinionated
+  "git.branchProtection": ["master", "next"],
+  "javascript.validate.enable": true,
   "js/ts.implicitProjectConfig.checkJs": true,
-  "prettier.enable": false, // use biome instead
+  "prettier.enable": false, // use dprint
+  "scss.validate": false,
   "stylelint.enable": true,
-  "stylelint.validate": ["css", "scss"],
+  "stylelint.validate": ["css", "scss", "tailwindcss"],
   "tailwindCSS.classFunctions": ["tw", "css"],
   "tailwindCSS.validate": true,
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.validate.enable": true, // opinionated
+  "typescript.validate.enable": true,
   "yaml.validate": true,
-
-  "[css][html][json][jsonc][markdown][scss]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit",
-      "source.fixAll": "explicit"
-    },
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascript][typescript]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "never",
-      "source.organizeImports.biome": "explicit",
-      "source.fixAll": "never"
-    },
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml",
-    "editor.autoIndent": "advanced"
-  },
-
-  /****************/
-  /* EXPERIMENTAL */
-  /****************/
-
-  "harper.dialect": "British",
-  "harper.isolateEnglish": true,
-  "harper.codeActions.ForceStable": true
 }
