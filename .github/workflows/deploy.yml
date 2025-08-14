@@ -4,6 +4,7 @@ on:
     workflows: [ci]
     types: [completed]
     branches: [master]
+    paths-ignore: ["**.md"]
   workflow_dispatch: {}
 concurrency:
   group: deploy
