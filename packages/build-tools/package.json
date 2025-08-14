@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Internal build tools for uapps",
-  "repository": "maxmilton/uapps",
-  "author": "Max Milton <max@happyhackers.xyz>",
+  "repository": "github:maxmilton/uapps",
+  "author": "Max Milton <max@bunnybunny.org>",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
@@ -15,18 +15,5 @@
     "ekscss": "0.0.21",
     "lightningcss": "1.30.1",
     "purgecss": "7.0.2"
-  },
-  "__OLD__": {
-    "dependencies": {
-      "@swc/core": "1.11.29",
-      "@swc/html": "1.11.29",
-      "csso": "5.0.5",
-      "ekscss": "0.0.20",
-      "lightningcss": "1.30.1",
-      "purgecss": "7.0.2"
-    },
-    "devDependencies": {
-      "@types/csso": "5.0.4"
-    }
   }
 }

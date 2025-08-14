@@ -2,8 +2,8 @@
   "name": "@uapps/viewport-app",
   "version": "0.0.0",
   "description": "View live info about your current browser viewport",
-  "repository": "maxmilton/uapps",
-  "author": "Max Milton <max@happyhackers.xyz>",
+  "repository": "github:maxmilton/uapps",
+  "author": "Max Milton <max@bunnybunny.org>",
   "license": "MIT",
   "private": true,
   "scripts": {
