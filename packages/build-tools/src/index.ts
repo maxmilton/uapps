@@ -25,7 +25,7 @@ const targets: lightningcss.Targets = {
   // samsung: 9 << 16,
 };
 
-export function xcssPlugin(xcssConfig: xcss.XCSSCompileOptions): Bun.BunPlugin {
+export function xcssPlugin(xcssConfig: xcss.CompileOptions): Bun.BunPlugin {
   return {
     name: "xcss",
     setup(build) {
@@ -116,7 +116,6 @@ export async function minify(
       },
       format: {
         wrap_iife: true,
-        wrap_func_args: true,
       },
       mangle: {
         props: {

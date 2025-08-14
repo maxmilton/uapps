@@ -87,7 +87,8 @@ if (dev) {
   await Bun.write("dist/index.html", out2.html.replace(/^\s+/gm, ""));
 } else {
   console.time("minify");
-  await minify(out1.outputs);
+  // FIXME: Uncomment once build is fixed.
+  // await minify(out1.outputs);
   console.timeEnd("minify");
 }
 
