@@ -17,25 +17,28 @@
     "test": "bun test",
     "typegen": "turbo typegen"
   },
+  "overrides": {
+    "@types/node": "24.2.1"
+  },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250628.0",
-    "@eslint/js": "9.30.0",
+    "@cloudflare/workers-types": "4.20250813.0",
+    "@eslint/js": "9.33.0",
     "@maxmilton/eslint-config": "0.2.1",
-    "@maxmilton/stylelint-config": "0.4.0",
+    "@maxmilton/stylelint-config": "0.4.2",
     "@maxmilton/test-utils": "0.0.12",
-    "@types/bun": "1.2.17",
-    "dprint": "0.50.0",
-    "eslint": "9.30.0",
-    "eslint-plugin-oxlint": "1.4.0",
-    "eslint-plugin-unicorn": "59.0.1",
+    "@types/bun": "1.2.20",
+    "dprint": "0.50.1",
+    "eslint": "9.33.0",
+    "eslint-plugin-oxlint": "1.11.2",
+    "eslint-plugin-unicorn": "60.0.0",
     "happy-dom": "18.0.1",
-    "oxlint": "1.4.0",
-    "stylelint": "16.21.0",
-    "stylelint-config-standard": "38.0.0",
-    "turbo": "2.5.4",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.35.0",
-    "wrangler": "4.22.0"
+    "oxlint": "1.11.2",
+    "stylelint": "16.23.1",
+    "stylelint-config-standard": "39.0.0",
+    "turbo": "2.5.5",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.39.1",
+    "wrangler": "4.29.1"
   },
   "packageManager": "bun@1.99.0"
 }

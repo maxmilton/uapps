@@ -18,14 +18,14 @@
     "#*": "./src/*"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.52",
+    "@ekscss/framework": "0.0.58",
     "@uapps/http-status-codes": "workspace:*",
     "stage1": "0.9.0"
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
     "@uapps/git-info": "workspace:*",
-    "bugbox": "0.0.1",
-    "ekscss": "0.0.20"
+    "bugbox": "0.0.3",
+    "ekscss": "0.0.21"
   }
 }

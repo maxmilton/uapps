@@ -17,12 +17,12 @@
     "#*": "./src/*"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.52",
+    "@ekscss/framework": "0.0.58",
     "stage1": "0.9.0"
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
     "@uapps/git-info": "workspace:*",
-    "ekscss": "0.0.20"
+    "ekscss": "0.0.21"
   }
 }
