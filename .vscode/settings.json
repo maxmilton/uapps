@@ -1,6 +1,7 @@
 {
   "biome.enabled": false, // use dprint
   "css.validate": false,
+  "dprint.path": "./node_modules/.bin/dprint",
   "editor.colorDecorators": true,
   "editor.defaultFormatter": "dprint.dprint",
   "editor.formatOnPaste": false,
@@ -18,7 +19,9 @@
     "*.bun": "typescript", // files use hashbang: #!/usr/bin/env bun
     "*.css": "tailwindcss",
     "*.xcss": "scss",
+    ".oxlintrc.json": "jsonc",
     "package.json": "jsonc",
+    "turbo.json": "jsonc",
   },
   "git.branchProtection": ["master", "next"],
   "javascript.validate.enable": true,
