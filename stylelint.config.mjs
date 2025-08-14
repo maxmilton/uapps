@@ -1,4 +1,4 @@
-/** @type {import('stylelint').Config} */
+/** @type {import("stylelint").Config} */
 export default {
   reportInvalidScopeDisables: true,
   reportNeedlessDisables: true,

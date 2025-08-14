@@ -7,7 +7,8 @@ import ts from "typescript-eslint";
 const OFF = 0;
 const ERROR = 2;
 
-export default ts.config(
+/** @type {import("typescript-eslint").ConfigArray} */
+const config = ts.config(
   js.configs.recommended,
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
@@ -32,6 +33,8 @@ export default ts.config(
       },
     },
     rules: {
+      quotes: [ERROR, "double", { avoidEscape: true }],
+
       // Bad browser support
       "unicorn/prefer-at": OFF,
       // Prefer to clearly separate Bun and DOM
@@ -51,16 +54,6 @@ export default ts.config(
       "unicorn/prefer-add-event-listener": OFF,
       "unicorn/prefer-dom-node-append": OFF,
       "unicorn/prefer-query-selector": OFF,
-
-      /* Migrate to dprint */
-      quotes: [ERROR, "double", { avoidEscape: true }],
-    },
-  },
-  {
-    files: ["packages/*/build.ts", "packages/build-tools/src/**"],
-    rules: {
-      "no-await-in-loop": OFF,
-      "no-console": OFF,
     },
   },
   {
@@ -72,3 +65,5 @@ export default ts.config(
     ],
   },
 );
+
+export default config;
