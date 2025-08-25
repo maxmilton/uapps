@@ -18,7 +18,7 @@
     "#*": "./src/*"
   },
   "dependencies": {
-    "bugbox": "0.0.3"
+    "bugbox": "0.0.4"
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
