@@ -1,12 +1,9 @@
 import framework from "@ekscss/framework/config";
-import { extend } from "@ekscss/framework/utils";
-import { ctx, onBeforeBuild } from "ekscss";
+import { extend, ignoreImport } from "@ekscss/framework/utils";
+import { onBeforeBuild } from "ekscss";
 
 onBeforeBuild(() => {
-  // Cheeky abuse of ekscss ctx to stop unwanted style imports
-  ctx.dependencies.push(
-    Bun.resolveSync("@ekscss/framework/level2/a11y.xcss", "."),
-  );
+  ignoreImport(Bun.resolveSync("@ekscss/framework/level2/a11y.xcss", "."));
 });
 
 export default extend(framework, {
