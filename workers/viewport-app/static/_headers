@@ -4,7 +4,7 @@
   Referrer-Policy: no-referrer
   Report-To: {"endpoints":[{"url":"https://io.bugbox.app/v0/AZcjwPS3cAC4nJDZiIizZw/report"}],"group":"bugbox","max_age":10886400}
   NEL: {"report_to":"bugbox","max_age":2592000}
-  Content-Security-Policy: default-src 'none';base-uri 'none';script-src 'self' https://io.bugbox.app;style-src 'self';img-src 'self' data: https://io.bugbox.app;font-src 'self';connect-src https://io.bugbox.app;report-uri https://io.bugbox.app/v0/AZcjwPS3cAC4nJDZiIizZw/report;report-to bugbox
+  Content-Security-Policy: default-src 'none';base-uri 'none';script-src 'self' https://io.bugbox.app;style-src 'self';img-src 'self' https://io.bugbox.app;connect-src https://io.bugbox.app;report-uri https://io.bugbox.app/v0/AZcjwPS3cAC4nJDZiIizZw/report;report-to bugbox
 
 /
   Cross-Origin-Opener-Policy: same-origin
