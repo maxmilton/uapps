@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Get git information using the system git executable",
   "repository": "github:maxmilton/uapps",
-  "author": "Max Milton <max@bunnybunny.org>",
+  "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
   "private": true,
   "sideEffects": false,

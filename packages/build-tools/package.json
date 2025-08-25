@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Internal build tools for uapps",
   "repository": "github:maxmilton/uapps",
-  "author": "Max Milton <max@bunnybunny.org>",
+  "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
