@@ -5,6 +5,7 @@ export class AppError extends Error {
    * May be sent to error reporting service.
    */
   declare details: unknown;
+  declare timestamp: string;
 
   constructor(message: string, code?: number, details?: unknown) {
     super(message);
@@ -12,8 +13,8 @@ export class AppError extends Error {
     this.name = "AppError";
     this.code = code;
     this.details = details;
+    this.timestamp = new Date().toISOString();
 
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    Error.captureStackTrace?.(this, this.constructor);
+    // Error.captureStackTrace?.(this, this.constructor);
   }
 }

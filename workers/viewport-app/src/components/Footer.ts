@@ -9,7 +9,7 @@ const meta = compile(
   interpolate(
     `
       <footer>
-        © <a href=https://maxmilton.com class=ml>Max Milton</a> / %%1%% / <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
+        © <a href=https://maxmilton.com class=ml>Max Milton</a> | %%1%% | <a href=https://github.com/maxmilton/uapps/issues>report bug</a>
       </footer>
     `,
     [process.env.APP_RELEASE],

@@ -56,10 +56,10 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/prefer-nullish-coalescing
   refs[meta.ref.message].nodeValue = String(message || ex);
 
-  refs[meta.ref.home][ONCLICK] = () => {
+  refs[meta.ref.home][ONCLICK] = (): void => {
     window.location.href = "/";
   };
-  refs[meta.ref.back][ONCLICK] = () => {
+  refs[meta.ref.back][ONCLICK] = (): void => {
     window.history.back();
   };
 
