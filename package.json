@@ -9,7 +9,7 @@
     "dev": "export NODE_ENV=development; bun run build",
     "start": "NODE_ENV=development turbo startall",
     "lint": "turbo lint:css lint:fmt lint:js lint:js2 lint:ts",
-    "lint:css": "stylelint '**/*.css'",
+    "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "dprint check",
     "lint:js": "oxlint --format=stylish",
     "lint:js2": "eslint",
