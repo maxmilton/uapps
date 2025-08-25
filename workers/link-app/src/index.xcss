@@ -35,7 +35,7 @@ main {
 dl {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-column-gap: 0;
+  column-gap: 0;
   font-size: 1.1em;
 }
 
