@@ -1,22 +1,18 @@
-import { minify, xcssPlugin } from "@uapps/build-tools";
+import { artifactPath, assert, minify, xcss } from "@uapps/build-tools";
 import { gitHash, gitRef, isDirty } from "@uapps/git-info";
-import { basename } from "node:path"; // eslint-disable-line unicorn/import-style
 import pkg from "./package.json" with { type: "json" };
-import xcssConfig from "./xcss.config.ts";
+import xcssConfig from "./xcss.config.mjs";
 
 const mode = Bun.env.NODE_ENV;
 const dev = mode === "development";
 const release = `v${pkg.version}-${gitHash()}${isDirty() ? "-dev" : ""}`;
 
-function buildHTML(artifacts: Bun.BuildArtifact[]) {
-  const js = artifacts.find((a) => a.kind === "entry-point" && a.path.endsWith(".js"));
-  const css = artifacts.find((a) => a.path.endsWith(".css"));
-  if (!js) throw new Error("Could not find JS artifact");
-  if (!css) throw new Error("Could not find CSS artifact");
+async function buildHTML(artifacts: Bun.BuildArtifact[]) {
+  assert(Boolean(Bun.env.ENV));
+  assert(Bun.env.FRONTEND_BUGBOX_API_KEY.length === 22);
 
-  const jsFile = basename(js.path);
-  const cssFile = basename(css.path);
-
+  const js = artifactPath(artifacts, "index", "js");
+  const css = artifactPath(artifacts, "index", "css");
   const html = `
     <!doctype html>
     <html lang="en">
@@ -25,17 +21,15 @@ function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <meta name="viewport" content="width=device-width,user-scalable=no">
       <link href="/favicon.svg" rel="icon">
       <title>Viewport Info</title>
-      <link href="/${cssFile}" rel="stylesheet">
-      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="${Bun.env.FRONTEND_BUGBOX_API_KEY}" data-env="${
-    String(mode)
-  }" data-release="${release}"></script>
-      <script src="/${jsFile}" defer></script>
+      <link href="/${css}" rel="stylesheet">
+      <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="${Bun.env.FRONTEND_BUGBOX_API_KEY}" data-env="${Bun.env.ENV}" data-release="${release}"></script>
+      <script src="/${js}" defer></script>
     </head>
     <body>
       <noscript>JavaScript is required</noscript>
     </body>
     </html>
-  `;
+  `.replace(/^\s+/gm, "");
 
   artifacts.push(
     {
@@ -48,7 +42,9 @@ function buildHTML(artifacts: Bun.BuildArtifact[]) {
     } satisfies Bun.BuildArtifact,
   );
 
-  return { html, cssFile, jsFile };
+  await Bun.write("dist/index.html", html);
+
+  return { html, css, js };
 }
 
 console.time("prebuild");
@@ -67,10 +63,7 @@ const out1 = await Bun.build({
     "process.env.APP_RELEASE": JSON.stringify(release),
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  loader: {
-    ".svg": "text",
-  },
-  plugins: [xcssPlugin(xcssConfig)],
+  plugins: [xcss(xcssConfig)],
   emitDCEAnnotations: true,
   minify: !dev,
   sourcemap: "linked",
@@ -78,14 +71,12 @@ const out1 = await Bun.build({
 console.timeEnd("build");
 
 console.time("html");
-const out2 = buildHTML(out1.outputs);
+const out2 = await buildHTML(out1.outputs);
 console.timeEnd("html");
 
-if (dev) {
-  await Bun.write("dist/index.html", out2.html.replace(/^\s+/gm, ""));
-} else {
+if (!dev) {
   console.time("minify");
-  // FIXME: Uncomment once build is fixed.
+  // FIXME: Uncomment once bun is fixed.
   // await minify(out1.outputs);
   console.timeEnd("minify");
 }
@@ -96,10 +87,8 @@ await Bun.write(
   JSON.stringify({
     ref: gitRef(),
     mode,
-    cssFile: out2.cssFile,
-    jsFile: out2.jsFile,
+    css: out2.css,
+    js: out2.js,
   }),
 );
 console.timeEnd("build-info");
-
-// console.debug(out1.outputs);
