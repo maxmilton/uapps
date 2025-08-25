@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "viewport-app",
-  "compatibility_date": "2025-06-28",
+  "compatibility_date": "2025-08-23",
   "route": {
     "pattern": "viewport.maxmilton.com",
     "zone_name": "maxmilton.com",

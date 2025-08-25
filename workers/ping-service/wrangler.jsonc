@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "ping-service",
-  "compatibility_date": "2025-06-28",
+  "compatibility_date": "2025-08-23",
   "main": "./dist/worker.js",
   "workers_dev": true,
   "upload_source_maps": true,
