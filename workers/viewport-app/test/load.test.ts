@@ -6,7 +6,7 @@ import buildInfo from "../dist/build-info.json" with { type: "json" };
 // Completely reset DOM and global state between tests
 afterEach(reset);
 
-const MODULE_PATH = `${import.meta.dir}/../dist/${buildInfo.jsFile}`;
+const MODULE_PATH = `${import.meta.dir}/../dist/${buildInfo.js}`;
 
 async function load() {
   // Workaround for hack in src/BookmarkBar.ts that waits for styles to be loaded

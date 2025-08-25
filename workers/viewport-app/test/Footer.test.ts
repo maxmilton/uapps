@@ -34,6 +34,7 @@
 //   expect(rendered.container.innerHTML).toMatch(/v\d+\.\d+\.\d+/);
 // });
 
+// eslint-disable-next-line unicorn/require-module-specifiers
 export {};
 
 $console.warn("Footer tests are disabled");

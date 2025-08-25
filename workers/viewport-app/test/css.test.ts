@@ -1,7 +1,7 @@
 import { compile, DECLARATION, type Element, FONT_FACE, lookup, MEDIA, walk } from "@maxmilton/test-utils/css";
 import { describe, expect, test } from "bun:test";
 import buildInfo from "../dist/build-info.json" with { type: "json" };
-import xcssConfig from "../xcss.config.ts";
+import xcssConfig from "../xcss.config.mjs";
 
 describe("xcss config", () => {
   test("contains only expected plugins", () => {
@@ -15,7 +15,7 @@ describe("xcss config", () => {
   });
 });
 
-const css = await Bun.file(`${import.meta.dir}/../dist/${buildInfo.cssFile}`)
+const css = await Bun.file(`${import.meta.dir}/../dist/${buildInfo.css}`)
   .text();
 const ast = compile(css);
 
@@ -96,11 +96,9 @@ const wellKnownSelectors = [
   ".link",
 ];
 
-for (const selector of wellKnownSelectors) {
-  test(`has ${selector} styles`, () => {
-    expect.assertions(2);
-    const elements = lookup(ast, selector);
-    expect(elements).toBeArray();
-    expect(elements?.length).toBeGreaterThan(0);
-  });
-}
+test.each(wellKnownSelectors)("has %s styles", (selector) => {
+  expect.assertions(2);
+  const elements = lookup(ast, selector);
+  expect(elements).toBeArray();
+  expect(elements?.length).toBeGreaterThan(0);
+});

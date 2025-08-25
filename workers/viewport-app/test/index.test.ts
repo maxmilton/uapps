@@ -4,16 +4,16 @@ import { readdir } from "node:fs/promises";
 import buildInfo from "../dist/build-info.json" with { type: "json" };
 
 const distPath = `${import.meta.dir}/../dist`;
-const { cssFile, jsFile } = buildInfo;
+const { css, js } = buildInfo;
 
 test("index CSS file found", () => {
   expect.assertions(1);
-  expect(cssFile).toBeDefined();
+  expect(css).toBeDefined();
 });
 
 test("index JS file found", () => {
   expect.assertions(1);
-  expect(jsFile).toBeDefined();
+  expect(js).toBeDefined();
 });
 
 describe("dist files", () => {
@@ -29,15 +29,16 @@ describe("dist files", () => {
     minBytes?: number,
     maxBytes?: number,
   ][] = [
+    ["_headers", "application/octet-stream"],
     ["build-info.json", "application/json;charset=utf-8"],
     ["favicon.ico", "image/x-icon"],
     ["favicon.svg", "image/svg+xml"],
-    ["hyperlegible.woff2", "font/woff2"],
-    [cssFile, "text/css;charset=utf-8", 1300, 1800],
+    ["humans.txt", "text/plain;charset=utf-8", 100, 200],
+    [css, "text/css;charset=utf-8", 1300, 1800],
     // FIXME: Uncomment once bun supports CSS source maps.
     // [`${indexCSS}.map`, 'application/json;charset=utf-8', 100, 10_000],
-    [jsFile, "text/javascript;charset=utf-8", 1000, 2000],
-    [`${jsFile}.map`, "application/json;charset=utf-8"],
+    [js, "text/javascript;charset=utf-8", 1000, 2000],
+    [`${js}.map`, "application/json;charset=utf-8"],
     ["index.html", "text/html;charset=utf-8", 400, 600],
     ["robots.txt", "text/plain;charset=utf-8"],
   ];
@@ -90,21 +91,21 @@ describe("index.html", () => {
 
   test("contains the correct CSS filename", () => {
     expect.assertions(1);
-    expect(html).toContain(`<link href=/${cssFile} rel=stylesheet>`);
+    expect(html).toContain(`<link href=/${css} rel=stylesheet>`);
   });
 
   test("contains the correct JS filename", () => {
     expect.assertions(1);
-    expect(html).toContain(`<script src=/${jsFile} defer></script>`);
+    expect(html).toContain(`<script src=/${js} defer></script>`);
   });
 });
 
 test("CSS file has hash in filename", () => {
   expect.assertions(1);
-  expect(cssFile).toMatch(/^index-[\da-z]+\.css$/);
+  expect(css).toMatch(/^index-[\da-z]+\.css$/);
 });
 
 test("JS file has hash in filename", () => {
   expect.assertions(1);
-  expect(jsFile).toMatch(/^index-[\da-z]+\.js$/);
+  expect(js).toMatch(/^index-[\da-z]+\.js$/);
 });
