@@ -3,6 +3,7 @@ import type { ONCLICK } from "stage1/fast";
 
 declare module "bun" {
   interface Env {
+    readonly ENV: "production" | "development" | "testing";
     readonly APP_RELEASE: string;
 
     readonly FRONTEND_APP_ORIGIN: string;
@@ -26,5 +27,6 @@ declare global {
     };
   }
 
+  // oxlint-disable-next-line no-var, vars-on-top
   var bugbox: Window["bugbox"];
 }
