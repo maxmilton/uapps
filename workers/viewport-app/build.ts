@@ -25,7 +25,6 @@ function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <meta name="viewport" content="width=device-width,user-scalable=no">
       <link href="/favicon.svg" rel="icon">
       <title>Viewport Info</title>
-      <link href="/fonts/hyperlegible.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
       <link href="/${cssFile}" rel="stylesheet">
       <script src="https://io.bugbox.app/v0/bugbox.js" crossorigin data-key="${Bun.env.FRONTEND_BUGBOX_API_KEY}" data-env="${
     String(mode)
@@ -61,7 +60,6 @@ console.time("build");
 const out1 = await Bun.build({
   entrypoints: ["src/index.ts"],
   outdir: "dist",
-  external: ["/*.woff2"],
   naming: dev ? "[dir]/[name].[ext]" : "[dir]/[name]-[hash].[ext]",
   target: "browser",
   format: "esm",
