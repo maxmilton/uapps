@@ -2,10 +2,11 @@
 
 import * as swc from "@swc/core";
 import * as html from "@swc/html";
-import * as xcss from "ekscss";
 import * as lightningcss from "lightningcss";
-import { basename } from "node:path"; // eslint-disable-line unicorn/import-style
+import path from "node:path";
 import { PurgeCSS, type RawContent, type UserDefinedOptions } from "purgecss";
+
+export { xcss } from "bun-plugin-ekscss";
 
 // import * as csso from 'csso';
 
@@ -25,34 +26,15 @@ const targets: lightningcss.Targets = {
   // samsung: 9 << 16,
 };
 
-export function xcssPlugin(xcssConfig: xcss.CompileOptions): Bun.BunPlugin {
-  return {
-    name: "xcss",
-    setup(build) {
-      build.onLoad({ filter: /\.xcss$/ }, async (args) => {
-        const source = await Bun.file(args.path).text();
-        const compiled = xcss.compile(source, {
-          from: args.path,
-          globals: xcssConfig.globals,
-          plugins: xcssConfig.plugins,
-        });
+export function assert(condition: boolean, message?: string): asserts condition {
+  if (!condition) throw new Error(message ?? "Assertion failed");
+}
 
-        for (const warning of compiled.warnings) {
-          console.error("[XCSS]", warning.message);
-          if (warning.file) {
-            console.log(
-              `  at ${
-                [warning.file, warning.line, warning.column].filter(Boolean)
-                  .join(":")
-              }`,
-            );
-          }
-        }
-
-        return { contents: compiled.css, loader: "css" };
-      });
-    },
-  };
+export function artifactPath(artifacts: Bun.BuildArtifact[], name: string, ext: string): string {
+  const re = new RegExp(`\\/${name}(?:-[0-9a-z]{8})?\\.${ext}$`);
+  const artifact = artifacts.find((a) => re.test(a.path));
+  assert(!!artifact, `Artifact path ${re.source} not found`);
+  return path.relative("dist", artifact.path);
 }
 
 export async function minify(
@@ -82,7 +64,7 @@ export async function minify(
   }
 
   for (const artifact of artifactsHtml) {
-    const filename = basename(artifact.path);
+    const filename = path.basename(artifact.path);
     const source = await artifact.text();
     const result = await html.minify(source, {
       filename,
@@ -133,7 +115,7 @@ export async function minify(
   }
 
   for (const artifact of artifactsCss) {
-    const filename = basename(artifact.path);
+    const filename = path.basename(artifact.path);
     const source = await artifact.text();
     const [purged] = await (purgecss ??= new PurgeCSS()).purge({
       content,
