@@ -27,7 +27,7 @@
     "@maxmilton/stylelint-config": "0.4.2",
     "@maxmilton/test-utils": "0.0.12",
     "@types/bun": "1.2.20",
-    "dprint": "0.50.1",
+    "dprint": "0.50.2",
     "eslint": "9.34.0",
     "eslint-plugin-oxlint": "1.12.0",
     "eslint-plugin-unicorn": "60.0.0",
