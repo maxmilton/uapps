@@ -10,8 +10,8 @@
   "sideEffects": false,
   "main": "src/index.ts",
   "dependencies": {
-    "@swc/core": "1.13.5",
-    "@swc/html": "1.13.5",
+    "@swc/core": "1.14.0",
+    "@swc/html": "1.14.0",
     "bun-plugin-ekscss": "0.0.3",
     "ekscss": "0.0.23",
     "lightningcss": "1.30.1",
