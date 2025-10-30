@@ -1,22 +1,23 @@
-name: sherif
+name: shellcheck
 on:
   push:
     branches: [master, next]
+    paths: ["**.sh", ".github/workflows/shellcheck.yml"]
   pull_request: {}
   merge_group: {}
   workflow_dispatch: {}
+  schedule:
+    - cron: "28 6 * * 4"
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  sherif:
+  shellcheck:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
-        with:
-          bun-version: latest
-      - run: bunx sherif@latest
+      - uses: actions/checkout@v5
+      - run: shellcheck -ax **/*.sh
+        shell: bash
