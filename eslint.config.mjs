@@ -2,13 +2,14 @@ import js from "@eslint/js";
 import mm from "@maxmilton/eslint-config";
 import oxlint from "eslint-plugin-oxlint";
 import unicorn from "eslint-plugin-unicorn";
+import { defineConfig } from "eslint/config";
 import ts from "typescript-eslint";
 
-/** @type {import("typescript-eslint").ConfigArray} */
-const config = ts.config(
+export default defineConfig(
   js.configs.recommended,
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
+  // @ts-expect-error - broken upstream types
   unicorn.configs.recommended,
   mm.configs.recommended,
   oxlint.configs["flat/all"],
@@ -42,5 +43,3 @@ const config = ts.config(
     ],
   },
 );
-
-export default config;
