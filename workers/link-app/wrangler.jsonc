@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "link-app",
-  "compatibility_date": "2025-08-23",
+  "compatibility_date": "2025-10-14",
   "main": "./dist/worker.js",
   "route": {
     "pattern": "link.maxmilton.com",
@@ -17,8 +17,14 @@
   },
   "upload_source_maps": true,
   "no_bundle": true,
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "prod-link-app",
+    "database_id": "957ceb5e-dcc3-4a29-93a5-ebb8a2a46d43",
+  }],
   "observability": {
     "enabled": true,
+    "head_sampling_rate": 1,
   },
   "send_metrics": false,
 }
