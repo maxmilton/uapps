@@ -20,8 +20,7 @@ Monorepo of my micro apps.
 
 ## License
 
-MIT license. See
-[LICENSE](https://github.com/maxmilton/uapps/blob/master/LICENSE).
+MIT license. See [LICENSE](./LICENSE).
 
 <!-- TODO: Add attribution for favicons -->
 <!-- link-app -->
@@ -31,4 +30,4 @@ MIT license. See
 
 ---
 
-© 2025 [Max Milton](https://maxmilton.com)
+© [Max Milton](https://maxmilton.com)
