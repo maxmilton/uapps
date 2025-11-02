@@ -1,17 +1,21 @@
 name: deploy
+
 on:
   workflow_run:
     workflows: [ci]
     types: [completed]
     branches: [master]
-    paths-ignore: ["**.md"]
-  workflow_dispatch: {}
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+
 concurrency:
   group: deploy
   cancel-in-progress: true
+
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' && github.repository_owner == 'maxmilton' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
