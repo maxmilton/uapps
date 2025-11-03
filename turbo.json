@@ -4,8 +4,8 @@
   "tasks": {
     "//#lint:css": { "persistent": true, "cache": false },
     "//#lint:fmt": { "persistent": true, "cache": false },
+    "//#lint:oxlint": { "persistent": true, "cache": false },
     "//#lint:js": { "persistent": true, "cache": false },
-    "//#lint:js2": { "persistent": true, "cache": false },
     "//#lint:ts": { "persistent": true, "cache": false },
     "build": {
       "dependsOn": ["^build"],

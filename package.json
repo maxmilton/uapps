@@ -7,12 +7,11 @@
   "scripts": {
     "build": "turbo build",
     "dev": "export NODE_ENV=development; bun run build",
-    "start": "NODE_ENV=development turbo startall",
-    "lint": "turbo lint:css lint:fmt lint:js lint:js2 lint:ts",
+    "lint": "turbo lint:css lint:fmt lint:oxlint lint:js lint:ts",
     "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "dprint check",
-    "lint:js": "oxlint --format=stylish",
-    "lint:js2": "eslint",
+    "lint:oxlint": "oxlint --format=stylish",
+    "lint:js": "eslint",
     "lint:ts": "tsc --build --noEmit",
     "test": "bun test",
     "typegen": "turbo typegen"
