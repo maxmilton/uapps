@@ -68,6 +68,7 @@
     "import/no-unassigned-import": "off",
     "import/prefer-default-export": "off",
     "jsdoc/empty-tags": "warn", // allow @private markers with comment
+    "node/no-process-env": "off", // used for build-time constants
     "oxc/no-async-await": "off",
     "oxc/no-const-enum": "off", // bun inlines
     "oxc/no-optional-chaining": "off",
@@ -83,26 +84,17 @@
     "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
 
     /* Performance and byte savings */
-    // byte savings
-    "eslint/no-plusplus": "off",
-    // controlling promise resolve timing can lead to better performance
-    "promise/prefer-await-to-callbacks": "off",
+    "eslint/no-plusplus": "off", // byte savings
+    "promise/prefer-await-to-callbacks": "off", // control resolve timing for better performance
     "promise/prefer-await-to-then": "off",
-    // forEach is slower but more compact (for non-performance-critical code)
-    "unicorn/no-array-for-each": "off",
-    // byte savings + faster
-    "unicorn/explicit-length-check": "off",
+    "unicorn/no-array-for-each": "off", // forEach is more compact (slower but; for non-performance-critical code)
+    "unicorn/explicit-length-check": "off", // byte savings + faster
     "unicorn/no-await-expression-member": "off",
-    // indexOf is faster (in Chrome)
-    "unicorn/prefer-includes": "off",
-    // saves 3 bytes to use arrow function
-    "unicorn/prefer-native-coercion-functions": "off",
-    // bad browser support and slower
-    "unicorn/prefer-string-replace-all": "off",
-    // alternatives offer byte savings and better performance
-    "unicorn/prefer-string-starts-ends-with": "off",
-    // byte savings (minification doesn't currently automatically remove)
-    "unicorn/switch-case-braces": ["error", "avoid"],
+    "unicorn/prefer-includes": "off", // indexOf is faster (in Chrome)
+    "unicorn/prefer-native-coercion-functions": "off", // arrow function saves 3 bytes
+    "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
+    "unicorn/prefer-string-starts-ends-with": "off", // byte savings + faster
+    "unicorn/switch-case-braces": ["error", "avoid"], // byte savings (when minification doesn't remove)
   },
   "overrides": [
     {
