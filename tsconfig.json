@@ -5,13 +5,13 @@
   "compilerOptions": {
     "noEmit": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true
   },
   "references": [
     { "path": "./workers/link-app" },
     { "path": "./workers/ping-service" },
     { "path": "./workers/viewport-app" },
     { "path": "./tsconfig.bun.json" },
-    { "path": "./tsconfig.node.json" },
-  ],
+    { "path": "./tsconfig.node.json" }
+  ]
 }

@@ -8,7 +8,6 @@
 /playwright-report/
 /test-results/
 .env.local
-.stage3/
 .turbo/
 dist/
 node_modules/

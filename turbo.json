@@ -10,7 +10,7 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".wrangler/**"],
-      "outputLogs": "new-only",
+      "outputLogs": "new-only"
     },
     "dev": { "persistent": true, "cache": false },
     "deploy:check": { "cache": false },
@@ -18,12 +18,12 @@
       "cache": false,
       "dependsOn": ["^deploy"],
       "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
-      "outputLogs": "new-only",
+      "outputLogs": "new-only"
     },
-    "typegen": { "cache": false },
+    "typegen": { "cache": false }
   },
   // "globalDependencies": ["**/.dev.vars", "**/.env*", "package.json"],
   "globalDependencies": [".env*", "package.json"],
   "globalEnv": ["CI", "GITHUB_ACTIONS", "NODE_ENV"],
-  "noUpdateNotifier": true,
+  "noUpdateNotifier": true
 }

@@ -1,15 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "jsdoc",
-    "node",
-    "import",
-    "regex",
-    "promise",
-    "unicorn",
-    "typescript",
-    "oxc",
-  ],
+  "plugins": ["jsdoc", "node", "import", "regex", "promise", "unicorn", "typescript", "oxc"],
   "categories": {
     "correctness": "error",
     "nursery": "warn",
@@ -17,21 +8,21 @@
     "perf": "error",
     "restriction": "error",
     "style": "warn",
-    "suspicious": "error",
+    "suspicious": "error"
   },
   // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
-    "es2025": true,
+    "es2025": true
   },
   "globals": {
     "Bun": "readonly",
-    "process": "readonly",
+    "process": "readonly"
   },
   "settings": {
     "jsdoc": {
-      "ignoreInternal": true,
-    },
+      "ignoreInternal": true
+    }
   },
   "rules": {
     /* Sane overrides for "categories" */
@@ -50,11 +41,14 @@
     "eslint/new-cap": "off", // PascalCase stage1 component names
     "eslint/no-magic-numbers": "off",
     "eslint/no-ternary": "off",
-    "eslint/no-unused-vars": ["warn", {
-      "ignoreRestSiblings": true,
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_",
-    }],
+    "eslint/no-unused-vars": [
+      "warn",
+      {
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "eslint/no-void": "off",
     "eslint/sort-imports": "off",
     "eslint/sort-keys": "off",
@@ -94,7 +88,7 @@
     "unicorn/prefer-native-coercion-functions": "off", // arrow function saves 3 bytes
     "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
     "unicorn/prefer-string-starts-ends-with": "off", // byte savings + faster
-    "unicorn/switch-case-braces": ["error", "avoid"], // byte savings (when minification doesn't remove)
+    "unicorn/switch-case-braces": ["error", "avoid"] // byte savings (when minification doesn't remove)
   },
   "overrides": [
     {
@@ -103,37 +97,37 @@
         "jsdoc/require-param-type": "off",
         "jsdoc/require-param": "off",
         "jsdoc/require-returns-type": "off",
-        "jsdoc/require-returns": "off",
-      },
+        "jsdoc/require-returns": "off"
+      }
     },
     {
       "files": ["*.d.ts"],
       "rules": {
-        "import/unambiguous": "off",
-      },
+        "import/unambiguous": "off"
+      }
     },
     {
       "files": ["*.cjs"],
       "env": {
         "commonjs": true,
-        "es2025": false,
+        "es2025": false
       },
       "rules": {
         "no-commonjs": "off",
         "no-require-imports": "off",
-        "unambiguous": "off",
-      },
+        "unambiguous": "off"
+      }
     },
     {
       "files": ["*.config.ts", "*.config.mjs"],
       "env": {
-        "node": true,
+        "node": true
       },
       "rules": {
         "eslint/func-style": ["error", "declaration"],
         "import/no-default-export": "off",
-        "import/no-anonymous-default-export": "off",
-      },
+        "import/no-anonymous-default-export": "off"
+      }
     },
     {
       "files": ["*.test.ts", "*.spec.ts", "test/**"],
@@ -142,12 +136,12 @@
         "browser": true,
         "jest": true,
         "node": true,
-        "vitest": true,
+        "vitest": true
       },
       "globals": {
         "$console": "readonly",
         "happyDOM": "readonly",
-        "Loader": "readonly",
+        "Loader": "readonly"
       },
       "rules": {
         "eslint/func-style": "off",
@@ -156,79 +150,71 @@
         "import/no-namespace": "off",
         "jest/no-commented-out-tests": "warn",
         "promise/catch-or-return": "off",
-        "unicorn/filename-case": ["error", { "cases": { "kebabCase": true, "pascalCase": true } }],
-      },
+        "unicorn/filename-case": ["error", { "cases": { "kebabCase": true, "pascalCase": true } }]
+      }
     },
     {
-      "files": [
-        "packages/*/build.ts",
-        "packages/build-tools/src/**",
-        "workers/*/build.ts",
-      ],
+      "files": ["packages/*/build.ts", "packages/build-tools/src/**", "workers/*/build.ts"],
       "env": {
-        "node": true,
+        "node": true
       },
       "rules": {
         "eslint/func-style": ["error", "declaration"],
         "eslint/no-await-in-loop": "off",
         "eslint/no-console": "off",
         "eslint/no-magic-numbers": "off",
-        "import/no-namespace": "off",
-      },
+        "import/no-namespace": "off"
+      }
     },
     {
-      "files": [
-        "packages/**",
-        "workers/*-app/src/**",
-        "workers/*-frontend/src/**",
-      ],
+      "files": ["packages/**", "workers/*-app/src/**", "workers/*-frontend/src/**"],
       "env": {
-        "browser": true,
+        "browser": true
       },
       "rules": {
         /* stage1 */
         "unicorn/prefer-add-event-listener": "off",
         "unicorn/prefer-dom-node-append": "off",
         "unicorn/prefer-dom-node-remove": "off",
-        "unicorn/prefer-query-selector": "off",
-      },
+        "unicorn/prefer-query-selector": "off"
+      }
     },
     {
       "files": ["packages/*/src/**", "workers/*/src/**"],
       "globals": {
-        "bugbox": "readonly",
-      },
+        "bugbox": "readonly"
+      }
     },
     {
       "files": ["workers/*/src/components/**"],
       "rules": {
-        "unicorn/filename-case": ["error", { "case": "pascalCase" }],
-      },
+        "unicorn/filename-case": ["error", { "case": "pascalCase" }]
+      }
     },
     {
       "files": ["workers/*/src/pages/**"],
       "rules": {
-        "import/no-default-export": "off",
-      },
+        "import/no-default-export": "off"
+      }
     },
     {
       "files": ["workers/*-app/src/sw.ts", "workers/*-frontend/src/sw.ts"],
       "env": {
-        "serviceworker": true,
-      },
+        "serviceworker": true
+      }
     },
     {
       "files": ["workers/*-backend/src/**", "workers/*-service/src/**"],
       "env": {
         "browser": false,
-        "node": true,
+        "node": true
       },
       "rules": {
         "unicorn/require-post-message-target-origin": "off",
         // Nested `if` are used in input validation for code readability and
         // consistency but get transpiled to a more optimal form in the build
-        "unicorn/no-lonely-if": "off",
-      },
+        "unicorn/no-lonely-if": "off"
+      }
     },
     {
       "files": ["workers/*/src/worker.ts"],
@@ -237,23 +223,23 @@
         "commonjs": false,
         "node": false,
         "serviceworker": false,
-        "worker": true,
+        "worker": true
       },
       "globals": {},
       "rules": {
-        "import/no-default-export": "off",
-      },
+        "import/no-default-export": "off"
+      }
     },
     {
       "files": ["scripts/*.bun"],
       "env": {
-        "node": true,
+        "node": true
       },
       "rules": {
         "eslint/no-console": "off",
-        "eslint/no-magic-numbers": "off",
-      },
-    },
+        "eslint/no-magic-numbers": "off"
+      }
+    }
   ],
-  "ignorePatterns": ["workers/*/worker-configuration.d.ts"],
+  "ignorePatterns": ["workers/*/worker-configuration.d.ts"]
 }

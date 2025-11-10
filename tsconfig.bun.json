@@ -8,7 +8,7 @@
     "packages/*/src",
     "packages/*/test",
     "scripts/*.bun", // files use hashbang: #!/usr/bin/env bun
-    "test",
+    "test"
   ],
-  "exclude": ["workers"],
+  "exclude": ["workers"]
 }

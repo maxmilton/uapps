@@ -24,6 +24,6 @@
     "noUncheckedSideEffectImports": true,
     "noUnusedLocals": false, // covered by oxlint
     "noUnusedParameters": false, // covered by oxlint
-    "verbatimModuleSyntax": true,
-  },
+    "verbatimModuleSyntax": true
+  }
 }
