@@ -1,7 +1,7 @@
-import { Status } from "#net.ts";
-import { AppError } from "#utils.ts";
 import { append, clone, collect, create, h, ONCLICK } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
+import { Status } from "#net.ts";
+import { AppError } from "#utils.ts";
 
 interface ErrorLike {
   code?: number;
@@ -33,7 +33,7 @@ const meta = compile<Refs>(`
 let view: ErrorPageComponent | undefined;
 
 function ErrorPage(error?: unknown): ErrorPageComponent {
-  const root = clone(view ??= h<ErrorPageComponent>(meta.html));
+  const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
   const ex =
@@ -65,21 +65,17 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
 
   if (
     // empty referrer or navigated directly e.g., from the URL bar or a bookmark
-    !document.referrer
+    !document.referrer ||
     // came from another site
-    || new URL(document.referrer).origin !== window.location.origin
+    new URL(document.referrer).origin !== window.location.origin ||
     // router, which uses a main element as root, hasn't been initialized yet
     // so it wouldn't be able to handle updating the route
-    || !document.querySelector("main")
+    !document.querySelector("main")
   ) {
     refs[meta.ref.back].hidden = true;
   }
 
-  if (
-    process.env.NODE_ENV === "development"
-    && ex instanceof Error
-    && ex.stack
-  ) {
+  if (process.env.NODE_ENV === "development" && ex instanceof Error && ex.stack) {
     const block = create("code");
     block.className = "code-block mt4";
     block.textContent = ex.stack;

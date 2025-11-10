@@ -1,5 +1,13 @@
-import { compile, DECLARATION, type Element, FONT_FACE, lookup, MEDIA, walk } from "@maxmilton/test-utils/css";
 import { describe, expect, test } from "bun:test";
+import {
+  compile,
+  DECLARATION,
+  type Element,
+  FONT_FACE,
+  lookup,
+  MEDIA,
+  walk,
+} from "@maxmilton/test-utils/css";
 import buildInfo from "../dist/build-info.json" with { type: "json" };
 import xcssConfig from "../xcss.config.mjs";
 
@@ -15,8 +23,7 @@ describe("xcss config", () => {
   });
 });
 
-const css = await Bun.file(`${import.meta.dir}/../dist/${buildInfo.css}`)
-  .text();
+const css = await Bun.file(`${import.meta.dir}/../dist/${buildInfo.css}`).text();
 const ast = compile(css);
 
 test("compiled AST is not empty", () => {

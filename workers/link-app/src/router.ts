@@ -1,8 +1,8 @@
+import { append, create } from "stage1/fast";
 import { Status } from "#net.ts";
 import HomePage from "#pages/home.ts";
 import LinkPage from "#pages/link.ts";
 import { AppError } from "#utils.ts";
-import { append, create } from "stage1/fast";
 
 const STUB_BASE_URL = "http://x";
 
@@ -13,12 +13,12 @@ export const navigateTo = (url: string): void => {
 // https://github.com/lukeed/navaid/blob/master/src/index.js#L52
 export const handleRouteClick = (event: MouseEvent): void => {
   if (
-    event.ctrlKey
-    || event.metaKey
-    || event.altKey
-    || event.shiftKey
-    || event.button
-    || event.defaultPrevented
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    event.shiftKey ||
+    event.button ||
+    event.defaultPrevented
   ) {
     return;
   }
@@ -27,11 +27,11 @@ export const handleRouteClick = (event: MouseEvent): void => {
   const href = link?.getAttribute("href");
 
   if (
-    !href
-    || link!.target
-    || link!.host !== location.host
+    !href ||
+    link!.target ||
+    link!.host !== location.host ||
     // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
-    || href[0] === "#"
+    href[0] === "#"
   ) {
     return;
   }

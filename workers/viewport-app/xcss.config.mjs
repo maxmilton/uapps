@@ -11,10 +11,7 @@ onBeforeBuild(() => {
 
 export default extend(framework, {
   globals: {
-    fontStack: [
-      "system-ui",
-      "sans-serif",
-    ].join(", "),
+    fontStack: ["system-ui", "sans-serif"].join(", "),
     textSize: "18px",
 
     // App specific config properties

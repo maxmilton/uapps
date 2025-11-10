@@ -1,9 +1,9 @@
 /* oxlint-disable no-bitwise */
 
+import path from "node:path";
 import * as swc from "@swc/core";
 import * as html from "@swc/html";
 import * as lightningcss from "lightningcss";
-import path from "node:path";
 import { PurgeCSS, type RawContent, type UserDefinedOptions } from "purgecss";
 
 export { xcss } from "bun-plugin-ekscss";
@@ -129,13 +129,15 @@ export async function minify(
       code: encoder.encode(purged.css),
       minify: true,
       targets,
-      include: lightningcss.Features.Colors
-        | lightningcss.Features.Nesting
-        | lightningcss.Features.MediaQueries,
-      exclude: lightningcss.Features.FontFamilySystemUi
-        | lightningcss.Features.LogicalProperties
-        | lightningcss.Features.DirSelector
-        | lightningcss.Features.LightDark,
+      include:
+        lightningcss.Features.Colors |
+        lightningcss.Features.Nesting |
+        lightningcss.Features.MediaQueries,
+      exclude:
+        lightningcss.Features.FontFamilySystemUi |
+        lightningcss.Features.LogicalProperties |
+        lightningcss.Features.DirSelector |
+        lightningcss.Features.LightDark,
       sourceMap: Boolean(artifact.sourcemap),
       inputSourceMap: purged.sourceMap!,
     });

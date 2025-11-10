@@ -1,4 +1,5 @@
 import { AppError } from "#utils.ts";
+
 export { Status } from "@uapps/http-status-codes";
 
 export async function getEndpoint<T>(url: string): Promise<T> {
@@ -15,11 +16,7 @@ export async function getEndpoint<T>(url: string): Promise<T> {
   return response.json();
 }
 
-export async function sendEndpoint(
-  method: "DELETE",
-  url: string,
-  data?: never,
-): Promise<Response>;
+export async function sendEndpoint(method: "DELETE", url: string, data?: never): Promise<Response>;
 export async function sendEndpoint(
   method: "PATCH" | "POST" | "PUT",
   url: string,

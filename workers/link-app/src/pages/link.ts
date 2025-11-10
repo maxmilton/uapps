@@ -23,7 +23,7 @@ const meta = compile<Refs>(
 let view: LinkPageComponent | undefined;
 
 function LinkPage(id: string): LinkPageComponent {
-  const root = clone(view ??= h<LinkPageComponent>(meta.html));
+  const root = clone((view ??= h<LinkPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
   // const off1 = state.on('feedback', (feedback) => {

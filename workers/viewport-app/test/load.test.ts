@@ -1,5 +1,5 @@
-import { performanceSpy } from "@maxmilton/test-utils/spy";
 import { afterEach, expect, spyOn, test } from "bun:test";
+import { performanceSpy } from "@maxmilton/test-utils/spy";
 import { reset } from "../../../test/setup.ts";
 import buildInfo from "../dist/build-info.json" with { type: "json" };
 
@@ -21,25 +21,17 @@ test("renders entire app", async () => {
   expect.assertions(14);
   await load();
   expect(document.body.innerHTML.length).toBeGreaterThan(500);
-  expect(document.body.querySelector("main")).toBeInstanceOf(
-    window.HTMLElement,
-  );
+  expect(document.body.querySelector("main")).toBeInstanceOf(window.HTMLElement);
   expect(document.body.querySelectorAll("h1")).toHaveLength(1);
-  expect(document.body.querySelector("h1")).toBeInstanceOf(
-    window.HTMLHeadingElement,
-  );
+  expect(document.body.querySelector("h1")).toBeInstanceOf(window.HTMLHeadingElement);
   expect(document.body.querySelector("h1")?.textContent).toBe("Viewport Info");
   expect(document.body.querySelectorAll("dt")).toHaveLength(12);
   expect(document.body.querySelectorAll("dd")).toHaveLength(12);
   expect(document.body.querySelectorAll("footer")).toHaveLength(1);
-  expect(document.body.querySelector("footer")).toBeInstanceOf(
-    window.HTMLElement,
-  );
+  expect(document.body.querySelector("footer")).toBeInstanceOf(window.HTMLElement);
   const firstNode = document.body.firstChild as HTMLElement;
   expect(firstNode.nodeName).toBe("MAIN");
-  const footerLinks = document.body.querySelectorAll<HTMLAnchorElement>(
-    "footer a",
-  );
+  const footerLinks = document.body.querySelectorAll<HTMLAnchorElement>("footer a");
   expect(footerLinks).toHaveLength(2);
   expect(footerLinks[0].href).toBe("https://maxmilton.com/");
   expect(footerLinks[0].textContent).toBe("Max Milton");

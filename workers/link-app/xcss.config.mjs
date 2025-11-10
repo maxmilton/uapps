@@ -8,11 +8,7 @@ onBeforeBuild(() => {
 
 export default extend(framework, {
   globals: {
-    fontStack: [
-      "Hyperlegible",
-      "system-ui",
-      "sans-serif",
-    ].join(", "),
+    fontStack: ["Hyperlegible", "system-ui", "sans-serif"].join(", "),
     textSize: "18px",
 
     // App specific config properties

@@ -31,16 +31,14 @@ async function buildHTML(artifacts: Bun.BuildArtifact[]) {
     </html>
   `.replace(/^\s+/gm, "");
 
-  artifacts.push(
-    {
-      path: "dist/index.html",
-      type: "text/html;charset=utf-8",
-      size: html.length,
-      sourcemap: null,
-      // @ts-expect-error - not async
-      text: () => html,
-    } satisfies Bun.BuildArtifact,
-  );
+  artifacts.push({
+    path: "dist/index.html",
+    type: "text/html;charset=utf-8",
+    size: html.length,
+    sourcemap: null,
+    // @ts-expect-error - not async
+    text: () => html,
+  } satisfies Bun.BuildArtifact);
 
   await Bun.write("dist/index.html", html);
 

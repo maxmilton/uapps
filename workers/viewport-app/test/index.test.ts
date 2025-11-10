@@ -1,6 +1,6 @@
-import { validate } from "@maxmilton/test-utils/html";
 import { describe, expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
+import { validate } from "@maxmilton/test-utils/html";
 import buildInfo from "../dist/build-info.json" with { type: "json" };
 
 const distPath = `${import.meta.dir}/../dist`;
@@ -23,12 +23,7 @@ describe("dist files", () => {
   // XXX: Files with unknown type (e.g., symlinks) fall back to the default
   // "application/octet-stream". Bun.file() does not resolve symlinks so it's
   // safe to infer that all these files are therefore regular files.
-  const distFiles: [
-    filename: string,
-    type: string,
-    minBytes?: number,
-    maxBytes?: number,
-  ][] = [
+  const distFiles: [filename: string, type: string, minBytes?: number, maxBytes?: number][] = [
     ["_headers", "application/octet-stream"],
     ["build-info.json", "application/json;charset=utf-8"],
     ["favicon.ico", "image/x-icon"],

@@ -21,9 +21,7 @@ const out = await Bun.build({
   define: {
     "process.env.APP_RELEASE": JSON.stringify(release),
     "process.env.NODE_ENV": JSON.stringify(mode),
-    "process.env.BUGBOX_API_ENDPOINT": JSON.stringify(
-      "https://io.bugbox.app/v0",
-    ),
+    "process.env.BUGBOX_API_ENDPOINT": JSON.stringify("https://io.bugbox.app/v0"),
   },
   splitting: false,
   minify: !dev,
