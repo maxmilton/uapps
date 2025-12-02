@@ -1,4 +1,4 @@
-/* eslint-disable prefer-template */
+/* oxlint-disable prefer-template */
 
 import { collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };

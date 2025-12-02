@@ -26,5 +26,5 @@ test("rendered DOM matches snapshot", () => {
   expect(rendered.container.innerHTML).toMatchSnapshot();
 });
 
-test.todo("rendered DOM updates when viewport changes");
-test.todo("rendered DOM updates when device orientation changes");
+test.todo("rendered DOM updates when viewport changes", () => {});
+test.todo("rendered DOM updates when device orientation changes", () => {});
