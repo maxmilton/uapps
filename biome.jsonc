@@ -32,7 +32,7 @@
     "formatter": {
       // TODO: Use once biome doesn't put the operator in a completely retarded
       // location (inline with comments, rather than on the next code line).
-      // "operatorLinebreak": "before",
+      // "operatorLinebreak": "before"
     }
   },
   "overrides": [

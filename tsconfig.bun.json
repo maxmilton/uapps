@@ -2,12 +2,11 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {},
   "include": [
-    "*.config.mjs",
+    "*.config.js",
     "packages/*/*.d.ts",
     "packages/*/build.ts",
     "packages/*/src",
     "packages/*/test",
-    "scripts/*.bun", // files use hashbang: #!/usr/bin/env bun
     "test"
   ],
   "exclude": ["workers"]

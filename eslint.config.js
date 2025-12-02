@@ -15,22 +15,14 @@ export default defineConfig(
   {
     linterOptions: {
       reportUnusedDisableDirectives: "error",
+      reportUnusedInlineConfigs: "error",
     },
     languageOptions: {
       parserOptions: {
-        extraFileExtensions: [".bun"],
-        project: [
-          "tsconfig.json",
-          "tsconfig.bun.json",
-          "tsconfig.node.json",
-          "workers/*/tsconfig.json",
-        ],
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
   },
-  {
-    ignores: ["**/*.bak", "**/dist", "coverage", "workers/*/worker-configuration.d.ts"],
-  },
+  { ignores: ["**/*.bak", "**/dist", "coverage", "workers/*/worker-configuration.d.ts"] },
 );

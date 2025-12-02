@@ -1,5 +1,5 @@
 import type { meta, send } from "bugbox";
-import type { ONCLICK } from "stage1/fast";
+import { ONCLICK } from "stage1/fast";
 
 declare module "bun" {
   interface Env {

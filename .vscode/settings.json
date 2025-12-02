@@ -22,7 +22,6 @@
   },
   "git.branchProtection": ["master", "next"],
   "javascript.validate.enable": true,
-  "js/ts.implicitProjectConfig.checkJs": true,
   "prettier.enable": false, // use biome
   "scss.validate": false,
   "stylelint.enable": true,

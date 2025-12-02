@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "$schema": "https://www.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "composite": true,
 
@@ -19,11 +19,11 @@
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false, // covered by oxlint
+    "noFallthroughCasesInSwitch": false, // covered by linters
     "noImplicitOverride": true,
     "noUncheckedSideEffectImports": true,
-    "noUnusedLocals": false, // covered by oxlint
-    "noUnusedParameters": false, // covered by oxlint
+    "noUnusedLocals": false, // covered by linters
+    "noUnusedParameters": false, // covered by linters
     "verbatimModuleSyntax": true
   }
 }
