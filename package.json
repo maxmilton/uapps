@@ -14,7 +14,8 @@
     "lint:oxlint": "oxlint --ignore-path=.gitignore --format=stylish --report-unused-disable-directives",
     "lint:js": "eslint",
     "lint:ts": "tsc --build --noEmit",
-    "test": "bun test",
+    "test": "bun test --only-failures",
+    "test:ci": "bun test --coverage --random --rerun-each=3",
     "typegen": "turbo typegen"
   },
   "overrides": {
