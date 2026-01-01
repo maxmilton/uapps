@@ -1,13 +1,11 @@
-/* oxlint-disable prefer-template */
-
 import { collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
 
 const supportsTouch =
   "maxTouchPoints" in navigator
     ? navigator.maxTouchPoints > 0
-    : "ontouchstart" in document.documentElement ||
-      ("matchMedia" in window && matchMedia("(any-pointer:coarse)").matches);
+    : "ontouchstart" in document.documentElement
+      || ("matchMedia" in window && matchMedia("(any-pointer:coarse)").matches);
 
 type AppComponent = HTMLElement;
 interface Refs {

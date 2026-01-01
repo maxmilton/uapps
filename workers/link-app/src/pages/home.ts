@@ -2,6 +2,7 @@
 
 import { append, clone, collect, h, ONCLICK } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
+import { QrCode } from "#components/QrCode.ts";
 
 type HomePageComponent = HTMLDivElement;
 interface Refs {
@@ -23,7 +24,7 @@ const meta = compile<Refs>(
 let view: HomePageComponent | undefined;
 
 function HomePage(): HomePageComponent {
-  const root = clone(view ??= h<HomePageComponent>(meta.html));
+  const root = clone((view ??= h<HomePageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
   // const off1 = state.on('feedback', (feedback) => {
@@ -37,6 +38,8 @@ function HomePage(): HomePageComponent {
   // onRemove(root, () => {
   //   off1();
   // });
+
+  append(QrCode("https://example.com/s/short"), root);
 
   document.title = "🔗";
 

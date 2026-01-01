@@ -1,6 +1,9 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "extends": ["./node_modules/@maxmilton/oxlint-config/recommended.json"],
+  "extends": [
+    "./node_modules/@maxmilton/oxlint-config/recommended.json",
+    "./node_modules/@maxmilton/oxlint-config/stage1.json" // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
+  ],
   "categories": {
     "correctness": "error",
     "suspicious": "error",
@@ -58,7 +61,7 @@
         "workers/*-app/src/**",
         "workers/*-app/test/**"
       ],
-      "extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
+      //"extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
       "env": {
         "browser": true
       }

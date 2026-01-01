@@ -130,14 +130,14 @@ export async function minify(
       minify: true,
       targets,
       include:
-        lightningcss.Features.Colors |
-        lightningcss.Features.Nesting |
-        lightningcss.Features.MediaQueries,
+        lightningcss.Features.Colors
+        | lightningcss.Features.Nesting
+        | lightningcss.Features.MediaQueries,
       exclude:
-        lightningcss.Features.FontFamilySystemUi |
-        lightningcss.Features.LogicalProperties |
-        lightningcss.Features.DirSelector |
-        lightningcss.Features.LightDark,
+        lightningcss.Features.FontFamilySystemUi
+        | lightningcss.Features.LogicalProperties
+        | lightningcss.Features.DirSelector
+        | lightningcss.Features.LightDark,
       sourceMap: Boolean(artifact.sourcemap),
       inputSourceMap: purged.sourceMap!,
     });

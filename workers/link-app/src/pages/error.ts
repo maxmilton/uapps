@@ -36,9 +36,8 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
-  const ex =
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const ex = error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
   let code: unknown;
   let message: unknown;
 
@@ -63,14 +62,11 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
     window.history.back();
   };
 
+  // TODO: Place comments above inline code once biome doesn't format the || on the comment line.
   if (
-    // empty referrer or navigated directly e.g., from the URL bar or a bookmark
-    !document.referrer ||
-    // came from another site
-    new URL(document.referrer).origin !== window.location.origin ||
-    // router, which uses a main element as root, hasn't been initialized yet
-    // so it wouldn't be able to handle updating the route
-    !document.querySelector("main")
+    !document.referrer // empty referrer or navigated directly e.g., from the URL bar or a bookmark
+    || new URL(document.referrer).origin !== window.location.origin // came from another site
+    || !document.querySelector("main") // router, which uses a main element as root, hasn't been initialized yet so it wouldn't be able to handle updating the route
   ) {
     refs[meta.ref.back].hidden = true;
   }

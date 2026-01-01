@@ -1,7 +1,7 @@
 import { artifactPath, assert, minify, xcss } from "@uapps/build-tools";
 import { gitHash, gitRef, isDirty } from "@uapps/git-info";
 import pkg from "./package.json" with { type: "json" };
-import xcssConfig from "./xcss.config.mjs";
+import xcssConfig from "./xcss.config.js";
 
 const mode = Bun.env.NODE_ENV;
 const dev = mode === "development";
