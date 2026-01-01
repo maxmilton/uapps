@@ -3,7 +3,7 @@
     "biomejs.biome",
     "bradlc.vscode-tailwindcss",
     "dbaeumer.vscode-eslint",
-    "elijah-potter.harper",
+    "GitHub.vscode-github-actions",
     "MylesMurphy.prettify-ts",
     "oven.bun-vscode",
     "oxc.oxc-vscode",
@@ -11,7 +11,7 @@
     "stylelint.vscode-stylelint",
     "tekumara.typos-vscode",
     "timonwong.shellcheck",
-    "yoavbls.pretty-ts-errors"
+    "YoavBls.pretty-ts-errors"
   ],
-  "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode"]
+  "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode", "prettier.prettier-vscode"]
 }
