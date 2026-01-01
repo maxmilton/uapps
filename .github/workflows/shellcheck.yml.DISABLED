@@ -6,8 +6,8 @@ on:
       - master
       - next
     paths:
-      - "**.sh"
       - ".github/workflows/shellcheck.yml"
+      - "**.sh"
   pull_request:
   merge_group:
   workflow_dispatch:
