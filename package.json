@@ -8,14 +8,14 @@
   "scripts": {
     "build": "turbo build",
     "dev": "export NODE_ENV=development; bun run build",
-    "lint": "turbo lint:css lint:fmt lint:oxlint lint:js lint:ts",
+    "lint": "turbo lint:css lint:fmt lint:js lint:js2 lint:ts",
     "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "biome check",
-    "lint:oxlint": "oxlint --ignore-path=.gitignore --format=stylish --report-unused-disable-directives",
-    "lint:js": "eslint",
+    "lint:js": "oxlint --ignore-path=.gitignore --report-unused-disable-directives --format=stylish --type-aware",
+    "lint:js2": "eslint",
     "lint:ts": "tsc --build --noEmit",
     "test": "bun test --only-failures",
-    "test:ci": "bun test --coverage --random --rerun-each=3",
+    "test:ci": "bun test --coverage --randomize --rerun-each=3",
     "typegen": "turbo typegen"
   },
   "overrides": {

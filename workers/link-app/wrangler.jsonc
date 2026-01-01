@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "link-app",
-  "compatibility_date": "2025-12-02",
+  "compatibility_date": "2026-01-01",
   "main": "./dist/worker.js",
   "route": {
     "pattern": "link.maxmilton.com",

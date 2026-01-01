@@ -13,5 +13,7 @@ export default {
   rules: {
     "function-name-case": null,
     "media-query-no-invalid": null,
+    "order/order": null, // covered by biome
+    "order/properties-order": null, // covered by biome
   },
 };

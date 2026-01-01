@@ -3,8 +3,6 @@
 [install]
 auto = "disable"
 linker = "isolated"
-peer = true
 
 [test]
 preload = ["./test/setup.ts"]
-coverage = true

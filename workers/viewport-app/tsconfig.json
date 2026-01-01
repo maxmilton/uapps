@@ -8,7 +8,7 @@
     "types": ["bun", "./globals.d.ts", "./modules.d.ts"]
   },
   "include": [
-    "*.config.mjs",
+    "*.config.js",
     "*.config.ts",
     "*.d.ts",
     "build.ts",
