@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "moduleResolution": "node10",
-    "allowSyntheticDefaultImports": true
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
   },
   "include": [
     "**/*.cjs",
