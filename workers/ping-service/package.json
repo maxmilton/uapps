@@ -7,16 +7,16 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "imports": {
+    "#*": "./src/*"
+  },
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
     "dev": "NODE_ENV=development bun build.ts",
     "deploy": "wrangler deploy",
     "deploy:check": "wrangler deploy --dry-run",
     "serve": "wrangler dev",
-    "typegen": "wrangler types"
-  },
-  "imports": {
-    "#*": "./src/*"
+    "typegen": "wrangler types && bun ../../packages/build-tools/src/fix-worker-type.ts"
   },
   "dependencies": {
     "bugbox": "0.0.4"
