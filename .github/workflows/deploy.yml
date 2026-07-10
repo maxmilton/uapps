@@ -44,7 +44,7 @@ jobs:
         with:
           name: dist
           path: packages/*/dist/**
-      - run: gh release create "${{ github.ref_name }}" --generate-notes
+      - run: gh release create "$GITHUB_REF_NAME" --generate-notes
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
