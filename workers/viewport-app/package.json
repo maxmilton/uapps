@@ -1,21 +1,21 @@
 {
   "name": "@uapps/viewport-app",
   "version": "0.0.0",
+  "private": true,
   "description": "View live info about your current browser viewport",
   "repository": "github:maxmilton/uapps",
-  "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
-  "private": true,
+  "author": "Max Milton <max@2okki.com>",
   "type": "module",
-  "scripts": {
-    "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
-    "deploy": "wrangler deploy",
-    "deploy:check": "wrangler deploy --dry-run",
-    "serve": "wrangler dev --port 5000"
-  },
   "imports": {
     "#*": "./src/*"
+  },
+  "scripts": {
+    "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run",
+    "dev": "NODE_ENV=development bun build.ts",
+    "serve": "wrangler dev --port 5000"
   },
   "dependencies": {
     "@ekscss/framework": "0.0.60",

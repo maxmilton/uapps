@@ -1,20 +1,20 @@
 {
   "name": "@uapps/ping-service",
   "version": "0.0.0",
+  "private": true,
   "description": "Ping service for testing backends",
   "repository": "github:maxmilton/uapps",
-  "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
-  "private": true,
+  "author": "Max Milton <max@2okki.com>",
   "type": "module",
   "imports": {
     "#*": "./src/*"
   },
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
     "deploy": "wrangler deploy",
     "deploy:check": "wrangler deploy --dry-run",
+    "dev": "NODE_ENV=development bun build.ts",
     "serve": "wrangler dev",
     "typegen": "wrangler types && bun ../../packages/build-tools/src/fix-worker-type.ts"
   },

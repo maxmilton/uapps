@@ -1,8 +1,10 @@
 {
   "name": "@uapps/link-app",
   "version": "0.0.0",
+  "private": true,
   "description": "Short-lived link shortener",
   "repository": "github:maxmilton/uapps",
+  "license": "MIT",
   "author": "Max Milton <max@2okki.com>",
   "type": "module",
   "imports": {
@@ -10,9 +12,9 @@
   },
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
     "deploy": "wrangler deploy",
     "deploy:check": "wrangler deploy --dry-run",
+    "dev": "NODE_ENV=development bun build.ts",
     "serve": "wrangler dev --port 5000",
     "typegen": "wrangler types && bun ../../packages/build-tools/src/fix-worker-type.ts"
   },

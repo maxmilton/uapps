@@ -1,12 +1,12 @@
 {
   "name": "@uapps/http-status-codes",
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "description": "HTTP response status codes in a typed enum",
   "repository": "github:maxmilton/uapps",
-  "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
-  "private": true,
+  "author": "Max Milton <max@2okki.com>",
   "sideEffects": false,
+  "type": "module",
   "main": "src/index.ts"
 }

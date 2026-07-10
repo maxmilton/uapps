@@ -1,10 +1,10 @@
 {
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/*",
     "workers/*"
   ],
-  "type": "module",
   "scripts": {
     "build": "turbo build",
     "dev": "export NODE_ENV=development; bun run build",
