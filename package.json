@@ -22,7 +22,7 @@
     "@biomejs/biome": "2.5.1",
     "@cloudflare/workers-types": "5.20260703.1",
     "@eslint/js": "10.0.1",
-    "@maxmilton/eslint-config": "0.3.2",
+    "@maxmilton/eslint-config": "0.3.3",
     "@maxmilton/oxlint-config": "0.0.2",
     "@maxmilton/stylelint-config": "0.4.3",
     "@maxmilton/test-utils": "0.0.15",
