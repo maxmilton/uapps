@@ -24,7 +24,7 @@ jobs:
       attestations: write
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-      - uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+      - uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: workers/*/.wrangler/state
           key: wrangler-${{ github.run_id }}
