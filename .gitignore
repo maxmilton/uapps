@@ -4,6 +4,7 @@
 *.lock
 *.tsbuildinfo
 !/bun.lock
+/.claude/
 /coverage/
 /playwright-report/
 /test-results/
