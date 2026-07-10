@@ -21,6 +21,7 @@ export default {
       const short = path.slice(11);
     } else if (request.method === "POST" && path === "/api/link") {
       // extract short and url from request body
+      // @ts-expect-error - FIXME: WIP!!
       const { short, url } = await request.json();
     }
 
