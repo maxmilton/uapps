@@ -35,7 +35,7 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - uses: actions/attest@v4
+      - uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4
         with:
           subject-path: |
             packages/*/dist/**
