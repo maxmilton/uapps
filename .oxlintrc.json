@@ -4,6 +4,12 @@
     "./node_modules/@maxmilton/oxlint-config/recommended.json",
     "./node_modules/@maxmilton/oxlint-config/stage1.json" // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
   ],
+  "options": {
+    "maxWarnings": 100,
+    "reportUnusedDisableDirectives": "error"
+    // "typeAware": true,
+    // "typeCheck": true
+  },
   "categories": {
     "correctness": "error",
     "suspicious": "error",
@@ -13,6 +19,7 @@
     "restriction": "error",
     "nursery": "warn"
   },
+  // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
     "es2025": true

@@ -11,7 +11,7 @@
     "lint": "turbo lint:css lint:fmt lint:js lint:js2 lint:ts",
     "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "biome check",
-    "lint:js": "oxlint --ignore-path=.gitignore --report-unused-disable-directives --format=stylish --type-aware",
+    "lint:js": "oxlint --ignore-path=.gitignore --format=stylish",
     "lint:js2": "eslint",
     "lint:ts": "tsc --build --noEmit",
     "test": "bun test --only-failures",
