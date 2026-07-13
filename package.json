@@ -30,7 +30,7 @@
     "@types/node": "26.1.0",
     "eslint": "10.6.0",
     "eslint-plugin-oxlint": "1.72.0",
-    "eslint-plugin-unicorn": "70.0.0",
+    "eslint-plugin-unicorn": "71.1.0",
     "happy-dom": "20.10.6",
     "oxlint": "1.72.0",
     "stylelint": "17.14.0",
