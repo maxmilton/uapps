@@ -6,7 +6,8 @@
   ],
   "options": {
     "maxWarnings": 100,
-    "reportUnusedDisableDirectives": "error"
+    "reportUnusedDisableDirectives": "error",
+    "respectEslintDisableDirectives": false
     // "typeAware": true,
     // "typeCheck": true
   },
@@ -30,21 +31,23 @@
   },
   "rules": {
     /* Performance and byte savings */
-    "eslint/prefer-template": "off"
+    "eslint/prefer-template": "off",
     // "promise/prefer-await-to-callbacks": "off", // control resolve timing for better performance
     // "promise/prefer-await-to-then": "off",
     // "unicorn/no-array-for-each": "off", // forEach is more compact (slower but; for non-performance-critical code)
     // "unicorn/no-await-expression-member": "off",
     // "unicorn/prefer-includes": "off", // indexOf may be faster in some cases
     // "unicorn/prefer-string-starts-ends-with": "off", // byte savings + faster
+
+    // TODO: Remove these after next @maxmilton/oxlint-config package update
+    "eslint/no-undefined": "off"
   },
   "overrides": [
     {
       "files": ["*.test.ts", "*.spec.ts", "test/**"],
       "globals": {
         "$console": "readonly",
-        "happyDOM": "readonly",
-        "Loader": "readonly"
+        "happyDOM": "readonly"
       }
     },
     {
@@ -66,7 +69,8 @@
         "packages/*/src/**",
         "packages/*/test/**",
         "workers/*-app/src/**",
-        "workers/*-app/test/**"
+        "workers/*-app/test/**",
+        "test/**"
       ],
       //"extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
       "env": {

@@ -28,6 +28,8 @@ export default defineConfig(
       // https://github.com/oxc-project/oxc/issues/481
       // https://github.com/oxc-project/oxc/issues?q=%E2%98%82%EF%B8%8F
 
+      "unicorn/consistent-boolean-name": "off",
+
       /* Covered by oxlint */
       // TODO: Remove rules supported by oxlint once eslint-plugin-oxlint includes them.
       // "@typescript-eslint/prefer-nullish-coalescing": "off",
@@ -39,9 +41,19 @@ export default defineConfig(
       "unicorn/no-array-for-each": "off",
       "unicorn/no-array-sort": "off",
       "unicorn/no-await-expression-member": "off",
+      "unicorn/no-for-each": "off", // oxlint still uses old name; unicorn/no-array-for-each
+      "unicorn/no-global-object-property-assignment": "warn",
       "unicorn/prefer-add-event-listener": "off",
       "unicorn/prefer-dom-node-append": "off",
       "unicorn/prefer-global-this": "off",
+    },
+  },
+  {
+    files: ["packages/*/test/**", "workers/*/test/**", "test/**"],
+    rules: {
+      // TODO: Remove rules supported by oxlint once eslint-plugin-oxlint includes them.
+      "unicorn/no-global-object-property-assignment": "off",
+      "unicorn/no-top-level-side-effects": "off",
     },
   },
   { ignores: ["**/*.bak", "**/dist", "coverage", "workers/*/worker-configuration.d.ts"] },
