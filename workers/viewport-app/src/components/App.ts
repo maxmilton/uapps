@@ -9,6 +9,7 @@ const supportsTouch =
 
 type AppComponent = HTMLElement;
 interface Refs {
+  // oxlint-disable id-length
   a: Text;
   b: Text;
   c: Text;
@@ -21,6 +22,7 @@ interface Refs {
   j: Text;
   k: Text;
   l: Text;
+  // oxlint-enable id-length
 }
 
 const meta = compile<Refs>(`

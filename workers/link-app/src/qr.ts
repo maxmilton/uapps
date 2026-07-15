@@ -1,4 +1,8 @@
-// oxlint-disable no-bitwise, no-continue, typescript/prefer-for-of, unicorn/no-new-array, unicorn/numeric-separators-style
+/* eslint @typescript-eslint/no-unsafe-call: "warn" */
+/* eslint @typescript-eslint/no-unsafe-member-access: "warn" */
+/* eslint @typescript-eslint/restrict-template-expressions: "warn" */
+/* eslint-disable unicorn/no-computed-property-existence-check, unicorn/no-break-in-nested-loop */
+// oxlint-disable no-bitwise, no-continue, typescript/prefer-for-of, unicorn/no-new-array, unicorn/numeric-separators-style id-length complexity no-plusplus
 
 type Matrix = Int8Array; // -1 = reserved (function), 0 = white, 1 = black, -2 = unset
 
@@ -10,7 +14,7 @@ const ALIGN_POS: Record<number, number[]> = { 2: [6, 18], 3: [6, 22], 4: [6, 26]
 // --- GF(256) for RS (poly 0x11d)
 const EXP = new Uint8Array(512);
 const LOG = new Int16Array(256);
-(() => {
+{
   let x = 1;
 
   for (let i = 0; i < 255; i++) {
@@ -27,7 +31,7 @@ const LOG = new Int16Array(256);
   }
 
   LOG[0] = -1;
-})();
+}
 
 const gfMul = (a: number, b: number) => {
   if (!a || !b) {
@@ -148,12 +152,16 @@ function createMatrix(version: number) {
           set(rr, cc, 0);
           continue;
         }
+        // const inside =
+        //   x === 0 || x === 6 || y === 0 || y === 6
+        //     ? 1
+        //     : (x >= 2 && x <= 4 && y >= 2 && y <= 4
+        //       ? 1
+        //       : 0);
         const inside =
-          x === 0 || x === 6 || y === 0 || y === 6
+          x === 0 || x === 6 || y === 0 || y === 6 || (x >= 2 && x <= 4 && y >= 2 && y <= 4)
             ? 1
-            : x >= 2 && x <= 4 && y >= 2 && y <= 4
-              ? 1
-              : 0;
+            : 0;
         set(rr, cc, inside ? 1 : 0);
       }
     }
@@ -170,6 +178,7 @@ function createMatrix(version: number) {
 
   // Alignment patterns (version >= 2)
   const aligns = ALIGN_POS[version];
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (aligns) {
     for (const ay of aligns) {
       for (const ax of aligns) {
@@ -178,11 +187,12 @@ function createMatrix(version: number) {
           (ay === 6 && ax === 6)
           || (ay === 6 && ax === size - 7)
           || (ay === size - 7 && ax === 6)
-        )
+        ) {
           continue;
+        }
         for (let y = -2; y <= 2; y++) {
           for (let x = -2; x <= 2; x++) {
-            const inside = Math.abs(x) === 2 || Math.abs(y) === 2 ? 1 : x === 0 && y === 0 ? 1 : 0;
+            const inside = Math.abs(x) === 2 || Math.abs(y) === 2 || (x === 0 && y === 0) ? 1 : 0;
             set(ay + y, ax + x, inside ? 1 : 0);
           }
         }
@@ -195,10 +205,9 @@ function createMatrix(version: number) {
 
   // Reserve format areas (we'll write them later)
   for (let i = 0; i <= 8; i++) {
-    if (i !== 6) {
-      reserved[8 * size + i] = 1;
-      reserved[i * size + 8] = 1;
-    }
+    if (i === 6) continue;
+    reserved[8 * size + i] = 1;
+    reserved[i * size + 8] = 1;
   }
   for (let i = 0; i < 8; i++) {
     reserved[(size - 1 - i) * size + 8] = 1;
@@ -522,5 +531,6 @@ export function selfTest(): void {
       if (element === -2) throw new Error(`Reserved function module left unset at index ${i}`);
     }
   }
+  // oxlint-disable-next-line no-console
   console.info("selfTest: GF, RS parity, and reserved-placement checks passed.");
 }

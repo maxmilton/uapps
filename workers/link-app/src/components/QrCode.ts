@@ -5,6 +5,8 @@ try {
   // run quick verification (throws if any check fails)
   selfTest();
 } catch (error) {
+  // FIXME: REMOVE!
+  // oxlint-disable-next-line no-console
   console.error(error);
 }
 

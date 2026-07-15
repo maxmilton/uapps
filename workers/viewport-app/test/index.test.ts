@@ -94,10 +94,10 @@ describe("index.html", () => {
 
 test("CSS file has hash in filename", () => {
   expect.assertions(1);
-  expect(css).toMatch(/^index-[\da-z]+\.css$/);
+  expect(css).toMatch(/^index-[\da-z]+\.css$/u);
 });
 
 test("JS file has hash in filename", () => {
   expect.assertions(1);
-  expect(js).toMatch(/^index-[\da-z]+\.js$/);
+  expect(js).toMatch(/^index-[\da-z]+\.js$/u);
 });

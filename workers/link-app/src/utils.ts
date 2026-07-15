@@ -1,13 +1,13 @@
 export class AppError extends Error {
-  declare code: number | undefined;
+  public declare code: number | undefined;
   /**
    * Additional error details for debugging.
    * May be sent to error reporting service.
    */
-  declare details: unknown;
-  declare timestamp: string;
+  public declare details: unknown;
+  public declare timestamp: string;
 
-  constructor(message: string, code?: number, details?: unknown) {
+  public constructor(message: string, code?: number, details?: unknown) {
     super(message);
 
     this.name = "AppError";

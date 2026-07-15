@@ -4,7 +4,6 @@ export { Status } from "@uapps/http-status-codes";
 
 export async function getEndpoint<T>(url: string): Promise<T> {
   const response = await fetch(process.env.FRONTEND_APP_API_ENDPOINT + url, {
-    credentials: "same-origin",
     mode: "same-origin",
     redirect: "error",
   });
@@ -29,7 +28,6 @@ export async function sendEndpoint(
 ): Promise<Response> {
   const response = await fetch(process.env.FRONTEND_APP_API_ENDPOINT + url, {
     method,
-    credentials: "same-origin",
     mode: "same-origin",
     redirect: "error",
     headers: { "Content-Type": "application/json" },

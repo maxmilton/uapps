@@ -29,7 +29,7 @@ async function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <noscript>JavaScript is required</noscript>
     </body>
     </html>
-  `.replace(/^\s+/gm, "");
+  `.replace(/^\s+/gmu, "");
 
   artifacts.push({
     path: "dist/index.html",

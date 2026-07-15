@@ -3,10 +3,11 @@ import "@maxmilton/test-utils/extend";
 import { setupDOM } from "@maxmilton/test-utils/dom";
 
 // HACK: Make imported *.xcss files return empty to prevent test errors.
+// oxlint-disable-next-line vitest/require-hook
 Bun.plugin({
   name: "xcss",
   setup(build) {
-    build.onLoad({ filter: /\.xcss$/ }, () => ({
+    build.onLoad({ filter: /\.xcss$/u }, () => ({
       contents: "",
       loader: "css",
     }));

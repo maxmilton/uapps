@@ -23,6 +23,7 @@ const meta = compile<Refs>(
 let view: LinkPageComponent | undefined;
 
 function LinkPage(id: string): LinkPageComponent {
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   const root = clone((view ??= h<LinkPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 

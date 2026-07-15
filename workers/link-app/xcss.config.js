@@ -2,6 +2,7 @@ import framework from "@ekscss/framework/config";
 import { extend, ignoreImport } from "@ekscss/framework/utils";
 import { onBeforeBuild } from "ekscss";
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 onBeforeBuild(() => {
   ignoreImport(Bun.resolveSync("@ekscss/framework/level2/a11y.xcss", "."));
 });

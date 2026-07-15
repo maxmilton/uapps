@@ -33,6 +33,7 @@ const meta = compile<Refs>(`
 let view: ErrorPageComponent | undefined;
 
 function ErrorPage(error?: unknown): ErrorPageComponent {
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
@@ -41,6 +42,7 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   let code: unknown;
   let message: unknown;
 
+  // eslint-disable-next-line unicorn/no-optional-chaining-on-undeclared-variable
   window.bugbox?.send(ex as Error);
 
   if (typeof ex === "object") {
@@ -56,7 +58,7 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   refs[meta.ref.message].nodeValue = String(message || ex);
 
   refs[meta.ref.home][ONCLICK] = (): void => {
-    window.location.href = "/";
+    window.location.assign("/");
   };
   refs[meta.ref.back][ONCLICK] = (): void => {
     window.history.back();

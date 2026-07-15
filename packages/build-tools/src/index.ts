@@ -1,14 +1,12 @@
 /* oxlint-disable no-bitwise */
 
-import path from "node:path";
+import { basename, relative } from "node:path"; // eslint-disable-line unicorn/import-style
 import * as swc from "@swc/core";
 import * as html from "@swc/html";
 import * as lightningcss from "lightningcss";
 import { PurgeCSS, type RawContent, type UserDefinedOptions } from "purgecss";
 
 export { xcss } from "bun-plugin-ekscss";
-
-// import * as csso from 'csso';
 
 // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver#browser_compatibility
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide
@@ -31,10 +29,10 @@ export function assert(condition: boolean, message?: string): asserts condition 
 }
 
 export function artifactPath(artifacts: Bun.BuildArtifact[], name: string, ext: string): string {
-  const re = new RegExp(`\\/${name}(?:-[0-9a-z]{8})?\\.${ext}$`);
-  const artifact = artifacts.find((a) => re.test(a.path));
-  assert(!!artifact, `Artifact path ${re.source} not found`);
-  return path.relative("dist", artifact.path);
+  const re = new RegExp(`\\/${name}(?:-[0-9a-z]{8})?\\.${ext}$`, "u");
+  const artifact = artifacts.find(({ path }) => re.test(path));
+  assert(artifact !== undefined, `Artifact path ${re.source} not found`);
+  return relative("dist", artifact.path);
 }
 
 export async function minify(
@@ -64,7 +62,7 @@ export async function minify(
   }
 
   for (const artifact of artifactsHtml) {
-    const filename = path.basename(artifact.path);
+    const filename = basename(artifact.path);
     const source = await artifact.text();
     const result = await html.minify(source, {
       filename,
@@ -115,7 +113,7 @@ export async function minify(
   }
 
   for (const artifact of artifactsCss) {
-    const filename = path.basename(artifact.path);
+    const filename = basename(artifact.path);
     const source = await artifact.text();
     const [purged] = await (purgecss ??= new PurgeCSS()).purge({
       content,
@@ -146,14 +144,5 @@ export async function minify(
     if (artifact.sourcemap && minified.map) {
       await Bun.write(artifact.sourcemap.path, minified.map);
     }
-    // const minified2 = csso.minify(minified.code.toString(), {
-    //   restructure: true,
-    //   forceMediaMerge: true, // somewhat unsafe
-    //   // debug: true,
-    // });
-    // await Bun.write(artifact.path, minified2.css);
-    // if (artifact.sourcemap && minified2.map) {
-    //   await Bun.write(artifact.sourcemap.path, minified2.map.toString());
-    // }
   }
 }

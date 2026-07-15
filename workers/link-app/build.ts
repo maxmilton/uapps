@@ -33,7 +33,7 @@ async function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <noscript>JavaScript is required</noscript>
     </body>
     </html>
-  `.replace(/^\s+/gm, "");
+  `.replace(/^\s+/gmu, "");
   const html404 = `
     <!doctype html>
     <html lang="en">
@@ -48,7 +48,7 @@ async function buildHTML(artifacts: Bun.BuildArtifact[]) {
       <p>The resource you are looking for does not exist.</p>
     </body>
     </html>
-  `.replace(/^\s+/gm, "");
+  `.replace(/^\s+/gmu, "");
 
   artifacts.push(
     {

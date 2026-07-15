@@ -24,6 +24,7 @@ const meta = compile<Refs>(
 let view: HomePageComponent | undefined;
 
 function HomePage(): HomePageComponent {
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   const root = clone((view ??= h<HomePageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 

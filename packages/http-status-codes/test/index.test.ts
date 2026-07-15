@@ -6,6 +6,7 @@ describe("exports", () => {
     expect.assertions(2);
     expect(allExports).toBeDefined();
     // @ts-expect-error - intentional access on undefined prop
+    // oxlint-disable-next-line import/namespace
     expect(allExports.default).toBeUndefined();
   });
 

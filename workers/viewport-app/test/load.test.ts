@@ -31,7 +31,7 @@ test("renders entire app", async () => {
   expect(document.body.querySelector("footer")).toBeInstanceOf(window.HTMLElement);
   const firstNode = document.body.firstChild as HTMLElement;
   expect(firstNode.nodeName).toBe("MAIN");
-  const footerLinks = document.body.querySelectorAll<HTMLAnchorElement>("footer a");
+  const footerLinks = document.body.querySelectorAll<HTMLAnchorElement>(":scope footer a");
   expect(footerLinks).toHaveLength(2);
   expect(footerLinks[0].href).toBe("https://maxmilton.com/");
   expect(footerLinks[0].textContent).toBe("Max Milton");

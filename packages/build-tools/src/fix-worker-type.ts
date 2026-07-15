@@ -2,7 +2,6 @@
 // worker type definitions.
 
 const file = Bun.file("./worker-configuration.d.ts");
-// eslint-disable-next-line unicorn/consistent-boolean-name
 const exists = await file.exists();
 if (!exists) throw new Error("worker-configuration.d.ts not found");
 

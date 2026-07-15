@@ -6,7 +6,7 @@
 
 // import { afterEach, expect, test } from "bun:test";
 // import { cleanup, render } from "@maxmilton/test-utils/dom";
-// import { Footer } from "../src/components/Footer";
+// import { Footer } from "../src/components/Footer.ts";
 
 // afterEach(cleanup);
 
@@ -14,9 +14,9 @@
 //   expect.assertions(3);
 //   const rendered = render(Footer());
 //   expect(rendered.container.firstChild?.nodeName).toBe("FOOTER");
-//   expect(rendered.container.querySelector("a[href="https://maxmilton.com"]")).toBeTruthy();
+//   expect(rendered.container.querySelector('a[href="https://maxmilton.com"]')).toBeTruthy();
 //   expect(
-//     rendered.container.querySelector("a[href="https://github.com/maxmilton/reader/issues"]"),
+//     rendered.container.querySelector('a[href="https://github.com/maxmilton/reader/issues"]'),
 //   ).toBeTruthy();
 
 //   // TODO: More/better assertions
@@ -34,7 +34,7 @@
 //   expect(rendered.container.innerHTML).toMatch(/v\d+\.\d+\.\d+/);
 // });
 
-// eslint-disable-next-line unicorn/require-module-specifiers
+// oxlint-disable-next-line unicorn/require-module-specifiers
 export {};
 
 $console.warn("Footer tests are disabled");

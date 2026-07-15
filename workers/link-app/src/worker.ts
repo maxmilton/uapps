@@ -1,5 +1,5 @@
 export default {
-  async fetch(request, env, ctx): Promise<Response> {
+  async fetch(request, _env, _ctx): Promise<Response> {
     // const url = new URL(request.url);
     // switch (url.pathname) {
     //   case "/message":
@@ -21,8 +21,7 @@ export default {
       const short = path.slice(11);
     } else if (request.method === "POST" && path === "/api/link") {
       // extract short and url from request body
-      // @ts-expect-error - FIXME: WIP!!
-      const { short, url } = await request.json();
+      const payload = await request.json();
     }
 
     return new Response("Not Found", { status: 404 });

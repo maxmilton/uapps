@@ -42,7 +42,7 @@ describe("dist files", () => {
     ["worker.js.map", "application/json;charset=utf-8"],
   ];
 
-  for (const [filename, type, minBytes, maxBytes] of distFiles) {
+  describe.each(distFiles)("%s", (filename, type, minBytes, maxBytes) => {
     describe(filename, () => {
       const file = Bun.file(`dist/${filename}`);
 
@@ -61,7 +61,7 @@ describe("dist files", () => {
         });
       }
     });
-  }
+  });
 
   test("contains no extra files", async () => {
     expect.assertions(1);
@@ -102,10 +102,10 @@ describe("index.html", () => {
 
 test("index CSS file has hash in filename", () => {
   expect.assertions(1);
-  expect(build.css).toMatch(/^index-[\da-z]+\.css$/);
+  expect(build.css).toMatch(/^index-[\da-z]+\.css$/u);
 });
 
 test("index JS file has hash in filename", () => {
   expect.assertions(1);
-  expect(build.js).toMatch(/^index-[\da-z]+\.js$/);
+  expect(build.js).toMatch(/^index-[\da-z]+\.js$/u);
 });
