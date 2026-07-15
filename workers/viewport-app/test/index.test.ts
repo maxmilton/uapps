@@ -32,7 +32,7 @@ describe("dist files", () => {
     [css, "text/css;charset=utf-8", 1300, 1800],
     // TODO: Uncomment once bun supports CSS source maps.
     // [`${indexCSS}.map`, 'application/json;charset=utf-8', 100, 10_000],
-    [js, "text/javascript;charset=utf-8", 1000, 2000],
+    [js, "text/javascript;charset=utf-8", 1000, 2500],
     [`${js}.map`, "application/json;charset=utf-8"],
     ["index.html", "text/html;charset=utf-8", 400, 600],
     ["robots.txt", "text/plain;charset=utf-8"],

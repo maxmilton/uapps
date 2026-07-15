@@ -12,8 +12,7 @@ async function load() {
   // Workaround for hack in src/BookmarkBar.ts that waits for styles to be loaded
   document.head.append(document.createElement("style"));
 
-  Loader.registry.delete(MODULE_PATH);
-  await import(MODULE_PATH);
+  await import(`${MODULE_PATH}?bust=${Bun.nanoseconds().toString()}`);
   await happyDOM.waitUntilComplete();
 }
 
