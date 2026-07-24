@@ -38,7 +38,7 @@
     "turbo": "2.10.4",
     "typescript": "6.0.3",
     "typescript-eslint": "8.63.0",
-    "wrangler": "4.108.0"
+    "wrangler": "4.112.0"
   },
   "packageManager": "bun@1.99.0"
 }
