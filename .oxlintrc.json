@@ -23,7 +23,8 @@
   // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
-    "es2025": true
+    "es2025": true,
+    "es2026": true
   },
   "globals": {
     "Bun": "readonly",
