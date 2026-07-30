@@ -2,7 +2,8 @@
   "biome.enabled": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit",
-    "source.fixAll": "explicit"
+    "source.fixAll": "explicit",
+    "source.fixAllDangerous": "never"
   },
   "editor.colorDecorators": true,
   "editor.formatOnPaste": false,
@@ -45,14 +46,16 @@
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",
-      "source.fixAll.eslint": "never"
+      "source.fixAll.eslint": "never",
+      "source.fixAll.oxc": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascriptreact]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",
-      "source.fixAll.eslint": "never"
+      "source.fixAll.eslint": "never",
+      "source.fixAll.oxc": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -74,14 +77,16 @@
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",
-      "source.fixAll.eslint": "never"
+      "source.fixAll.eslint": "never",
+      "source.fixAll.oxc": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",
-      "source.fixAll.eslint": "never"
+      "source.fixAll.eslint": "never",
+      "source.fixAll.oxc": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
