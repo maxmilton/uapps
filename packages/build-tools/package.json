@@ -10,11 +10,11 @@
   "type": "module",
   "main": "src/index.ts",
   "dependencies": {
-    "@swc/core": "1.15.43",
-    "@swc/html": "1.15.43",
+    "@swc/core": "1.15.46",
+    "@swc/html": "1.15.46",
     "bun-plugin-ekscss": "0.0.3",
     "ekscss": "0.0.23",
-    "lightningcss": "1.32.0",
+    "lightningcss": "1.33.0",
     "purgecss": "8.0.0"
   }
 }
