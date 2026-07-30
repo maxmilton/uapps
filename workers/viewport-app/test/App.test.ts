@@ -23,7 +23,7 @@ test("rendered DOM contains expected elements", () => {
 test("rendered DOM matches snapshot", () => {
   expect.assertions(1);
   const rendered = render(App());
-  expect(rendered.container.innerHTML).toMatchSnapshot();
+  expect(rendered.container.getHTML()).toMatchSnapshot();
 });
 
 test.todo("rendered DOM updates when viewport changes", () => {});

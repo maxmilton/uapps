@@ -1,6 +1,8 @@
 // FIXME: This is a temporary workaround for broken types in the generated
 // worker type definitions.
 
+// oxlint-disable node/no-top-level-await
+
 const file = Bun.file("./worker-configuration.d.ts");
 const exists = await file.exists();
 if (!exists) throw new Error("worker-configuration.d.ts not found");

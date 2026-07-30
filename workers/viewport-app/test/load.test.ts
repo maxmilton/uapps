@@ -19,7 +19,7 @@ async function load() {
 test("renders entire app", async () => {
   expect.assertions(14);
   await load();
-  expect(document.body.innerHTML.length).toBeGreaterThan(500);
+  expect(document.body.getHTML().length).toBeGreaterThan(500);
   expect(document.body.querySelector("main")).toBeInstanceOf(window.HTMLElement);
   expect(document.body.querySelectorAll("h1")).toHaveLength(1);
   expect(document.body.querySelector("h1")).toBeInstanceOf(window.HTMLHeadingElement);
