@@ -4,7 +4,7 @@
 *.lock
 *.tsbuildinfo
 !/bun.lock
-/.claude/
+/.claude/settings.local.json
 /coverage/
 /playwright-report/
 /test-results/
