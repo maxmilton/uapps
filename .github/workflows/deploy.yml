@@ -26,6 +26,7 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
           fetch-depth: 1
+          fetch-tags: true
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: latest
@@ -33,15 +34,11 @@ jobs:
       - run: bun run build
       - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
-          subject-path: |
-            packages/*/dist/**
-            workers/*/dist/**
+          subject-path: workers/*/dist/**
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: dist
-          path: |
-            packages/*/dist/**
-            workers/*/dist/**
+          path: workers/*/dist/**
       - run: bun turbo deploy:check
       - name: Create release
         run: |
@@ -51,8 +48,8 @@ jobs:
           else
             git tag "$TAG"
             git push origin "$TAG"
+            gh release create "$TAG" --generate-notes --title "Deploy $TAG"
           fi
-          gh release create "$TAG" --generate-notes --title "Deploy $TAG"
         shell: bash
         env:
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
