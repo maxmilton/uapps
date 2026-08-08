@@ -57,7 +57,7 @@ jobs:
           path: |
             packages/*/dist/**
             workers/*/dist/**
-      - run: bun turbo deploy:check
+      - run: bun turbo deploy:check --ui=stream
       - name: Create release tag
         run: |
           if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
@@ -76,7 +76,7 @@ jobs:
         env:
           TAG: ${{ steps.version.outputs.tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: bun turbo deploy
+      - run: bun turbo deploy --ui=stream
         env:
           DEPLOY_SHA: ${{ steps.version.outputs.sha }}
           DEPLOY_TAG: ${{ steps.version.outputs.tag }}
