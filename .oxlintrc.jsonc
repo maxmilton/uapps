@@ -31,8 +31,8 @@
   },
   "settings": {
     "jsdoc": {
-      "ignoreInternal": true
-    }
+      "ignoreInternal": true,
+    },
   },
   "rules": {
     "eslint/prefer-destructuring": "off",
