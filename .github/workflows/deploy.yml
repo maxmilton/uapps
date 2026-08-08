@@ -59,10 +59,6 @@ jobs:
             workers/*/dist/**
       - run: bun turbo deploy:check
       - name: Create release tag
-        shell: bash
-        env:
-          TAG: ${{ steps.version.outputs.tag }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
             echo "Tag already exists: $TAG"
@@ -70,6 +66,10 @@ jobs:
             git tag "$TAG"
             git push origin "$TAG"
           fi
+        shell: bash
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create GitHub release
         run: gh release create "$TAG" --generate-notes --title "Deploy $TAG"
         shell: bash
