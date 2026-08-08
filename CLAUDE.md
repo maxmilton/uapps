@@ -163,6 +163,6 @@ deliberately left to linters, not tsc, per `tsconfig.base.json` comments.
   dependency versions by 7 days (except `@maxmilton/*`) as supply-chain
   safety margin — relevant if `bun install` seems to ignore
   just-published version.
-- `.bak` files scattered around repo (e.g. `src/index.ts.bak`,
-  `package.json.bak`) inactive backups, not part of build — don't
-  treat as source.
+- `.bak` files and dirs scattered around repo (e.g. `src/index.ts.bak`,
+  `package.json.bak`, `_ARCHIVE.bak/`) inactive backups for the maintainer's
+  reference only, not part of build — don't read them, don't treat as source.
