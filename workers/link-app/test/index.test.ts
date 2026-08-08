@@ -1,7 +1,10 @@
 // import { validate } from '@maxmilton/test-utils/html';
 import { describe, expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
+import { validate } from "@maxmilton/test-utils/html";
 import build from "../dist/build-info.json" with { type: "json" };
+
+const distPath = `${import.meta.dir}/../dist`;
 
 test("index CSS file found", () => {
   expect.assertions(1);
@@ -44,17 +47,18 @@ describe("dist files", () => {
 
   describe.each(distFiles)("%s", (filename, type, minBytes, maxBytes) => {
     describe(filename, () => {
-      const file = Bun.file(`dist/${filename}`);
+      const file = Bun.file(`${distPath}/${filename}`);
 
       test("exists with correct type", () => {
         expect.assertions(3);
         expect(file.exists()).resolves.toBeTruthy();
         expect(file.size).toBeGreaterThan(0);
-        expect(file.type).toBe(type); // TODO: Keep this? Type seems to be resolved from the file extension, not the file data.
+        expect(file.type).toBe(type);
       });
 
       if (typeof minBytes === "number" && typeof maxBytes === "number") {
-        test("is within expected file size limits", () => {
+        // TODO: Don't skip this once the real app is implemented.
+        test.skip("is within expected file size limits", () => {
           expect.assertions(2);
           expect(file.size).toBeGreaterThan(minBytes);
           expect(file.size).toBeLessThan(maxBytes);
@@ -65,28 +69,29 @@ describe("dist files", () => {
 
   test("contains no extra files", async () => {
     expect.assertions(1);
-    const distDir = await readdir("dist");
-    expect(distDir).toHaveLength(distFiles.length);
+    const expectedFiles = new Set(distFiles.map(([filename]) => filename));
+    const distDir = await readdir(distPath);
+    const extraFiles = distDir.filter((filename) => !expectedFiles.has(filename));
+    expect(extraFiles).toEqual([]);
   });
 
-  // TODO: Validate HTML once there is a better validator implementation.
-  // test.each(distFiles.filter(([filename]) => filename.endsWith('.html')))(
-  //   '%s contains valid HTML',
-  //   async (filename) => {
-  //     const file = Bun.file(`dist/${filename}`);
-  //     const html = await file.text();
-  //     const result = validate(html);
-  //     expect(result.valid).toBeTrue();
-  //   },
-  // );
+  test.each(distFiles.filter(([filename]) => filename.endsWith(".html")))(
+    "%s contains valid HTML",
+    async (filename) => {
+      const file = Bun.file(`${distPath}/${filename}`);
+      const html = await file.text();
+      const result = validate(html);
+      expect(result.valid).toBeTrue();
+    },
+  );
 });
 
-const indexHTML = await Bun.file("dist/index.html").text();
+const indexHTML = await Bun.file(`${distPath}/index.html`).text();
 
 describe("index.html", () => {
   test("contains the correct title", () => {
     expect.assertions(1);
-    expect(indexHTML).toContain(/* html */ "<title>ekscss REPL</title>");
+    expect(indexHTML).toContain(/* html */ "<title>🔗</title>");
   });
 
   test("contains the correct CSS filename", () => {

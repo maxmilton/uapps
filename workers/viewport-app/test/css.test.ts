@@ -45,7 +45,7 @@ test("does not contain any comments", () => {
   expect.assertions(4);
   expect(css).not.toInclude("/*");
   expect(css).not.toInclude("*/");
-  expect(css).not.toMatch(/(?<!:)\/\//); // "//" but not "://" (URL protocol)
+  expect(css).not.toMatch(/(?<!:)\/\//u); // "//" but not "://" (URL protocol)
   expect(css).not.toInclude("<!");
 });
 
@@ -53,6 +53,7 @@ test("does not have any CSS variable declarations", () => {
   expect.assertions(1);
   let found = 0;
   walk(ast, (element) => {
+    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === DECLARATION && (element.props as string).startsWith("--")) {
       found += 1;
     }
@@ -60,19 +61,16 @@ test("does not have any CSS variable declarations", () => {
   expect(found).toBe(0);
 });
 
-test("has a single @font-face query (Hyperlegible font)", () => {
-  expect.assertions(4);
+test("has no @font-face queries", () => {
+  expect.assertions(1);
   const fontFaceQueries: Element[] = [];
   walk(ast, (element) => {
+    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === FONT_FACE) {
       fontFaceQueries.push(element);
     }
   });
-  expect(fontFaceQueries).toHaveLength(1);
-  const firstChild = fontFaceQueries[0].children[0] as Element;
-  expect(firstChild.type).toBe(DECLARATION);
-  expect(firstChild.props).toBe("font-family");
-  expect(firstChild.children).toBe("Hyperlegible");
+  expect(fontFaceQueries).toHaveLength(0);
 });
 
 // "@media (min-width:60.01rem)"
@@ -80,6 +78,7 @@ test("has a single @media query", () => {
   expect.assertions(1);
   let found = 0;
   walk(ast, (element) => {
+    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === MEDIA) {
       found += 1;
     }

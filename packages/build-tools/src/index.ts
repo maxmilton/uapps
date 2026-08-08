@@ -11,17 +11,12 @@ export { xcss } from "bun-plugin-ekscss";
 // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver#browser_compatibility
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide
 const targets: lightningcss.Targets = {
-  // and_chr: 66 << 16,
   android: 66 << 16,
   chrome: 66 << 16,
   edge: 79 << 16,
   firefox: 69 << 16,
   ios_saf: (13 << 16) | (4 << 8),
   safari: (13 << 16) | (1 << 8),
-  // and_ff: 79 << 16,
-  // op_mob: 47 << 16,
-  // opera: 51 << 16,
-  // samsung: 9 << 16,
 };
 
 export function assert(condition: boolean, message?: string): asserts condition {
