@@ -76,25 +76,25 @@ jobs:
         env:
           TAG: ${{ steps.version.outputs.tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - run: bun turbo deploy --ui=stream --concurrency=1
-      #   env:
-      #     DEPLOY_SHA: ${{ steps.version.outputs.sha }}
-      #     DEPLOY_TAG: ${{ steps.version.outputs.tag }}
-      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      - name: Deploy link-app (bypass turbo)
+      # NOTE: deployed directly (not via `turbo deploy`) — turbo silently hangs
+      # wrangler's HTTP client mid-request and misreports success without ever
+      # deploying. See git history / PR discussion for the investigation.
+      - name: Deploy link-app
+        if: always()
         working-directory: workers/link-app
         run: bun run deploy
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      - name: Deploy ping-service (bypass turbo)
+      - name: Deploy ping-service
+        if: always()
         working-directory: workers/ping-service
         run: bun run deploy
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      - name: Deploy viewport-app (bypass turbo)
+      - name: Deploy viewport-app
+        if: always()
         working-directory: workers/viewport-app
         run: bun run deploy
         env:
