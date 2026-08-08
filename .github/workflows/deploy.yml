@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name != 'pull_request' && github.repository_owner == 'maxmilton' }}
+    if: ${{ github.repository_owner == 'maxmilton' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')}}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -24,6 +24,17 @@ jobs:
       attestations: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 1
+      - name: Derive deploy version
+        id: version
+        shell: bash
+        run: |
+          short_sha="$(git rev-parse --short=12 HEAD)"
+          tag="deploy-${short_sha}"
+          echo "sha=$short_sha" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: workers/*/.wrangler/state
@@ -42,14 +53,31 @@ jobs:
             workers/*/dist/**
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-          name: dist
+          name: dist-${{ steps.version.outputs.sha }}
           path: packages/*/dist/**
-      - run: gh release create "$GITHUB_REF_NAME" --generate-notes
+      - run: bun turbo deploy:check
+      - name: Create release tag
         shell: bash
         env:
+          TAG: ${{ steps.version.outputs.tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: bun turbo deploy:check
+        run: |
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "Tag already exists: $TAG"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
+      - name: Create GitHub release
+        run: gh release create "$TAG" --target "$SHA" --generate-notes --title "Deploy $TAG"
+        shell: bash
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+          SHA: ${{ steps.version.outputs.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: bun turbo deploy
         env:
+          DEPLOY_SHA: ${{ steps.version.outputs.sha }}
+          DEPLOY_TAG: ${{ steps.version.outputs.tag }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
