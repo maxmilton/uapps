@@ -69,7 +69,6 @@ test("has a single @font-face query (Hyperlegible font)", () => {
     }
   });
   expect(fontFaceQueries).toHaveLength(1);
-  // eslint-disable-next-line unicorn/better-dom-traversing
   const firstChild = fontFaceQueries[0].children[0] as Element;
   expect(firstChild.type).toBe(DECLARATION);
   expect(firstChild.props).toBe("font-family");

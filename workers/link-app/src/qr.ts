@@ -1,8 +1,5 @@
-/* eslint @typescript-eslint/no-unsafe-call: "warn" */
-/* eslint @typescript-eslint/no-unsafe-member-access: "warn" */
-/* eslint @typescript-eslint/restrict-template-expressions: "warn" */
-/* eslint-disable unicorn/no-computed-property-existence-check, unicorn/no-break-in-nested-loop */
-// oxlint-disable no-bitwise, no-continue, typescript/prefer-for-of, unicorn/no-new-array, unicorn/numeric-separators-style id-length complexity no-plusplus
+// oxlint-disable-next-line unicorn/no-abusive-eslint-disable
+// oxlint-disable
 
 type Matrix = Int8Array; // -1 = reserved (function), 0 = white, 1 = black, -2 = unset
 
@@ -178,15 +175,14 @@ function createMatrix(version: number) {
 
   // Alignment patterns (version >= 2)
   const aligns = ALIGN_POS[version];
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (aligns) {
     for (const ay of aligns) {
       for (const ax of aligns) {
         // Skip if overlapping a finder
         if (
-          (ay === 6 && ax === 6)
-          || (ay === 6 && ax === size - 7)
-          || (ay === size - 7 && ax === 6)
+          (ay === 6 && ax === 6) ||
+          (ay === 6 && ax === size - 7) ||
+          (ay === size - 7 && ax === 6)
         ) {
           continue;
         }
@@ -305,9 +301,9 @@ function penaltyScore(matrix: Matrix, size: number) {
     for (let c = 0; c < size - 1; c++) {
       const v = matrix[r * size + c];
       if (
-        v === matrix[r * size + c + 1]
-        && v === matrix[(r + 1) * size + c]
-        && v === matrix[(r + 1) * size + c + 1]
+        v === matrix[r * size + c + 1] &&
+        v === matrix[(r + 1) * size + c] &&
+        v === matrix[(r + 1) * size + c + 1]
       ) {
         score += 3;
       }
@@ -331,8 +327,8 @@ function penaltyScore(matrix: Matrix, size: number) {
       const beforeWhite =
         c >= 4 && matrix.slice(r * size + c - 4, r * size + c).every((x) => x === 0);
       const afterWhite =
-        c + 7 <= size - 4
-        && matrix.slice(r * size + c + 7, r * size + c + 11).every((x) => x === 0);
+        c + 7 <= size - 4 &&
+        matrix.slice(r * size + c + 7, r * size + c + 11).every((x) => x === 0);
       if (beforeWhite || afterWhite) {
         score += 40;
       }

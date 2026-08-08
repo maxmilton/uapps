@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "View live info about your current browser viewport",
-  "repository": "github:maxmilton/uapps",
   "license": "MIT",
   "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/uapps",
   "type": "module",
   "imports": {
     "#*": "./src/*"

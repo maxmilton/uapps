@@ -4,50 +4,53 @@
   "assist": {
     "actions": {
       "preset": "recommended",
-      "source": {
-        "useSortedPackageJson": "on",
-        "useSortedProperties": "on"
-      }
-    }
+      "source": { "useSortedProperties": "on" },
+    },
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 100
+    "lineWidth": 100,
   },
   "linter": {
     "enabled": true,
     "domains": {
-      "project": "all"
+      "project": "all",
     },
     "rules": {
       "preset": "recommended",
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
       },
       "correctness": {
-        "noUnresolvedImports": "off" // covered by typescript
+        "noUnresolvedImports": "off", // covered by typescript
       },
       "style": {
         "noNonNullAssertion": "off",
-        "useTemplate": "off"
+        "useTemplate": "off",
       },
       "suspicious": {
         "noAssignInExpressions": "off",
-        "noConstEnum": "off"
-      }
-    }
+        "noConstEnum": "off",
+      },
+    },
   },
   "css": {
     "parser": {
-      "tailwindDirectives": true
-    }
+      "tailwindDirectives": true,
+    },
+  },
+  "json": {
+    "formatter": {
+      "enabled": false,
+    },
   },
   "javascript": {
     "globals": ["Bun"],
     "formatter": {
-      "operatorLinebreak": "before"
-    }
+      "enabled": false, // use oxfmt
+      "operatorLinebreak": "before",
+    },
   },
   "overrides": [
     {
@@ -56,14 +59,15 @@
         "**/tsconfig*.json",
         ".vscode/*.json",
         ".oxlintrc.json",
-        "turbo.json"
+        ".oxfmtrc.json",
+        "turbo.json",
       ],
       "json": {
         "parser": {
           "allowComments": true,
-          "allowTrailingCommas": true
-        }
-      }
+          "allowTrailingCommas": true,
+        },
+      },
     },
     {
       "includes": [
@@ -71,31 +75,31 @@
         "**/*.test.ts",
         "packages/*/test/**",
         "workers/*/test/**",
-        "test/**"
+        "test/**",
       ],
       "linter": {
         "domains": {
-          "test": "all"
+          "test": "all",
         },
         "rules": {
           "correctness": {
-            "noUndeclaredDependencies": "off"
-          }
-        }
+            "noUndeclaredDependencies": "off",
+          },
+        },
       },
       "javascript": {
-        "globals": ["$console", "Bun", "happyDOM"]
-      }
+        "globals": ["$console", "Bun", "happyDOM"],
+      },
     },
     {
       "includes": ["**/*.cjs"],
       "linter": {
         "rules": {
           "suspicious": {
-            "noRedundantUseStrict": "off"
-          }
-        }
-      }
-    }
-  ]
+            "noRedundantUseStrict": "off",
+          },
+        },
+      },
+    },
+  ],
 }

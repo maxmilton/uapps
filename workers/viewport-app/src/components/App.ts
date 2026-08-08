@@ -30,7 +30,7 @@ interface Refs {
   // oxlint-enable id-length
 }
 
-const meta = compile<Refs>(`
+const meta = compile<Refs>(/* html */ `
   <main>
     <h1>Viewport Info</h1>
 

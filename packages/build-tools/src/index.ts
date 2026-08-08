@@ -1,6 +1,6 @@
-/* oxlint-disable no-bitwise */
+// oxlint-disable no-bitwise
 
-import { basename, relative } from "node:path"; // eslint-disable-line unicorn/import-style
+import { basename, relative } from "node:path";
 import * as swc from "@swc/core";
 import * as html from "@swc/html";
 import * as lightningcss from "lightningcss";
@@ -128,14 +128,14 @@ export async function minify(
       minify: true,
       targets,
       include:
-        lightningcss.Features.Colors
-        | lightningcss.Features.Nesting
-        | lightningcss.Features.MediaQueries,
+        lightningcss.Features.Colors |
+        lightningcss.Features.Nesting |
+        lightningcss.Features.MediaQueries,
       exclude:
-        lightningcss.Features.FontFamilySystemUi
-        | lightningcss.Features.LogicalProperties
-        | lightningcss.Features.DirSelector
-        | lightningcss.Features.LightDark,
+        lightningcss.Features.FontFamilySystemUi |
+        lightningcss.Features.LogicalProperties |
+        lightningcss.Features.DirSelector |
+        lightningcss.Features.LightDark,
       sourceMap: Boolean(artifact.sourcemap),
       inputSourceMap: purged.sourceMap!,
     });

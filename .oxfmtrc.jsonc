@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": ["CLAUDE.md"],
+  "overrides": [
+    {
+      "files": ["**/tsconfig*.json", ".vscode/*.json", ".vscode/**/*.json"],
+      "options": {
+        "parser": "jsonc",
+        "trailingComma": "all",
+      },
+    },
+  ],
+}

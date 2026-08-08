@@ -79,17 +79,17 @@ const html = await Bun.file(`${distPath}/index.html`).text();
 describe("index.html", () => {
   test("contains the correct title", () => {
     expect.assertions(1);
-    expect(html).toContain("<title>Viewport Info</title>");
+    expect(html).toContain(/* html */ "<title>Viewport Info</title>");
   });
 
   test("contains the correct CSS filename", () => {
     expect.assertions(1);
-    expect(html).toContain(`<link href=/${css} rel=stylesheet>`);
+    expect(html).toContain(/* html */ `<link href=/${css} rel=stylesheet>`);
   });
 
   test("contains the correct JS filename", () => {
     expect.assertions(1);
-    expect(html).toContain(`<script src=/${js} defer></script>`);
+    expect(html).toContain(/* html */ `<script src=/${js} defer></script>`);
   });
 });
 

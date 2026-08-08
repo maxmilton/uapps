@@ -1,15 +1,22 @@
 {
   "recommendations": [
+    "bierner.comment-tagged-templates",
+    "bierner.markdown-footnotes",
     "biomejs.biome",
     "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint",
     "GitHub.vscode-github-actions",
     "oven.bun-vscode",
     "oxc.oxc-vscode",
     "stylelint.vscode-stylelint",
     "tekumara.typos-vscode",
     "timonwong.shellcheck",
+    "typescriptteam.native-preview",
     "YoavBls.pretty-ts-errors"
   ],
-  "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode", "prettier.prettier-vscode"]
+  "unwantedRecommendations": [
+    "dbaeumer.vscode-eslint",
+    "dprint.dprint",
+    "esbenp.prettier-vscode",
+    "prettier.prettier-vscode"
+  ]
 }

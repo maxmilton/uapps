@@ -13,12 +13,12 @@ export const navigateTo = (url: string): void => {
 // https://github.com/lukeed/navaid/blob/master/src/index.js#L52
 export const handleRouteClick = (event: MouseEvent): void => {
   if (
-    event.ctrlKey
-    || event.metaKey
-    || event.altKey
-    || event.shiftKey
-    || event.button
-    || event.defaultPrevented
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    event.shiftKey ||
+    event.button ||
+    event.defaultPrevented
   ) {
     return;
   }

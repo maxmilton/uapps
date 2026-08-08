@@ -1,19 +1,19 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "link-app",
-  "compatibility_date": "2026-07-31",
+  "compatibility_date": "2026-08-01",
   "main": "./dist/worker.js",
   "route": {
     "pattern": "link.maxmilton.com",
     "zone_name": "maxmilton.com",
-    "custom_domain": true
+    "custom_domain": true,
   },
   "preview_urls": true,
   "workers_dev": true,
   "assets": {
     "directory": "./dist",
     "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
   },
   "upload_source_maps": true,
   "no_bundle": true,
@@ -21,12 +21,12 @@
     {
       "binding": "DB",
       "database_name": "prod-link-app",
-      "database_id": "957ceb5e-dcc3-4a29-93a5-ebb8a2a46d43"
-    }
+      "database_id": "957ceb5e-dcc3-4a29-93a5-ebb8a2a46d43",
+    },
   ],
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 1
+    "head_sampling_rate": 1,
   },
-  "send_metrics": false
+  "send_metrics": false,
 }

@@ -13,7 +13,7 @@ async function buildHTML(artifacts: Bun.BuildArtifact[]) {
 
   const js = artifactPath(artifacts, "index", "js");
   const css = artifactPath(artifacts, "index", "css");
-  const html = `
+  const html = /* html */ `
     <!doctype html>
     <html lang="en">
     <head>

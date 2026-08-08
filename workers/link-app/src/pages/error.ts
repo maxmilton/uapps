@@ -17,7 +17,7 @@ interface Refs {
   back: HTMLButtonElement;
 }
 
-const meta = compile<Refs>(`
+const meta = compile<Refs>(/* html */ `
   <div class=con>
     <h1>@title</h1>
     <p class="lead break">@message</p>
@@ -33,16 +33,14 @@ const meta = compile<Refs>(`
 let view: ErrorPageComponent | undefined;
 
 function ErrorPage(error?: unknown): ErrorPageComponent {
-  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  // oxlint-disable-next-line typescript/prefer-nullish-coalescing
   const ex = error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
   let code: unknown;
   let message: unknown;
 
-  // eslint-disable-next-line unicorn/no-optional-chaining-on-undeclared-variable
   window.bugbox?.send(ex as Error);
 
   if (typeof ex === "object") {
@@ -50,11 +48,11 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
     message = (ex as ErrorLike).message;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
+  // oxlint-disable-next-line typescript/no-base-to-string typescript/restrict-template-expressions
   refs[meta.ref.title].nodeValue = `${code ?? ""} Error`;
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
+  // oxlint-disable-next-line typescript/no-base-to-string typescript/restrict-template-expressions
   document.title = `${code ?? ""} Error | 🔗`;
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/prefer-nullish-coalescing
+  // oxlint-disable-next-line typescript/no-base-to-string typescript/prefer-nullish-coalescing
   refs[meta.ref.message].nodeValue = String(message || ex);
 
   refs[meta.ref.home][ONCLICK] = (): void => {
@@ -66,9 +64,9 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
 
   // TODO: Place comments above inline code once biome doesn't format the || on the comment line.
   if (
-    !document.referrer // empty referrer or navigated directly e.g., from the URL bar or a bookmark
-    || new URL(document.referrer).origin !== window.location.origin // came from another site
-    || !document.querySelector("main") // router, which uses a main element as root, hasn't been initialized yet so it wouldn't be able to handle updating the route
+    !document.referrer || // empty referrer or navigated directly e.g., from the URL bar or a bookmark
+    new URL(document.referrer).origin !== window.location.origin || // came from another site
+    !document.querySelector("main") // router, which uses a main element as root, hasn't been initialized yet so it wouldn't be able to handle updating the route
   ) {
     refs[meta.ref.back].hidden = true;
   }

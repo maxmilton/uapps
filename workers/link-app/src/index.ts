@@ -27,7 +27,6 @@ function renderErrorPage(error: unknown) {
 }
 
 window.addEventListener("error", (event) => {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   renderErrorPage(event.error || event.message);
 });
 window.addEventListener("unhandledrejection", (event) => {

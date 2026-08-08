@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/no-top-level-assignment-in-function */
+// oxlint-disable node/no-sync
 
 let gitRefCache: string | undefined;
 let gitHashCache: string | undefined;

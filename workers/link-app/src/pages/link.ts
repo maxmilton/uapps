@@ -8,22 +8,19 @@ interface Refs {
   feedback: HTMLDivElement;
 }
 
-const meta = compile<Refs>(
-  `
-    <div class=con>
-      <h1>🔗</h1>
+const meta = compile<Refs>(/* html */ `
+  <div class=con>
+    <h1>🔗</h1>
 
-      <div @feedback></div>
+    <div @feedback></div>
 
-      <p class=lead>Link link link.</p>
-    </div>
-  `,
-  // { keepSpaces: true },
-);
+    <p class=lead>Link link link.</p>
+  </div>
+`);
+// { keepSpaces: true },
 let view: LinkPageComponent | undefined;
 
 function LinkPage(id: string): LinkPageComponent {
-  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
   const root = clone((view ??= h<LinkPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 

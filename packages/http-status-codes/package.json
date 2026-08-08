@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "description": "HTTP response status codes in a typed enum",
-  "repository": "github:maxmilton/uapps",
   "license": "MIT",
   "author": "Max Milton <max@2okki.com>",
-  "sideEffects": false,
+  "repository": "github:maxmilton/uapps",
   "type": "module",
+  "sideEffects": false,
   "main": "src/index.ts"
 }

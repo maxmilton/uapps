@@ -4,13 +4,13 @@
   "tasks": {
     "//#lint:css": { "cache": false },
     "//#lint:fmt": { "cache": false },
+    "//#lint:fmt2": { "cache": false },
     "//#lint:js": { "cache": false },
-    "//#lint:js2": { "cache": false },
     "//#lint:ts": { "cache": false },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".wrangler/**"],
-      "outputLogs": "new-only"
+      "outputLogs": "new-only",
     },
     "dev": { "persistent": true, "cache": false },
     "deploy:check": { "cache": false },
@@ -18,11 +18,11 @@
       "cache": false,
       "dependsOn": ["^deploy"],
       "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
-      "outputLogs": "new-only"
+      "outputLogs": "new-only",
     },
-    "typegen": { "cache": false }
+    "typegen": { "cache": false },
   },
   "globalDependencies": ["**/.dev.vars", "**/.env*", "package.json"],
   "globalEnv": ["CI", "GITHUB_ACTIONS", "NODE_ENV"],
-  "noUpdateNotifier": true
+  "noUpdateNotifier": true,
 }

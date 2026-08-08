@@ -2,14 +2,13 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "extends": [
     "./node_modules/@maxmilton/oxlint-config/recommended.json",
-    "./node_modules/@maxmilton/oxlint-config/stage1.json" // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
+    "./node_modules/@maxmilton/oxlint-config/stage1.json", // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
   ],
   "options": {
     "maxWarnings": 100,
     "reportUnusedDisableDirectives": "error",
-    "respectEslintDisableDirectives": false
-    // "typeAware": true,
-    // "typeCheck": true
+    "respectEslintDisableDirectives": false,
+    "typeAware": true,
   },
   "categories": {
     "correctness": "error",
@@ -18,19 +17,23 @@
     "perf": "error",
     "style": "warn",
     "restriction": "error",
-    "nursery": "warn"
+    "nursery": "warn",
   },
   // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
     "es2025": true,
-    "es2026": true
+    "es2026": true,
   },
   "globals": {
     "Bun": "readonly",
-    "process": "readonly"
+    "process": "readonly",
   },
   "rules": {
+    "eslint/prefer-destructuring": "off",
+    "typescript/no-unsafe-type-assertion": "off",
+    "typescript/strict-boolean-expressions": "off",
+
     /* Performance and byte savings */
     "eslint/prefer-template": "off",
     // "promise/prefer-await-to-callbacks": "off", // control resolve timing for better performance
@@ -39,31 +42,34 @@
     // "unicorn/no-await-expression-member": "off",
     // "unicorn/prefer-includes": "off", // indexOf may be faster in some cases
     // "unicorn/prefer-string-starts-ends-with": "off", // byte savings + faster
-
-    // TODO: Remove these after next @maxmilton/oxlint-config package update
-    "eslint/no-undefined": "off"
   },
   "overrides": [
+    {
+      "files": ["*.config.js"],
+      "rules": {
+        "node/no-sync": "off",
+      },
+    },
     {
       "files": ["*.test.ts", "*.spec.ts", "test/**"],
       "globals": {
         "$console": "readonly",
-        "happyDOM": "readonly"
-      }
+        "happyDOM": "readonly",
+      },
     },
     {
       "files": ["packages/*/build.ts", "packages/build-tools/src/**", "workers/*/build.ts"],
       "env": {
+        "node": true,
         "commonjs": false,
-        "node": true
       },
       "rules": {
         "eslint/func-style": ["error", "declaration"],
         "eslint/no-await-in-loop": "off",
         "eslint/no-console": "off",
-        "eslint/no-magic-numbers": "off",
-        "import/no-namespace": "off"
-      }
+        "import/no-namespace": "off",
+        "node/no-sync": "off",
+      },
     },
     {
       "files": [
@@ -71,64 +77,64 @@
         "packages/*/test/**",
         "workers/*-app/src/**",
         "workers/*-app/test/**",
-        "test/**"
+        "test/**",
       ],
-      //"extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
+      // "extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
       "env": {
-        "browser": true
-      }
+        "browser": true,
+      },
     },
     {
       "files": ["packages/*/src/**", "workers/*/src/**"],
       "globals": {
-        "bugbox": "readonly"
-      }
+        "bugbox": "readonly",
+      },
     },
     {
       "files": ["workers/*/src/components/**"],
       "rules": {
-        "unicorn/filename-case": ["error", { "case": "pascalCase" }]
-      }
+        "unicorn/filename-case": ["error", { "case": "pascalCase" }],
+      },
     },
     {
       "files": ["workers/*/src/pages/**"],
       "rules": {
-        "import/no-default-export": "off"
-      }
+        "import/no-default-export": "off",
+      },
     },
     {
       "files": ["workers/*-app/src/sw.ts", "workers/*-frontend/src/sw.ts"],
       "env": {
-        "serviceworker": true
-      }
+        "serviceworker": true,
+      },
     },
     {
       "files": ["workers/*-backend/src/**", "workers/*-service/src/**"],
       "env": {
         "browser": false,
+        "node": true,
         "commonjs": false,
-        "node": true
       },
       "rules": {
         "unicorn/require-post-message-target-origin": "off",
         // Nested `if` are used in input validation for code readability and
         // consistency but get transpiled to a more optimal form in the build
-        "unicorn/no-lonely-if": "off"
-      }
+        "unicorn/no-lonely-if": "off",
+      },
     },
     {
       "files": ["workers/*/src/worker.ts"],
       "env": {
         "browser": false,
-        "commonjs": false,
         "node": false,
+        "commonjs": false,
         "serviceworker": false,
-        "worker": true
+        "worker": true,
       },
       "rules": {
-        "import/no-default-export": "off"
-      }
-    }
+        "import/no-default-export": "off",
+      },
+    },
   ],
-  "ignorePatterns": ["workers/*/worker-configuration.d.ts"]
+  "ignorePatterns": ["workers/*/worker-configuration.d.ts"],
 }

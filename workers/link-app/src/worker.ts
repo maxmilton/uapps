@@ -14,9 +14,9 @@ export default {
     const path = url.pathname;
 
     if (
-      request.method === "GET"
-      && path.length === "/api/link/XXXXXX".length // Short URL token is 6 characters long
-      && path.startsWith("/api/link/")
+      request.method === "GET" &&
+      path.length === "/api/link/XXXXXX".length && // Short URL token is 6 characters long
+      path.startsWith("/api/link/")
     ) {
       const short = path.slice(11);
     } else if (request.method === "POST" && path === "/api/link") {

@@ -86,17 +86,17 @@ const indexHTML = await Bun.file("dist/index.html").text();
 describe("index.html", () => {
   test("contains the correct title", () => {
     expect.assertions(1);
-    expect(indexHTML).toContain("<title>ekscss REPL</title>");
+    expect(indexHTML).toContain(/* html */ "<title>ekscss REPL</title>");
   });
 
   test("contains the correct CSS filename", () => {
     expect.assertions(1);
-    expect(indexHTML).toContain(`<link href=/${build.css} rel=stylesheet>`);
+    expect(indexHTML).toContain(/* html */ `<link href=/${build.css} rel=stylesheet>`);
   });
 
   test("contains the correct JS filename", () => {
     expect.assertions(1);
-    expect(indexHTML).toContain(`<script src=/${build.js} defer></script>`);
+    expect(indexHTML).toContain(/* html */ `<script src=/${build.js} defer></script>`);
   });
 });
 
