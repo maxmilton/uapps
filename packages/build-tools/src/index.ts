@@ -24,6 +24,7 @@ export function assert(condition: boolean, message?: string): asserts condition 
 }
 
 export function artifactPath(artifacts: Bun.BuildArtifact[], name: string, ext: string): string {
+  // nosemgrep: detect-non-literal-regexp
   const re = new RegExp(`\\/${name}(?:-[0-9a-z]{8})?\\.${ext}$`, "u");
   const artifact = artifacts.find(({ path }) => re.test(path));
   assert(artifact !== undefined, `Artifact path ${re.source} not found`);
