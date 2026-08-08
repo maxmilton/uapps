@@ -8,8 +8,7 @@ auto = "disable"
 linker = "isolated"
 peer = false
 minimumReleaseAge = 604800 # 7 days
-# TODO: Remove "wrangler"; just for debugging a CI deployment issue.
-minimumReleaseAgeExcludes = ["@maxmilton/*", "bugbox", "stage1", "wrangler"]
+minimumReleaseAgeExcludes = ["@maxmilton/*", "bugbox", "stage1"]
 
 [test]
 preload = ["./test/setup.ts"]
