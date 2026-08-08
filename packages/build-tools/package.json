@@ -12,8 +12,8 @@
   "dependencies": {
     "@swc/core": "1.15.47",
     "@swc/html": "1.15.47",
-    "bun-plugin-ekscss": "0.0.3",
-    "ekscss": "0.0.23",
+    "bun-plugin-ekscss": "0.0.4-next.0",
+    "ekscss": "0.0.24-next.0",
     "lightningcss": "1.33.0",
     "purgecss": "8.0.0"
   }

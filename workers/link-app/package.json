@@ -19,7 +19,7 @@
     "typegen": "wrangler types && bun ../../packages/build-tools/src/fix-worker-type.ts"
   },
   "dependencies": {
-    "@ekscss/framework": "0.0.60",
+    "@ekscss/framework": "0.0.61-next.0",
     "@uapps/http-status-codes": "workspace:*",
     "stage1": "0.10.0"
   },
@@ -27,6 +27,6 @@
     "@uapps/build-tools": "workspace:*",
     "@uapps/git-info": "workspace:*",
     "bugbox": "0.0.4",
-    "ekscss": "0.0.23"
+    "ekscss": "0.0.24-next.0"
   }
 }
