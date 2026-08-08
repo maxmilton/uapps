@@ -29,6 +29,11 @@
     "Bun": "readonly",
     "process": "readonly",
   },
+  "settings": {
+    "jsdoc": {
+      "ignoreInternal": true
+    }
+  },
   "rules": {
     "eslint/prefer-destructuring": "off",
     "typescript/no-unsafe-type-assertion": "off",

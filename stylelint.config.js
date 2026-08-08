@@ -9,11 +9,11 @@ export default {
     "@maxmilton/stylelint-config/tailwindcss",
     "@maxmilton/stylelint-config/xcss",
   ],
-  ignoreFiles: ["**/*.bak/**", "**/dist/**", "**/node_modules/**"],
   rules: {
     "function-name-case": null,
     "media-query-no-invalid": null,
     "order/order": null, // covered by biome
     "order/properties-order": null, // covered by biome
   },
+  ignoreFiles: ["**/*.bak/**", "**/dist/**", "**/node_modules/**"],
 };
