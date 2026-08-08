@@ -10,7 +10,7 @@
     "enabled": true,
   },
   "triggers": {
-    "crons": ["*/60 * * * *"], // every hour
+    "crons": ["0 * * * *"], // every hour
   },
   "secrets_store_secrets": [
     {
