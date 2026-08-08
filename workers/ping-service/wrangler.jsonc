@@ -15,12 +15,12 @@
   "secrets_store_secrets": [
     {
       "binding": "BUGBOX_API_KEY",
-      "secret_name": "BUGBOX_API_KEY",
+      "secret_name": "PING_SERVICE_BUGBOX_API_KEY",
       "store_id": "04d5e57002004507b878be996e770b48",
     },
     {
       "binding": "BUGBOX_REFERRER",
-      "secret_name": "BUGBOX_REFERRER",
+      "secret_name": "PING_SERVICE_BUGBOX_REFERRER",
       "store_id": "04d5e57002004507b878be996e770b48",
     },
   ],
