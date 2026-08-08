@@ -42,6 +42,9 @@
     // "unicorn/no-await-expression-member": "off",
     // "unicorn/prefer-includes": "off", // indexOf may be faster in some cases
     // "unicorn/prefer-string-starts-ends-with": "off", // byte savings + faster
+
+    // TODO: These are buggy. Remove after future oxlint updates.
+    "typescript/prefer-readonly-parameter-types": "off",
   },
   "overrides": [
     {
@@ -79,6 +82,7 @@
         "workers/*-app/test/**",
         "test/**",
       ],
+      // TODO: Uncomment once oxlint supports extends in overrides.
       // "extends": ["./node_modules/@maxmilton/oxlint-config/stage1.json"],
       "env": {
         "browser": true,

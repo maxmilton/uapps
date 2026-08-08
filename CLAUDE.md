@@ -1,6 +1,7 @@
 # CLAUDE.md
 
-Guidance for Claude Code (claude.ai/code) when work code this repo.
+This file provides guidance to Claude Code (claude.ai/code) when working with
+code in this repository.
 
 ## Overview
 
@@ -8,6 +9,12 @@ Guidance for Claude Code (claude.ai/code) when work code this repo.
 internal packages (`packages/*`), managed with Bun workspaces and Turborepo.
 Runtime and package manager: **Bun** (not Node/npm/pnpm/yarn) — use `bun`
 for everything (install, run, test, build).
+
+| App           | Directory              | URL                              |
+| ------------- | ---------------------- | -------------------------------- |
+| Link App      | `workers/link-app`     | <https://link.maxmilton.com>     |
+| Ping Service  | `workers/ping-service` | -                                |
+| Viewport Info | `workers/viewport-app` | <https://viewport.maxmilton.com> |
 
 ## Common commands
 
@@ -30,9 +37,9 @@ Individual lint tasks (all run by `bun run lint`):
 
 ```sh
 bun run lint:css   # stylelint '**/*.{css,xcss}'
-bun run lint:fmt   # biome check
+bun run lint:fmt   # oxfmt --check
+bun run lint:fmt2  # biome check
 bun run lint:js    # oxlint
-bun run lint:js2   # eslint
 bun run lint:ts    # tsc --build --noEmit (project references, incremental)
 ```
 
@@ -50,10 +57,15 @@ Per-workspace scripts (run inside `workers/<app>/`, or via
 bun run build    # NODE_ENV=production bun build.ts (each app has its own build.ts)
 bun run dev      # NODE_ENV=development bun build.ts
 bun run serve    # wrangler dev — run the worker locally
-bun run typegen  # wrangler types — generate worker-configuration.d.ts from wrangler.jsonc
+bun run typegen  # wrangler types + fix-worker-type.ts (link-app, ping-service only)
 bun run deploy:check   # wrangler deploy --dry-run
 bun run deploy         # wrangler deploy (CI-only in practice, needs CLOUDFLARE_* secrets)
 ```
+
+Frontend builds `assert()` on `Bun.env.ENV` and a 22-char
+`Bun.env.FRONTEND_BUGBOX_API_KEY` — build hard-fails without them. Supplied by
+per-worker `.env` / `.env.development` / `.env.local` (gitignored);
+`ping-service` uses `.dev.vars` instead.
 
 CI (`.github/workflows/ci.yml`) runs `bun run build` then `bun run test:ci`
 for test job, and `bun run typegen && bun run build && bun run lint` for
@@ -67,7 +79,14 @@ succeeds on `master`, does `bun turbo deploy:check` then `bun turbo deploy`.
 ### Workspace layout
 
 - `workers/*` — deployable Cloudflare Workers apps. Each independent, own
-  `wrangler.jsonc`, `build.ts`, `src/`, `test/`.
+  `wrangler.jsonc`, `build.ts`, `src/`. Shapes differ — don't assume symmetry:
+  - `link-app` — worker (`src/worker.ts`) + stage1 frontend (`src/index.ts`),
+    builds `index.html` + `404.html`, D1 binding `DB` (`schema.sql`), tests.
+  - `ping-service` — worker only, no frontend/xcss/tests. Hourly cron trigger
+    and secrets-store bindings in `wrangler.jsonc`.
+  - `viewport-app` — frontend only, **no** `main` in `wrangler.jsonc` (static
+    assets only), so no `worker-configuration.d.ts`/`typegen`. Tests +
+    snapshots.
 - `packages/*` — internal-only shared libraries (`private: true`, referenced
   via `workspace:*`), consumed only by `workers/*`:
   - `@uapps/build-tools` — shared production build pipeline: minifies
@@ -84,14 +103,18 @@ Each worker has own `build.ts` script (run direct with `bun build.ts`,
 not bundler config file) that:
 
 1. Wipes `dist/`, copies `static/` into it.
-2. Runs `Bun.build()` for worker entrypoint (`src/worker.ts`, target
+2. Runs `Bun.build()` per entrypoint the app has — worker (`src/worker.ts`,
    `cloudflare:*` external, unbundled — `no_bundle: true` in wrangler.jsonc)
-   and separately for frontend app entrypoint (`src/index.ts`, target
-   `browser`, content-hashed filenames in production).
-3. Hand-assembles `dist/index.html` / `dist/404.html` referencing hashed
-   JS/CSS output (no HTML templating library — template literal).
+   and/or frontend app (`src/index.ts`, target `browser`, content-hashed
+   filenames in production).
+3. Hand-assembles `dist/index.html` (+ `dist/404.html` in link-app)
+   referencing hashed JS/CSS output (no HTML templating library — template
+   literal).
 4. In production mode (`NODE_ENV !== development`), runs `@uapps/build-tools`
-   `minify()` over build artifacts.
+   `minify()` over build artifacts (worker and frontend output both). Note:
+   `minify()` deliberately ignores `Bun.BuildArtifact.sourcemap` and looks up
+   `<path>.map` in the artifacts instead — bun mispairs that field when a build
+   emits a CSS asset, and writing to it clobbers the CSS. Don't "simplify" it.
 5. Writes `dist/build-info.json` with git ref, mode, asset filenames.
 
 Frontend styling uses **ekscss (xcss)** — `.xcss` files compiled via Bun
@@ -111,15 +134,22 @@ new ones.
 
 Per-worker `worker-configuration.d.ts` generated output (`wrangler
 types`/`bun run typegen`) — don't hand-edit, regenerate instead when
-`wrangler.jsonc` bindings change.
+`wrangler.jsonc` bindings change. `typegen` also runs
+`packages/build-tools/src/fix-worker-type.ts`, which rewrites the generated
+`import("./dist/worker")` to `import("./src/worker")` (workaround for broken
+wrangler output).
+
+`dist/` artifacts and generated types are inputs to `lint:ts` and to some
+tests — build before linting/testing, as CI does.
 
 ### TypeScript project structure
 
 - `tsconfig.base.json` holds shared strict compiler options; workspace
   `tsconfig.json` files extend it.
 - Root `tsconfig.json` uses project references (`references: [...]`) covering
-  each worker plus `tsconfig.bun.json` (internal packages / build scripts)
-  and `tsconfig.node.json`. `lint:ts` runs `tsc --build` across all of them.
+  each of the three workers plus `tsconfig.bun.json` (internal packages /
+  build scripts) and `tsconfig.node.json`. `lint:ts` runs `tsc --build`
+  (TypeScript 7) across all of them.
 - Workers use import aliases: `"#*": "./src/*"` in each worker's
   `package.json` `imports` field (e.g. `import { Status } from "#net.ts"`
   inside `link-app`).
@@ -141,15 +171,16 @@ types`/`bun run typegen`) — don't hand-edit, regenerate instead when
 
 Don't assume one tool covers everything; `bun run lint` runs all, CI too:
 
-- **biome** (`lint:fmt`) — formatting + subset of linting (config:
-  `biome.jsonc`, 100-char line width, `noNonNullAssertion` and `useTemplate`
-  intentionally allowed).
-- **oxlint** (`lint:js`) — fast primary linter (config: `.oxlintrc.json`),
-  extends `@maxmilton/oxlint-config` presets including `stage1`-specific
-  preset for frontend files. `perf` and `restriction` categories are errors.
-- **eslint** (`lint:js2`) — supplementary rules oxlint doesn't cover yet
-  (`eslint-plugin-oxlint` disables rules oxlint already handles, avoid
-  duplicate reporting).
+- **oxfmt** (`lint:fmt`) — the JS/TS formatter (config: `.oxfmtrc.jsonc`).
+- **biome** (`lint:fmt2`) — linting + non-JS formatting (config: `biome.jsonc`,
+  100-char line width, `noNonNullAssertion`/`useTemplate`/
+  `noAssignInExpressions`/`noConstEnum` intentionally allowed). Its JS
+  formatter is deliberately disabled — oxfmt owns that.
+- **oxlint** (`lint:js`) — fast primary linter (config: `.oxlintrc.jsonc`),
+  type-aware (`typeAware: true`, via `oxlint-tsgolint`), extends
+  `@maxmilton/oxlint-config` presets including `stage1`-specific preset for
+  frontend files. `correctness`, `suspicious`, `perf`, `restriction` are
+  errors.
 - **stylelint** (`lint:css`) — for `.css`/`.xcss` files.
 - **tsc** (`lint:ts`) — type checking only (`noEmit`), not used for
   transpilation (Bun/swc handle that).
@@ -160,9 +191,9 @@ deliberately left to linters, not tsc, per `tsconfig.base.json` comments.
 ### Other conventions
 
 - Bun's `install.minimumReleaseAge` (`bunfig.toml`) delays adopting new
-  dependency versions by 7 days (except `@maxmilton/*`) as supply-chain
-  safety margin — relevant if `bun install` seems to ignore
-  just-published version.
-- `.bak` files scattered around repo (e.g. `src/index.ts.bak`,
-  `package.json.bak`) inactive backups, not part of build — don't
-  treat as source.
+  dependency versions by 7 days (except `@maxmilton/*`, `bugbox`, `stage1`)
+  as supply-chain safety margin — relevant if `bun install` seems to ignore
+  just-published version. Also `linker = "isolated"`, `auto = "disable"`.
+- `.bak` files and dirs scattered around repo (e.g. `src/index.ts.bak`,
+  `_ARCHIVE.bak/`) inactive backups, not part of build — don't treat as
+  source.

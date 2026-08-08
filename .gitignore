@@ -5,6 +5,7 @@
 *.tsbuildinfo
 !/bun.lock
 /.claude/settings.local.json
+/.claude/worktrees/
 /coverage/
 /playwright-report/
 /test-results/
