@@ -46,6 +46,12 @@ export async function minify(
   const artifactsHtml: Bun.BuildArtifact[] = [];
   const artifactsJs: Bun.BuildArtifact[] = [];
   const artifactsCss: Bun.BuildArtifact[] = [];
+  // XXX: Don't use artifact.sourcemap; bun mispairs it with the next element of
+  // outputs[] — when the build emits a CSS asset that's the CSS artifact, and
+  // writing to it clobbers the CSS. Look up the map artifact by path instead.
+  // Remove once https://github.com/oven-sh/bun/pull/33588 lands.
+  // Also see my issue: https://github.com/oven-sh/bun/issues/37184
+  const sourcemaps = new Map<string, Bun.BuildArtifact>();
 
   const encoder = new TextEncoder();
   const content: RawContent[] = [];
@@ -58,6 +64,8 @@ export async function minify(
       artifactsJs.push(artifact);
     } else if (artifact.path.endsWith(".css")) {
       artifactsCss.push(artifact);
+    } else if (artifact.kind === "sourcemap") {
+      sourcemaps.set(artifact.path, artifact);
     }
   }
 
@@ -78,6 +86,7 @@ export async function minify(
   }
 
   for (const artifact of artifactsJs) {
+    const sourcemap = sourcemaps.get(`${artifact.path}.map`);
     const source = await artifact.text();
     // https://swc.rs/docs/configuration/minification
     const result = await swc.minify(source, {
@@ -102,24 +111,25 @@ export async function minify(
           regex: String.raw`^\$\$`,
         },
       },
-      sourceMap: Boolean(artifact.sourcemap),
+      sourceMap: Boolean(sourcemap),
       ...options.js,
     });
     await Bun.write(artifact.path, result.code);
-    if (artifact.sourcemap && result.map) {
-      await Bun.write(artifact.sourcemap.path, result.map);
+    if (sourcemap && result.map) {
+      await Bun.write(sourcemap.path, result.map);
     }
     content.push({ extension: ".js", raw: result.code });
   }
 
   for (const artifact of artifactsCss) {
     const filename = basename(artifact.path);
+    const sourcemap = sourcemaps.get(`${artifact.path}.map`);
     const source = await artifact.text();
     const [purged] = await (purgecss ??= new PurgeCSS()).purge({
       content,
       css: [{ raw: source }],
       safelist: ["html", "body"],
-      sourceMap: Boolean(artifact.sourcemap),
+      sourceMap: Boolean(sourcemap),
       ...options.css,
     });
     const minified = lightningcss.transform({
@@ -136,13 +146,13 @@ export async function minify(
         lightningcss.Features.LogicalProperties |
         lightningcss.Features.DirSelector |
         lightningcss.Features.LightDark,
-      sourceMap: Boolean(artifact.sourcemap),
+      sourceMap: Boolean(sourcemap),
       inputSourceMap: purged.sourceMap!,
     });
     if (minified.warnings.length > 0) console.error(minified.warnings);
     await Bun.write(artifact.path, minified.code);
-    if (artifact.sourcemap && minified.map) {
-      await Bun.write(artifact.sourcemap.path, minified.map);
+    if (sourcemap && minified.map) {
+      await Bun.write(sourcemap.path, minified.map);
     }
   }
 }

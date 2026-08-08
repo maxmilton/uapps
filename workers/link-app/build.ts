@@ -130,8 +130,7 @@ console.timeEnd("html");
 if (!dev) {
   console.time("minify");
   await minify(out1.outputs);
-  // FIXME: Uncomment once bun is fixed.
-  // await minify(out2.outputs);
+  await minify(out2.outputs);
   console.timeEnd("minify");
 }
 
