@@ -14,12 +14,6 @@
     },
     "dev": { "persistent": true, "cache": false },
     "deploy:check": { "cache": false },
-    "deploy": {
-      "cache": false,
-      "dependsOn": ["^deploy"],
-      "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
-      "outputLogs": "new-only",
-    },
     "typegen": { "cache": false },
   },
   "globalDependencies": ["**/.dev.vars", "**/.env*", "package.json"],
