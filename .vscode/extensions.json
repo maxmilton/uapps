@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "bierner.comment-tagged-templates",
-    "bierner.markdown-footnotes",
     "biomejs.biome",
     "bradlc.vscode-tailwindcss",
     "GitHub.vscode-github-actions",

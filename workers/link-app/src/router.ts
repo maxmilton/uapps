@@ -26,6 +26,7 @@ export const handleRouteClick = (event: MouseEvent): void => {
   const link = (event.target as Element).closest("a");
   const href = link?.getAttribute("href");
 
+  // oxlint-disable-next-line typescript/prefer-string-starts-ends-with
   if (!href || link!.target || link!.host !== location.host || href[0] === "#") {
     return;
   }
