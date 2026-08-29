@@ -1,8 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with
-code in this repository.
-
 ## Overview
 
 µapps: monorepo of small Cloudflare Workers apps (`workers/*`) + shared
@@ -17,7 +14,7 @@ manager: **Bun** (not Node/npm/pnpm/yarn) — use `bun` for everything.
 
 ## Common commands
 
-Use bun for all commands & dev, not node. Use bunx, not npx.
+Use bun, not node. Use bunx, not npx.
 
 Run from repo root unless noted; Turborepo fans out to each workspace,
 caches results.

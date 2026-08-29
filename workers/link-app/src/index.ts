@@ -1,5 +1,4 @@
 import "./index.xcss";
-
 import { append, fragment, handleClick, ONCLICK } from "stage1/fast";
 import { Footer } from "#components/Footer.ts";
 import { Status } from "#net.ts";

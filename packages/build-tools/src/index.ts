@@ -1,4 +1,4 @@
-// oxlint-disable no-bitwise
+// oxlint-disable eslint/no-bitwise
 
 import { basename, relative } from "node:path";
 import * as swc from "@swc/core";
@@ -91,11 +91,10 @@ export async function minify(
       compress: {
         comparisons: false,
         keep_infinity: true, // don't use 1/0 for Infinity; bad Chrome performance
-        // TODO: Write a test for this (needs JS/TS AST), then uncomment.
-        // keep_fargs: false, // good but unsafe for code that relies on func.length
         negate_iife: false,
         reduce_funcs: false, // don't inline single-use functions; better performance
         passes: 2,
+
         // XXX: Comment out to keep performance markers for debugging.
         pure_funcs: ["performance.mark", "performance.measure"],
       },

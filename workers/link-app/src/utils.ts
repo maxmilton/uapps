@@ -7,7 +7,7 @@ export class AppError extends Error {
   declare public details: unknown;
   declare public timestamp: string;
 
-  constructor(message: string, code?: number, details?: unknown) {
+  public constructor(message: string, code?: number, details?: unknown) {
     super(message);
 
     this.name = "AppError";
