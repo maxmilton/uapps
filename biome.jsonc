@@ -4,7 +4,10 @@
   "assist": {
     "actions": {
       "preset": "recommended",
-      "source": { "useSortedProperties": "on" },
+      "source": {
+        "organizeImports": "off", // use oxfmt
+        "useSortedProperties": "on",
+      },
     },
   },
   "formatter": {
@@ -39,10 +42,13 @@
     "parser": {
       "tailwindDirectives": true,
     },
+    "formatter": {
+      "enabled": false, // use oxfmt
+    },
   },
   "json": {
     "formatter": {
-      "enabled": false,
+      "enabled": false, // use oxfmt
     },
   },
   "javascript": {
@@ -97,6 +103,16 @@
         "rules": {
           "suspicious": {
             "noRedundantUseStrict": "off",
+          },
+        },
+      },
+    },
+    {
+      "includes": ["**/static/*.svg"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noSvgWithoutTitle": "off",
           },
         },
       },

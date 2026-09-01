@@ -1,6 +1,8 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "jsPlugins": ["oxclippy"],
   "extends": [
+    "./node_modules/oxclippy/presets/all.json",
     "./node_modules/@maxmilton/oxlint-config/recommended.json",
     "./node_modules/@maxmilton/oxlint-config/stage1.json", // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
   ],
@@ -22,14 +24,9 @@
   // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
-    "es2025": true,
-    "es2026": true,
-    // TODO: Use "bun" instead of "globals" once supported: https://github.com/oxc-project/javascript-globals/issues/274
+    "es2026": true, // TODO: es2027 once in oxc.
     "bun": true,
-  },
-  "globals": {
-    "Bun": "readonly",
-    "process": "readonly",
+    "commonjs": false,
   },
   "settings": {
     "jsdoc": {
@@ -39,8 +36,10 @@
   "rules": {
     "eslint/prefer-destructuring": "off",
     "eslint/prefer-template": "off",
-    "typescript/no-unsafe-type-assertion": "off",
     "typescript/strict-boolean-expressions": "off",
+
+    // TODO: Remove when we can fix all the issues
+    "typescript/no-unsafe-type-assertion": "off",
 
     // TODO: These are buggy. Remove after future oxlint updates.
     "typescript/prefer-readonly-parameter-types": "off",
@@ -58,13 +57,12 @@
         "$console": "readonly",
         "happyDOM": "readonly",
       },
+      "rules": {
+        "unicorn/consistent-function-scoping": "off", // tests may define scoped helpers
+      },
     },
     {
       "files": ["packages/*/build.ts", "packages/build-tools/src/**", "workers/*/build.ts"],
-      "env": {
-        "node": true,
-        "commonjs": false,
-      },
       "rules": {
         "eslint/func-style": ["error", "declaration"],
         "eslint/no-await-in-loop": "off",
@@ -115,14 +113,10 @@
       "files": ["workers/*-backend/src/**", "workers/*-service/src/**"],
       "env": {
         "browser": false,
-        "node": true,
-        "commonjs": false,
       },
       "rules": {
         "unicorn/require-post-message-target-origin": "off",
-        // Nested `if` are used in input validation for code readability and
-        // consistency but get transpiled to a more optimal form in the build
-        "unicorn/no-lonely-if": "off",
+        "unicorn/no-lonely-if": "off", // more readable + are transpiled to optimal form
       },
     },
     {
@@ -134,6 +128,9 @@
         "commonjs": false,
         "serviceworker": false,
         "worker": true,
+      },
+      "globals": {
+        "process": "readonly",
       },
       "rules": {
         "import/no-default-export": "off",
