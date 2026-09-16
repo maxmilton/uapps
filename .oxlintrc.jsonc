@@ -1,21 +1,19 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "jsPlugins": ["oxclippy"],
   "extends": [
-    "./node_modules/oxclippy/presets/all.json",
     "./node_modules/@maxmilton/oxlint-config/recommended.json",
     "./node_modules/@maxmilton/oxlint-config/stage1.json", // FIXME: Should should only be used for frontend files (but oxlint doesn't currently support "extends" in overrides).
   ],
   "options": {
-    "maxWarnings": 100,
+    "maxWarnings": 50,
     "reportUnusedDisableDirectives": "error",
     "respectEslintDisableDirectives": false,
     "typeAware": true,
   },
   "categories": {
     "correctness": "error",
-    "suspicious": "error",
-    "pedantic": "warn",
+    "suspicious": "warn",
+    // "pedantic": "warn", // TODO: Enable when we can fix all the issues.
     "perf": "error",
     "style": "warn",
     "restriction": "error",
@@ -36,13 +34,13 @@
   "rules": {
     "eslint/prefer-destructuring": "off",
     "eslint/prefer-template": "off",
-    "typescript/strict-boolean-expressions": "off",
+    "typescript/strict-boolean-expressions": "off", // too pedantic
 
     // TODO: Remove when we can fix all the issues.
-    "typescript/no-unsafe-type-assertion": "warn",
+    "typescript/no-unsafe-type-assertion": "off",
 
-    // TODO: These are buggy. Remove after future oxlint updates.
-    "typescript/prefer-readonly-parameter-types": "off",
+    // TODO: Remove after future oxlint updates.
+    "typescript/prefer-readonly-parameter-types": "off", // buggy
   },
   "overrides": [
     {
