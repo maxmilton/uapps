@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
+      attestations: write
       contents: write
       id-token: write
-      attestations: write
     steps:
       # nosemgrep: workflow-run-target-code-checkout
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7

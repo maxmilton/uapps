@@ -1,6 +1,6 @@
 // import './link.xcss';
 
-import { append, clone, collect, h, ONCLICK } from "stage1/fast";
+import { clone, collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
 
 type LinkPageComponent = HTMLDivElement;
@@ -23,6 +23,10 @@ let view: LinkPageComponent | undefined;
 function LinkPage(id: string): LinkPageComponent {
   const root = clone((view ??= h<LinkPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
+
+  // FIXME: Remove.
+  // oxlint-disable-next-line no-console
+  console.log(refs);
 
   // const off1 = state.on('feedback', (feedback) => {
   //   refs.feedback.textContent = '';

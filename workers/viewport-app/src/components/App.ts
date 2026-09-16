@@ -1,7 +1,7 @@
 import { collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
 
-// oxlint-disable no-nested-ternary no-negated-condition
+// oxlint-disable no-nested-ternary
 const supportsTouch: boolean =
   typeof navigator.maxTouchPoints === "number"
     ? navigator.maxTouchPoints > 0
@@ -10,7 +10,7 @@ const supportsTouch: boolean =
       : matchMedia("(-moz-touch-enabled: 1)").media !== "not all"
         ? matchMedia("(-moz-touch-enabled: 1)").matches
         : "ontouchstart" in window;
-// oxlint-enable no-nested-ternary no-negated-condition
+// oxlint-enable no-nested-ternary
 
 type AppComponent = HTMLElement;
 interface Refs {

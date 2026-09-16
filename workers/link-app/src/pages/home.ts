@@ -1,6 +1,6 @@
 // import './home.xcss';
 
-import { append, clone, collect, h, ONCLICK } from "stage1/fast";
+import { append, clone, collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
 import { QrCode } from "#components/QrCode.ts";
 
@@ -24,6 +24,10 @@ let view: HomePageComponent | undefined;
 function HomePage(): HomePageComponent {
   const root = clone((view ??= h<HomePageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
+
+  // FIXME: Remove.
+  // oxlint-disable-next-line no-console
+  console.log(refs);
 
   // const off1 = state.on('feedback', (feedback) => {
   //   refs.feedback.textContent = '';

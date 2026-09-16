@@ -53,7 +53,6 @@ test("does not have any CSS variable declarations", () => {
   expect.assertions(1);
   let found = 0;
   walk(ast, (element) => {
-    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === DECLARATION && (element.props as string).startsWith("--")) {
       found += 1;
     }
@@ -65,7 +64,6 @@ test("has no @font-face queries", () => {
   expect.assertions(1);
   const fontFaceQueries: Element[] = [];
   walk(ast, (element) => {
-    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === FONT_FACE) {
       fontFaceQueries.push(element);
     }
@@ -78,7 +76,6 @@ test("has a single @media query", () => {
   expect.assertions(1);
   let found = 0;
   walk(ast, (element) => {
-    // oxlint-disable-next-line vitest/no-conditional-in-test
     if (element.type === MEDIA) {
       found += 1;
     }

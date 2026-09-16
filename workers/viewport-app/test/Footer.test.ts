@@ -37,4 +37,5 @@
 // oxlint-disable-next-line unicorn/require-module-specifiers
 export {};
 
+// oxlint-disable-next-line vitest/require-hook
 $console.warn("Footer tests are disabled");

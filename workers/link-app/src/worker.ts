@@ -19,9 +19,17 @@ export default {
       path.startsWith("/api/link/")
     ) {
       const short = path.slice(11);
+
+      // FIXME: Remove!!
+      // oxlint-disable-next-line no-console
+      console.log(short);
     } else if (request.method === "POST" && path === "/api/link") {
       // extract short and url from request body
       const payload = await request.json();
+
+      // FIXME: Remove!!
+      // oxlint-disable-next-line no-console
+      console.log(payload);
     }
 
     return new Response("Not Found", { status: 404 });

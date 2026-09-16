@@ -36,7 +36,6 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
   const refs = collect<Refs>(root, meta.d);
 
-  // oxlint-disable-next-line typescript/prefer-nullish-coalescing
   const ex = error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
   let code: unknown;
   let message: unknown;
@@ -52,7 +51,7 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
   refs[meta.ref.title].nodeValue = `${code ?? ""} Error`;
   // oxlint-disable-next-line typescript/no-base-to-string typescript/restrict-template-expressions
   document.title = `${code ?? ""} Error | 🔗`;
-  // oxlint-disable-next-line typescript/no-base-to-string typescript/prefer-nullish-coalescing
+  // oxlint-disable-next-line typescript/no-base-to-string
   refs[meta.ref.message].nodeValue = String(message || ex);
 
   refs[meta.ref.home][ONCLICK] = (): void => {
