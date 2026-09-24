@@ -135,5 +135,5 @@
       },
     },
   ],
-  "ignorePatterns": ["workers/*/worker-configuration.d.ts"],
+  "ignorePatterns": ["/workers/*/worker-configuration.d.ts"],
 }
