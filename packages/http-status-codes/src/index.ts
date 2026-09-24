@@ -2,6 +2,7 @@
 
 /**
  * HTTP response status codes.
+ *
  * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
  */
@@ -44,9 +45,7 @@ export const enum Status {
    */
   OK = 200,
 
-  /**
-   * The request has been fulfilled, resulting in the creation of a new resource.
-   */
+  /** The request has been fulfilled, resulting in the creation of a new resource. */
   CREATED = 201,
 
   /**
@@ -114,9 +113,7 @@ export const enum Status {
    */
   MULTIPLE_CHOICES = 300,
 
-  /**
-   * This and all future requests should be directed to the given URI.
-   */
+  /** This and all future requests should be directed to the given URI. */
   MOVED_PERMANENTLY = 301,
 
   /**
@@ -233,9 +230,7 @@ export const enum Status {
    */
   NOT_ACCEPTABLE = 406,
 
-  /**
-   * The client must first authenticate itself with the proxy.
-   */
+  /** The client must first authenticate itself with the proxy. */
   PROXY_AUTHENTICATION_REQUIRED = 407,
 
   /**
@@ -309,9 +304,7 @@ export const enum Status {
    */
   RANGE_NOT_SATISFIABLE = 416,
 
-  /**
-   * The server cannot meet the requirements of the Expect request-header field.
-   */
+  /** The server cannot meet the requirements of the Expect request-header field. */
   EXPECTATION_FAILED = 417,
 
   /**
@@ -335,14 +328,10 @@ export const enum Status {
    */
   UNPROCESSABLE_ENTITY = 422,
 
-  /**
-   * The resource that is being accessed is locked.
-   */
+  /** The resource that is being accessed is locked. */
   LOCKED = 423,
 
-  /**
-   * The request failed due to failure of a previous request (e.g., a PROPPATCH).
-   */
+  /** The request failed due to failure of a previous request (e.g., a PROPPATCH). */
   FAILED_DEPENDENCY = 424,
 
   /**
@@ -412,9 +401,7 @@ export const enum Status {
    */
   GATEWAY_TIMEOUT = 504,
 
-  /**
-   * The server does not support the HTTP protocol version used in the request
-   */
+  /** The server does not support the HTTP protocol version used in the request */
   HTTP_VERSION_NOT_SUPPORTED = 505,
 
   /**
@@ -429,14 +416,10 @@ export const enum Status {
    */
   INSUFFICIENT_STORAGE = 507,
 
-  /**
-   * The server detected an infinite loop while processing the request.
-   */
+  /** The server detected an infinite loop while processing the request. */
   LOOP_DETECTED = 508,
 
-  /**
-   * Further extensions to the request are required for the server to fulfill it.
-   */
+  /** Further extensions to the request are required for the server to fulfill it. */
   NOT_EXTENDED = 510,
 
   /**

@@ -180,9 +180,9 @@ function createMatrix(version: number) {
       for (const ax of aligns) {
         // Skip if overlapping a finder
         if (
-          (ay === 6 && ax === 6) ||
-          (ay === 6 && ax === size - 7) ||
-          (ay === size - 7 && ax === 6)
+          (ay === 6 && ax === 6)
+          || (ay === 6 && ax === size - 7)
+          || (ay === size - 7 && ax === 6)
         ) {
           continue;
         }
@@ -301,9 +301,9 @@ function penaltyScore(matrix: Matrix, size: number) {
     for (let c = 0; c < size - 1; c++) {
       const v = matrix[r * size + c];
       if (
-        v === matrix[r * size + c + 1] &&
-        v === matrix[(r + 1) * size + c] &&
-        v === matrix[(r + 1) * size + c + 1]
+        v === matrix[r * size + c + 1]
+        && v === matrix[(r + 1) * size + c]
+        && v === matrix[(r + 1) * size + c + 1]
       ) {
         score += 3;
       }
@@ -327,8 +327,8 @@ function penaltyScore(matrix: Matrix, size: number) {
       const beforeWhite =
         c >= 4 && matrix.slice(r * size + c - 4, r * size + c).every((x) => x === 0);
       const afterWhite =
-        c + 7 <= size - 4 &&
-        matrix.slice(r * size + c + 7, r * size + c + 11).every((x) => x === 0);
+        c + 7 <= size - 4
+        && matrix.slice(r * size + c + 7, r * size + c + 11).every((x) => x === 0);
       if (beforeWhite || afterWhite) {
         score += 40;
       }

@@ -21,7 +21,7 @@ export function gitRef(): string {
  * Get the HEAD commit hash.
  *
  * @param long - Get the full git hash instead of a short hash in the form of
- * the first 7 characters (default `false`).
+ *   the first 7 characters (default `false`).
  * @returns A git commit hash string.
  */
 export function gitHash(long?: boolean): string {

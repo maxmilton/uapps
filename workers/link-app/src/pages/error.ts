@@ -63,9 +63,9 @@ function ErrorPage(error?: unknown): ErrorPageComponent {
 
   // TODO: Place comments above inline code once biome doesn't format the || on the comment line.
   if (
-    !document.referrer || // empty referrer or navigated directly e.g., from the URL bar or a bookmark
-    new URL(document.referrer).origin !== window.location.origin || // came from another site
-    !document.querySelector("main") // router, which uses a main element as root, hasn't been initialized yet so it wouldn't be able to handle updating the route
+    !document.referrer // empty referrer or navigated directly e.g., from the URL bar or a bookmark
+    || new URL(document.referrer).origin !== window.location.origin // came from another site
+    || !document.querySelector("main") // router, which uses a main element as root, hasn't been initialized yet so it wouldn't be able to handle updating the route
   ) {
     refs[meta.ref.back].hidden = true;
   }
