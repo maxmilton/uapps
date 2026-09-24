@@ -13,15 +13,13 @@ Bun.plugin({
   },
 });
 
-const noop = () => {};
-
 function setupMocks(): void {
   global.devicePixelRatio = window.devicePixelRatio;
 
   // @ts-expect-error - noop stub
-  global.performance.mark = noop;
+  global.performance.mark = () => {};
   // @ts-expect-error - noop stub
-  global.performance.measure = noop;
+  global.performance.measure = () => {};
 }
 
 export async function reset(): Promise<void> {
