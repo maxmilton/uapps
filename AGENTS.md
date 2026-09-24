@@ -2,12 +2,13 @@ Monorepo of micro apps.
 
 ## Commands
 
-Use bun not node, bunx not npx.
+- Use bun not node, bunx not npx.
+- Always use bun `-b` flag for lint; `bun run -b lint`.
 
 ```sh
 bun run build  # production
 bun dev        # unminified
-bun lint       # lint:fmt (oxfmt), lint:fmt2 (biome), lint:css (stylelint), lint:js (oxlint), lint:ts (tsc)
+bun -b lint    # lint:fmt (oxfmt), lint:fmt2 (biome), lint:css (stylelint), lint:js (oxlint), lint:ts (tsc)
 bun test       # all
 bun test test/example.test.ts # one file
 bun test -t "name pattern"    # one case
