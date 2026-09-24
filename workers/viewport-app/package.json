@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ekscss/framework": "0.0.61-next.0",
-    "stage1": "0.10.0"
+    "stage1": "0.11.0-next.0"
   },
   "devDependencies": {
     "@uapps/build-tools": "workspace:*",
