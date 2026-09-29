@@ -20,21 +20,21 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
-    "@cloudflare/workers-types": "5.20260917.1",
+    "@cloudflare/workers-types": "5.20260922.1",
     "@maxmilton/oxlint-config": "0.0.20",
     "@maxmilton/stylelint-config": "0.4.4",
     "@maxmilton/test-utils": "0.0.18",
     "@types/bun": "1.4.2",
-    "@types/node": "26.6.1",
+    "@types/node": "26.6.2",
     "happy-dom": "20.14.5",
-    "oxfmt": "0.68.0",
-    "oxlint": "1.83.0",
-    "oxlint-tsgolint": "7.0.2001",
+    "oxfmt": "0.70.0",
+    "oxlint": "1.85.0",
+    "oxlint-tsgolint": "7.0.2002",
     "stylelint": "17.15.0",
     "stylelint-config-standard": "40.0.0",
-    "turbo": "2.10.13",
+    "turbo": "2.11.2",
     "typescript": "7.0.2",
-    "wrangler": "4.133.0"
+    "wrangler": "4.136.2"
   },
   "packageManager": "bun@1.99.0"
 }
