@@ -60,11 +60,7 @@
   },
   "overrides": [
     {
-      "includes": [
-        "**/*.jsonc",
-        "**/tsconfig*.json",
-        ".vscode/*.json",
-      ],
+      "includes": ["**/*.jsonc", "**/tsconfig*.json", ".vscode/*.json"],
       "json": {
         "parser": {
           "allowComments": true,
