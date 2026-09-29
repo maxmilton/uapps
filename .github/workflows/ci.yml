@@ -28,7 +28,7 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - run: bun run test:ci --coverage-reporter=lcov --coverage-reporter=text
+      - run: bun run test:ci --coverage-reporter=text --coverage-reporter=lcov
       - name: Report coverage
         if: ${{ github.repository_owner == 'maxmilton' }}
         uses: qltysh/qlty-action/coverage@08a0a862c159eae9b9003081da6663d96efef637 # v2

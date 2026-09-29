@@ -64,9 +64,6 @@
         "**/*.jsonc",
         "**/tsconfig*.json",
         ".vscode/*.json",
-        ".oxlintrc.json",
-        ".oxfmtrc.json",
-        "turbo.json",
       ],
       "json": {
         "parser": {
