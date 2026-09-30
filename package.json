@@ -32,9 +32,9 @@
     "oxlint-tsgolint": "7.0.2002",
     "stylelint": "17.15.0",
     "stylelint-config-standard": "40.0.0",
-    "turbo": "2.11.2",
+    "turbo": "2.11.3",
     "typescript": "7.0.2",
-    "wrangler": "4.136.2"
+    "wrangler": "4.136.3"
   },
   "packageManager": "bun@1.99.0"
 }
