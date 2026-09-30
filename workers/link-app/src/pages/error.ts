@@ -1,7 +1,7 @@
 import { append, clone, collect, create, h, ONCLICK } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
-import { Status } from "#net.ts";
-import { AppError } from "#utils.ts";
+import { Status } from "#/net.ts";
+import { AppError } from "#/utils.ts";
 
 interface ErrorLike {
   code?: number;

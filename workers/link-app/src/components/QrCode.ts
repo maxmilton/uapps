@@ -1,5 +1,5 @@
 import { append, create } from "stage1/fast";
-import { encodeToCanvas, selfTest } from "../qr.ts";
+import { encodeToCanvas, selfTest } from "#/qr.ts";
 
 try {
   // run quick verification (throws if any check fails)

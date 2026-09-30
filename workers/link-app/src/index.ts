@@ -1,10 +1,10 @@
 import "./index.xcss";
 import { append, fragment, handleClick, ONCLICK } from "stage1/fast";
-import { Footer } from "#components/Footer.ts";
-import { Status } from "#net.ts";
-import ErrorPage from "#pages/error.ts";
-import { handleRouteClick, Router } from "#router.ts";
-import { AppError } from "#utils.ts";
+import { Footer } from "#/components/Footer.ts";
+import { Status } from "#/net.ts";
+import ErrorPage from "#/pages/error.ts";
+import { handleRouteClick, Router } from "#/router.ts";
+import { AppError } from "#/utils.ts";
 
 function renderErrorPage(error: unknown) {
   if (!(error instanceof AppError) || error.code !== Status.NOT_FOUND) {

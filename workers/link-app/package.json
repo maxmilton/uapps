@@ -8,7 +8,7 @@
   "repository": "github:maxmilton/uapps",
   "type": "module",
   "imports": {
-    "#*": "./src/*"
+    "#/*": "./src/*"
   },
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",

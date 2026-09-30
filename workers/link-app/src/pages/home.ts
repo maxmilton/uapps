@@ -2,7 +2,7 @@
 
 import { append, clone, collect, h } from "stage1/fast";
 import { compile } from "stage1/macro" with { type: "macro" };
-import { QrCode } from "#components/QrCode.ts";
+import { QrCode } from "#/components/QrCode.ts";
 
 type HomePageComponent = HTMLDivElement;
 interface Refs {

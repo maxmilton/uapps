@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "#*": ["./src/*"]
+      "#/*": ["./src/*"]
     },
     "types": ["bun", "./worker-configuration.d.ts", "./globals.d.ts", "./modules.d.ts"]
   },

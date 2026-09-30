@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from "bun:test";
 import { cleanup, render } from "@maxmilton/test-utils/dom";
-import { App } from "../src/components/App.ts";
+import { App } from "#/components/App.ts";
 
 afterEach(cleanup);
 

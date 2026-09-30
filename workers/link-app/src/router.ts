@@ -1,8 +1,8 @@
 import { append, create } from "stage1/fast";
-import { Status } from "#net.ts";
-import HomePage from "#pages/home.ts";
-import LinkPage from "#pages/link.ts";
-import { AppError } from "#utils.ts";
+import { Status } from "#/net.ts";
+import HomePage from "#/pages/home.ts";
+import LinkPage from "#/pages/link.ts";
+import { AppError } from "#/utils.ts";
 
 const STUB_BASE_URL = "http://x";
 

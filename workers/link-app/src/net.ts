@@ -1,4 +1,4 @@
-import { AppError } from "#utils.ts";
+import { AppError } from "#/utils.ts";
 
 export { Status } from "@uapps/http-status-codes";
 
