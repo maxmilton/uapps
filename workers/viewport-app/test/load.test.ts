@@ -9,9 +9,6 @@ afterEach(reset);
 const MODULE_PATH = `${import.meta.dir}/../dist/${buildInfo.js}`;
 
 async function load() {
-  // Workaround for hack in src/BookmarkBar.ts that waits for styles to be loaded
-  document.head.append(document.createElement("style"));
-
   await import(`${MODULE_PATH}?bust=${Bun.nanoseconds().toString()}`);
   await happyDOM.waitUntilComplete();
 }

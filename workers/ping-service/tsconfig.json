@@ -1,9 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "paths": {
-      "#*": ["./src/*"]
-    },
     "types": ["bun", "./worker-configuration.d.ts", "./globals.d.ts"]
   },
   "include": ["*.config.js", "*.config.ts", "*.d.ts", "build.ts", "src", "test"]

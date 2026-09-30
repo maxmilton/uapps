@@ -4,3 +4,11 @@ declare module "bun" {
     readonly BUGBOX_API_ENDPOINT: string;
   }
 }
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly CI?: string;
+    }
+  }
+}

@@ -13,6 +13,12 @@ declare module "bun" {
 }
 
 declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly CI?: string;
+    }
+  }
+
   interface HTMLElement {
     /** `stage1` synthetic click event handler. */
     // oxlint-disable-next-line typescript/no-invalid-void-type

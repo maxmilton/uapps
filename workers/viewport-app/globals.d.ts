@@ -5,3 +5,11 @@ declare module "bun" {
     readonly FRONTEND_BUGBOX_API_KEY: string;
   }
 }
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly CI?: string;
+    }
+  }
+}

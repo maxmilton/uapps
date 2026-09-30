@@ -19,8 +19,8 @@ describe("worker", () => {
     expect(wrangler).toHaveProperty("main");
   });
 
-  // test("has expected path", () => {
-  //   expect.assertions(1);
-  //   expect(wrangler.main).toBe("./dist/worker.js");
-  // });
+  test("has expected path", () => {
+    expect.assertions(1);
+    expect(wrangler).toHaveProperty("main", "./dist/worker.js");
+  });
 });

@@ -7,9 +7,6 @@
   "author": "Max Milton <max@2okki.com>",
   "repository": "github:maxmilton/uapps",
   "type": "module",
-  "imports": {
-    "#*": "./src/*"
-  },
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-'production'} bun build.ts",
     "deploy": "wrangler deploy",
