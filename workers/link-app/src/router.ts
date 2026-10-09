@@ -4,6 +4,8 @@ import HomePage from "#/pages/home.ts";
 import LinkPage from "#/pages/link.ts";
 import { AppError } from "#/utils.ts";
 
+declare const location: Location;
+
 const STUB_BASE_URL = "http://x";
 
 export const navigateTo = (url: string): void => {
