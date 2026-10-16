@@ -9,20 +9,46 @@ on:
 
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
 
 permissions: {}
 
 jobs:
   build:
-    if: ${{ github.repository == 'maxmilton/uapps' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    if: >-
+      ${{ github.repository == 'maxmilton/uapps' &&
+          ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master') ||
+           (github.event_name == 'workflow_run' &&
+            github.event.workflow_run.event == 'push' &&
+            github.event.workflow_run.head_branch == 'master' &&
+            github.event.workflow_run.head_repository.full_name == 'maxmilton/uapps' &&
+            github.event.workflow_run.conclusion == 'success')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      attestations: write
-      contents: write
-      id-token: write
+      actions: read
+      contents: read
     steps:
+      - name: Validate deployment commit
+        run: |
+          MASTER_SHA="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')"
+          if [[ "$COMMIT_SHA" != "$MASTER_SHA" ]]; then
+            echo "Deployment commit is no longer the master tip" >&2
+            exit 1
+          fi
+          if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+            CI_PASSED="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?event=push&branch=master&head_sha=$COMMIT_SHA&per_page=1" \
+              --jq '.workflow_runs[0] | .status == "completed" and .conclusion == "success"')"
+            if [[ "$CI_PASSED" != true ]]; then
+              echo "Push CI has not passed for the selected master commit" >&2
+              exit 1
+            fi
+          fi
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # nosemgrep: workflow-run-target-code-checkout
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -34,30 +60,18 @@ jobs:
           no-cache: true
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
-        with:
-          subject-path: workers/*/dist/**
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: dist
           path: workers/*/dist/**
+          if-no-files-found: error
+          retention-days: 7
       - run: bun turbo deploy:check
-      - name: Create release
-        run: |
-          TAG="deploy-${COMMIT_SHA:0:12}"
-          if gh release view "$TAG" >/dev/null; then
-            echo "Release already exists: $TAG"
-          else
-            gh release create "$TAG" --target "$COMMIT_SHA" --generate-notes --title "Deploy $TAG"
-          fi
-        shell: bash
-        env:
-          COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: build
     name: deploy-${{ matrix.worker }}
+    environment: production
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -84,13 +98,37 @@ jobs:
       - run: bun run deploy
         working-directory: workers/${{ matrix.worker }}
         env:
-          # zizmor: ignore[secrets-outside-env]
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # zizmor: ignore[secrets-outside-env]
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           WRANGLER_SEND_METRICS: false
+          WRANGLER_LOG_SANITIZE: true
+          WRANGLER_LOG_PATH: ${{ runner.temp }}/wrangler-logs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        if: ${{ !cancelled() }}
+        if: ${{ failure() && !cancelled() }}
         with:
           name: wrangler-logs-${{ matrix.worker }}
-          path: /home/runner/.config/.wrangler/logs/*.log
+          path: ${{ runner.temp }}/wrangler-logs/*.log
+          if-no-files-found: ignore
+          retention-days: 3
+
+  release:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create release after successful deployment
+        run: |
+          TAG="deploy-${COMMIT_SHA:0:12}"
+          RELEASE_TAGS="$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" --jq '.[].tag_name')"
+          if grep -Fxq -- "$TAG" <<< "$RELEASE_TAGS"; then
+            echo "Release already exists: $TAG"
+          else
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --target "$COMMIT_SHA" --generate-notes --title "Deploy $TAG"
+          fi
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
