@@ -1,7 +1,7 @@
 name: deploy
 
 on:
-  workflow_run:
+  workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows: [ci]
     types: [completed]
     branches: [master]
@@ -9,55 +9,69 @@ on:
 
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
+
+permissions: {}
 
 jobs:
   build:
-    if: ${{ github.repository_owner == 'maxmilton' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    if: >-
+      ${{ github.repository == 'maxmilton/uapps' &&
+          ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master') ||
+           (github.event_name == 'workflow_run' &&
+            github.event.workflow_run.event == 'push' &&
+            github.event.workflow_run.head_branch == 'master' &&
+            github.event.workflow_run.head_repository.full_name == 'maxmilton/uapps' &&
+            github.event.workflow_run.conclusion == 'success')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      attestations: write
-      contents: write
-      id-token: write
+      actions: read
+      contents: read
     steps:
-      # nosemgrep: workflow-run-target-code-checkout
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
-          fetch-depth: 1
-          fetch-tags: true
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
-        with:
-          bun-version: latest
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
-        with:
-          subject-path: workers/*/dist/**
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        with:
-          name: dist
-          path: workers/*/dist/**
-      - run: bun turbo deploy:check
-      - name: Create release
+      - name: Validate deployment commit
         run: |
-          TAG="deploy-${COMMIT_SHA:0:12}"
-          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
-            echo "Tag already exists: $TAG"
-          else
-            git tag "$TAG"
-            git push origin "$TAG"
-            gh release create "$TAG" --generate-notes --title "Deploy $TAG"
+          MASTER_SHA="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')"
+          if [[ "$COMMIT_SHA" != "$MASTER_SHA" ]]; then
+            echo "Deployment commit is no longer the master tip" >&2
+            exit 1
+          fi
+          if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+            CI_PASSED="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?event=push&branch=master&head_sha=$COMMIT_SHA&per_page=1" \
+              --jq '.workflow_runs[0] | .status == "completed" and .conclusion == "success"')"
+            if [[ "$CI_PASSED" != true ]]; then
+              echo "Push CI has not passed for the selected master commit" >&2
+              exit 1
+            fi
           fi
         shell: bash
         env:
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # nosemgrep: workflow-run-target-code-checkout
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: .bun-version
+          no-cache: true
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: workers/*/dist/**
+          if-no-files-found: error
+          retention-days: 7
+      - run: bun turbo deploy:check
 
   deploy:
     needs: build
     name: deploy-${{ matrix.worker }}
+    environment: production
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -68,15 +82,16 @@ jobs:
         worker: [link-app, ping-service, viewport-app]
     steps:
       # nosemgrep: workflow-run-target-code-checkout
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
-          fetch-depth: 1
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          bun-version: latest
+          bun-version-file: .bun-version
+          no-cache: true
       - run: bun install --frozen-lockfile
-      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: dist
           path: workers
@@ -86,8 +101,34 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           WRANGLER_SEND_METRICS: false
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        if: always()
+          WRANGLER_LOG_SANITIZE: true
+          WRANGLER_LOG_PATH: ${{ runner.temp }}/wrangler-logs
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ failure() && !cancelled() }}
         with:
           name: wrangler-logs-${{ matrix.worker }}
-          path: /home/runner/.config/.wrangler/logs/*.log
+          path: ${{ runner.temp }}/wrangler-logs/*.log
+          if-no-files-found: ignore
+          retention-days: 3
+
+  release:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create release after successful deployment
+        run: |
+          TAG="deploy-${COMMIT_SHA:0:12}"
+          RELEASE_TAGS="$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" --jq '.[].tag_name')"
+          if grep -Fxq -- "$TAG" <<< "$RELEASE_TAGS"; then
+            echo "Release already exists: $TAG"
+          else
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --target "$COMMIT_SHA" --generate-notes --title "Deploy $TAG"
+          fi
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

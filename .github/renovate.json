@@ -2,9 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "config:js-app",
+    "config:js-lib",
     "github>maxmilton/renovate-config",
     "github>maxmilton/renovate-config:auto",
+    "github>maxmilton/renovate-config:manual",
     "schedule:monthly"
+  ],
+  "packageRules": [
+    {
+      "matchPaths": ["workers/**"],
+      "extends": ["config:js-app"]
+    }
   ]
 }
