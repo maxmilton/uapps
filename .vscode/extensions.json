@@ -10,7 +10,8 @@
     "tekumara.typos-vscode",
     "timonwong.shellcheck",
     "typescriptteam.native-preview",
-    "YoavBls.pretty-ts-errors"
+    "YoavBls.pretty-ts-errors",
+    "zizmor.zizmor-vscode"
   ],
   "unwantedRecommendations": [
     "dbaeumer.vscode-eslint",
