@@ -10,9 +10,7 @@
   ],
   "packageRules": [
     {
-      "matchFileNames": [
-        "workers/**"
-      ],
+      "matchFileNames": ["workers/**"],
       "extends": ["config:js-app"]
     }
   ]
