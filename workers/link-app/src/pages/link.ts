@@ -22,7 +22,7 @@ let view: LinkPageComponent | undefined;
 
 function LinkPage(id: string): LinkPageComponent {
   const root = clone((view ??= h<LinkPageComponent>(meta.html)));
-  const refs = collect<Refs>(root, meta.d);
+  const refs = collect(root, meta.d);
 
   // FIXME: Remove.
   // oxlint-disable-next-line no-console

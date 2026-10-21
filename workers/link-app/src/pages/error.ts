@@ -34,7 +34,7 @@ let view: ErrorPageComponent | undefined;
 
 function ErrorPage(error?: unknown): ErrorPageComponent {
   const root = clone((view ??= h<ErrorPageComponent>(meta.html)));
-  const refs = collect<Refs>(root, meta.d);
+  const refs = collect(root, meta.d);
 
   const ex = error || new AppError("An unknown error occurred", Status.UNKNOWN_ERROR);
   let code: unknown;

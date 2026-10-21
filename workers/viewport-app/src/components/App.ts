@@ -76,7 +76,7 @@ const meta = compile<Refs>(/* html */ `
 
 export const App = (): AppComponent => {
   const root = h<AppComponent>(meta.html);
-  const refs = collect<Refs>(root, meta.d);
+  const refs = collect(root, meta.d);
 
   const update = () => {
     refs[meta.ref.a].nodeValue = String(window.screen.width * devicePixelRatio) + " px";

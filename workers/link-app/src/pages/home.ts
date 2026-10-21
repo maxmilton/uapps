@@ -23,7 +23,7 @@ let view: HomePageComponent | undefined;
 
 function HomePage(): HomePageComponent {
   const root = clone((view ??= h<HomePageComponent>(meta.html)));
-  const refs = collect<Refs>(root, meta.d);
+  const refs = collect(root, meta.d);
 
   // FIXME: Remove.
   // oxlint-disable-next-line no-console
