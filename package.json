@@ -26,7 +26,7 @@
     "@maxmilton/test-utils": "0.0.18",
     "@types/bun": "1.4.3",
     "@types/node": "26.6.5",
-    "happy-dom": "21.0.1",
+    "happy-dom": "21.0.4",
     "oxfmt": "0.73.0",
     "oxlint": "1.88.0",
     "oxlint-tsgolint": "7.0.2004",
