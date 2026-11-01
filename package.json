@@ -34,7 +34,7 @@
     "stylelint-config-standard": "40.0.0",
     "turbo": "2.11.8",
     "typescript": "7.0.2",
-    "wrangler": "4.150.0"
+    "wrangler": "4.152.0"
   },
   "packageManager": "bun@1.4.3"
 }
