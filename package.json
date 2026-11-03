@@ -34,5 +34,5 @@
     "typescript": "7.0.2",
     "wrangler": "4.150.0"
   },
-  "packageManager": "bun@1.4.3"
+  "packageManager": "bun@1.4.4"
 }
