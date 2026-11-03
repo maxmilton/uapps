@@ -14,7 +14,13 @@
   },
   "git.branchProtection": ["master", "next"],
   "git.detectWorktrees": true,
-  "git.worktreeIncludeFiles": ["node_modules/**"],
+  // TODO: Remove once landed: https://github.com/microsoft/vscode/issues/323888
+  "git.worktreeIncludeFiles": [
+    ".env.local",
+    "/workers/*/worker-configuration.d.ts",
+    ".dev.vars*",
+    ".wrangler/"
+  ],
   "js/ts.experimental.useTsgo": true, // TODO: Remove once tsgo is stable
   "js/ts.tsdk.path": "node_modules/typescript",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true,
