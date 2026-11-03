@@ -1,0 +1,5 @@
+.env.local
+
+/workers/*/worker-configuration.d.ts
+.dev.vars*
+.wrangler/
