@@ -4,7 +4,6 @@
   "tasks": {
     "//#lint:css": { "cache": false },
     "//#lint:fmt": { "cache": false },
-    "//#lint:fmt2": { "cache": false },
     "//#lint:js": { "cache": false },
     "//#lint:ts": { "cache": false },
     "build": {
